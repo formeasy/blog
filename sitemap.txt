@@ -4,8 +4,8 @@ http://www.formeasy.cc/categories/index.html
 http://www.formeasy.cc/tags/index.html
 http://www.formeasy.cc/links/index.html
 http://www.formeasy.cc/repository/index.html
-http://www.formeasy.cc/books/index.html
 http://www.formeasy.cc/about/index.html
+http://www.formeasy.cc/books/index.html
 http://www.formeasy.cc/404.html
 http://www.formeasy.cc/
 http://www.formeasy.cc/tags/fjy/

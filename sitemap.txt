@@ -1,3 +1,4 @@
+http://www.formeasy.cc/2023/07/02/hello-world/
 http://www.formeasy.cc/2023/07/05/test/
 http://www.formeasy.cc/categories/index.html
 http://www.formeasy.cc/tags/index.html
@@ -6,7 +7,6 @@ http://www.formeasy.cc/repository/index.html
 http://www.formeasy.cc/books/index.html
 http://www.formeasy.cc/about/index.html
 http://www.formeasy.cc/404.html
-http://www.formeasy.cc/2023/07/02/hello-world/
 http://www.formeasy.cc/
 http://www.formeasy.cc/tags/fjy/
 http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/

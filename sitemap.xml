@@ -2,7 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.formeasy.cc/2023/07/02/hello-world/</loc>
+    <loc>http://www.formeasy.cc/tags/index.html</loc>
+    
+    <lastmod>2024-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/2024/11/29/Hexo%E7%9A%84%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</loc>
+    
+    <lastmod>2024-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/categories/index.html</loc>
+    
+    <lastmod>2024-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/2024/11/29/1553b/</loc>
     
     <lastmod>2024-11-29</lastmod>
     
@@ -20,16 +47,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/index.html</loc>
-    
-    <lastmod>2023-07-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/index.html</loc>
+    <loc>http://www.formeasy.cc/repository/index.html</loc>
     
     <lastmod>2023-07-05</lastmod>
     
@@ -39,15 +57,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/links/index.html</loc>
-    
-    <lastmod>2023-07-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/repository/index.html</loc>
     
     <lastmod>2023-07-05</lastmod>
     
@@ -90,6 +99,20 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/1553b/</loc>
+    <lastmod>2024-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Hexo/</loc>
+    <lastmod>2024-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/fjy/</loc>

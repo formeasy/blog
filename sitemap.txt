@@ -1,5 +1,9 @@
-http://www.formeasy.cc/about/index.html
+http://www.formeasy.cc/2024/12/03/1553B%E5%91%BD%E4%BB%A4%E5%AD%97%E4%B8%8E%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93/
+http://www.formeasy.cc/2024/12/03/MIL-STD-1553B%E7%89%B9%E6%80%A7%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/
+http://www.formeasy.cc/2024/12/03/1553B%E9%80%9A%E4%BF%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/
+http://www.formeasy.cc/2024/12/03/1553B%E6%80%BB%E7%BA%BF%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/
 http://www.formeasy.cc/tags/index.html
+http://www.formeasy.cc/about/index.html
 http://www.formeasy.cc/categories/index.html
 http://www.formeasy.cc/2024/12/03/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAHexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
 http://www.formeasy.cc/2024/12/02/MarkDownload%E5%89%AA%E8%A3%81%E7%BD%91%E9%A1%B5%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8%E5%85%A8%E6%B5%81%E7%A8%8B/
@@ -11,5 +15,6 @@ http://www.formeasy.cc/repository/index.html
 http://www.formeasy.cc/books/index.html
 http://www.formeasy.cc/404.html
 http://www.formeasy.cc/
+http://www.formeasy.cc/tags/1553B/
 http://www.formeasy.cc/tags/Hexo/
 http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/

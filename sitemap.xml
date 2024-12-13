@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.formeasy.cc/2024/12/13/docker%E4%B8%AD%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%E7%9A%84%E8%BD%AC%E5%8F%91/</loc>
+    
+    <lastmod>2024-12-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/2024/12/13/%E5%AE%89%E8%A3%85Nvidia-Docker/</loc>
     
     <lastmod>2024-12-13</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/index.html</loc>
-    
-    <lastmod>2024-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/2024/12/13/docker%E4%B8%AD%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%E7%9A%84%E8%BD%AC%E5%8F%91/</loc>
     
     <lastmod>2024-12-13</lastmod>
     
@@ -200,14 +200,14 @@
 
   
   <url>
-    <loc>http://www.formeasy.cc/tags/1553B/</loc>
+    <loc>http://www.formeasy.cc/tags/Hexo/</loc>
     <lastmod>2024-12-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Hexo/</loc>
+    <loc>http://www.formeasy.cc/tags/1553B/</loc>
     <lastmod>2024-12-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

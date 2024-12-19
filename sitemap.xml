@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.formeasy.cc/2024/12/29/%E4%BF%AE%E6%94%B9MySQL8%E7%9A%84%E5%AF%86%E7%A0%81/</loc>
+    
+    <lastmod>2024-12-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/2024/12/19/MySQL8%E5%90%AF%E7%94%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</loc>
+    
+    <lastmod>2024-12-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/2024/12/19/Ubuntu20.04%E7%89%88%E6%9C%AC%E7%9A%84NVIDIA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85/</loc>
+    
+    <lastmod>2024-12-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/2024/12/16/Ubuntu20.04%E5%AE%89%E8%A3%85docker%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2024-12-16</lastmod>
@@ -229,7 +256,7 @@
 
   <url>
     <loc>http://www.formeasy.cc/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -237,42 +264,56 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/Hexo/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/1553B/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/DDS/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/MySQL/</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/Docker/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/NVIDIA/</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.formeasy.cc/tags/VS/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -281,7 +322,7 @@
   
   <url>
     <loc>http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2024-12-16</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

@@ -30,7 +30,6 @@ http://www.formeasy.cc/
 http://www.formeasy.cc/tags/Hexo/
 http://www.formeasy.cc/tags/1553B/
 http://www.formeasy.cc/tags/DDS/
-http://www.formeasy.cc/tags/MySQL/
 http://www.formeasy.cc/tags/Docker/
 http://www.formeasy.cc/tags/NVIDIA/
 http://www.formeasy.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/

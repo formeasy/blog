@@ -1,3 +1,4 @@
+http://www.formeasy.cc/2025/01/02/Linux%E4%B8%8B%E5%AE%89%E8%A3%85navicat/
 http://www.formeasy.cc/2024/12/30/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-docker%20swarm%EF%BC%88%E4%BA%8C%EF%BC%89/
 http://www.formeasy.cc/2024/12/31/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-docker%20swarm%EF%BC%88%E4%B8%80%EF%BC%89/
 http://www.formeasy.cc/2024/12/30/xargs%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95/
@@ -43,6 +44,7 @@ http://www.formeasy.cc/tags/Ubuntu/
 http://www.formeasy.cc/tags/NVIDIA/
 http://www.formeasy.cc/tags/VS/
 http://www.formeasy.cc/tags/Qt/
+http://www.formeasy.cc/tags/Navicat/
 http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/
 http://www.formeasy.cc/categories/%E4%B8%B2%E8%A1%8C%E9%80%9A%E8%AE%AF/
 http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/

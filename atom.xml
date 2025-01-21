@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-01-12T03:04:52.604Z</updated>
+  <updated>2025-01-21T05:50:43.461Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu添加用户增加sudo授权</title>
+    <link href="http://www.formeasy.cc/2025/01/21/Ubuntu%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%A2%9E%E5%8A%A0sudo%E6%8E%88%E6%9D%83/"/>
+    <id>http://www.formeasy.cc/2025/01/21/Ubuntu%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%A2%9E%E5%8A%A0sudo%E6%8E%88%E6%9D%83/</id>
+    <published>2025-01-21T05:43:13.000Z</published>
+    <updated>2025-01-21T05:50:43.461Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.安装sudo<br />apt install sudo</p><p>2.创建用户<br />sudo useradd -m username<br />sudo passwd username<br />sudo usermod -s /bin/bash username</p><p>3.让用户拥有sudo权限</p><p>在Linux系统中，如果你想让一个名为username的用户拥有sudo权限，你需要编辑/etc/sudoers文件或者使用usermod命令将该用户添加到sudo组中（假设你的系统使用sudo组来管理sudo权限）。下面是两种方法的详细步骤：</p><p>方法一:编辑/etc/sudoers文件<br />在打开的编辑器中，添加以下行来给予wws用户sudo权限：</p><p><code>wws ALL=(ALL:ALL) ALL</code><br />这行配置的意思是：用户wws可以从任何主机（ALL）以任何用户（第一个ALL）和任何组（第二个ALL）的身份执行任何命令（最后一个ALL）。</p><p>方法二:使用usermod命令将用户添加到sudo组</p><p>1）确保存在sudo组：<br />在大多数基于Debian的系统（如Ubuntu）中，sudo组是默认存在的。但在某些系统中，可能需要手动创建或确认该组的存在。</p><p>2）将用户username添加到sudo组<br />使用usermod命令的-aG选项将用户添加到sudo组，同时保留用户原有的其他组成员资格。<br /><code>sudo usermod -aG sudo wws</code></p>]]></content>
+    
+    
+    <summary type="html">Ubuntu添加用户增加sudo授权</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Ubuntu" scheme="http://www.formeasy.cc/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>UE5和VS2022下载安装</title>
@@ -419,27 +440,6 @@
     
     
     <summary type="html">1553B命令字与消息传输</summary>
-    
-    
-    
-    <category term="串行通讯" scheme="http://www.formeasy.cc/categories/%E4%B8%B2%E8%A1%8C%E9%80%9A%E8%AE%AF/"/>
-    
-    
-    <category term="1553B" scheme="http://www.formeasy.cc/tags/1553B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MIL-STD-1553B特性必知必会</title>
-    <link href="http://www.formeasy.cc/2024/12/03/MIL-STD-1553B%E7%89%B9%E6%80%A7%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"/>
-    <id>http://www.formeasy.cc/2024/12/03/MIL-STD-1553B%E7%89%B9%E6%80%A7%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/</id>
-    <published>2024-12-03T12:33:18.000Z</published>
-    <updated>2024-12-23T02:51:56.313Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2><p>1553B是<strong>MIL－STD－1553B</strong> 的简称，MIL-STD-1553B是一种指令/响应式串行总线标准。该总线标准由美国国防部于 1973 年制定并颁布，全称为<strong>飞机内时分制指令/响应式复用数据总线</strong>。 使用光缆代替电缆的版本称为MIL-STD-1773B。</p><h2 id="历史背景"><a class="markdownIt-Anchor" href="#历史背景"></a> 历史背景</h2><p>在20世纪60年代以前，飞机机载电子系统没有 标准的通用数据通道，各个电子设备单元之间连接往往需要大量的电缆。随着机载电子系统的不断复杂化，这种通信方式所用的电缆将会占用很大的空间和重量，而且对传输线的定义和测试也较为复杂，费用较高。为了解决这一问题，美国 SAE A2K委员会在军方和工业界的支持下于1968年决定开发标准的信号多路传输系统，并于1973年公布了MIL-STD-1553B标准。1973年的1553B多路传输数据总线成为了未来军机将采用的技术，它取代了在传感器、计算机、指示器和其他飞机设备间传递数据的庞大设备，大大减少了飞机重量，并且使用简单、灵活，此标准的修订本于1978年公布，即MIL-STD-1553B标准。1980年，美国空军又对该标准作了局部修改和补充推出了 MIL-STD-1553B Notice I。1986 年推出了 MIL-STD-1553B Notice II， 并更名为数字式时分制指令/响应式复用数据总线。。该标准作为美国国防部武器系统集成和标准化管理的基础之一，被广泛的用于飞机综合航电系统、外挂物管理与集成系统，并逐步扩展到飞行 控制等系统及坦克、舰船、航天等领域。它最初由美国空军用于飞机航空电子系统，目前已广泛应用于美国和欧洲海、陆、空三军，而且正在成为一种国际标准。我国于1987年颁布了相应的军标。</p><h2 id="主要特点"><a class="markdownIt-Anchor" href="#主要特点"></a> 主要特点</h2><ol><li>串行通信</li><li>主从式</li><li>半双工</li><li>总线型拓扑</li><li>双冗余，热备</li><li>曼彻斯特 II 型编码</li><li>3 种传输字</li><li>10 种消息</li></ol><h2 id="传输字"><a class="markdownIt-Anchor" href="#传输字"></a> 传输字</h2><p>1553B 一般以屏蔽双绞线为传输介质、采用曼彻斯特 II 型双相电平编码（即由高电平跳变为低电平 表示逻辑‘1’，由低电平跳变为高电平表示逻辑‘0’）、标准波特率为 1MHz。<br />1553B每 20 位构成一个传输字、前 3 位是同步位，中间 16 位是数据位，最后一位是奇偶校验位，总共有三种传输字。</p><ul><li><strong>命令字 CW</strong>：command word，一条消息的开头，只能由主机发出，用于主机发起对从机的命令，一条消息至少要具备一个命令字。</li><li><strong>数据字 DW</strong>：data word，用于传输数据，主机和从机都可以发送。</li><li><strong>状态字 SW</strong>：status word，用于从机向主机回应单播命令。只能由从机发送。</li></ul><p><img src="46858de23fd6fe2415b9e65883115e20.png" alt="" /><br /><strong>命令字详细说明：</strong></p><table><thead><tr><th><strong>位域</strong></th><th><strong>名称</strong></th><th><strong>说明</strong></th></tr></thead><tbody><tr><td>[15-11]</td><td>RT 地址</td><td>1553B 总线上的每一个 RT 都需具有唯一的 RT 地址，一般使用范围为“00000”至“11110”。</td></tr><tr><td>当广播使能时，RT 地址“11111”表示当前消息为广播消息。</td><td></td><td></td></tr><tr><td>当系统不允许广播时，“11111”也可用来表示一个 RT 地址。</td><td></td><td></td></tr><tr><td>[10]</td><td>T/R位</td><td>该位置‘1’时，表示 RT 将执行发送操作；</td></tr><tr><td>该位置‘0’时，表示 RT 将执行接收操作。</td><td></td><td></td></tr><tr><td>[9-5]</td><td>子地址/方式指令</td><td>为“00000”或“11111”时，表示 BC 将通过消息中的方式指 令控制 RT 执行相关操作，bit4-bit0 表示一条方式指令编码。</td></tr><tr><td>为其他值时表示为子地址，可见一个 节点可以有 30 个字地址。</td><td></td><td></td></tr><tr><td>[4-0]</td><td>数据字计数/方式指令</td><td>当指令字 bit9-bit5 位为“00000”或“11111”时，bit4-bit0 表示一条方式指令编码。</td></tr><tr><td>当指令字 bit9-bit5 位不为“00000”和“11111”时，bit4-bit0 表示消息中的数据字 个数。数据字的个数最多为 32 个，bit4-bit0 为“11111”表示数据字个数为 31，为“00000” 表示数据字个数为 32。</td><td></td><td></td></tr></tbody></table><p>方式指令表<br />方式码有 5 位，即最多 32 条指令。其中 0-15 号方式码不带数据，16-31 号方式码带一个字的数据。</p><table><thead><tr><th>方式指令</th><th>功能</th><th>T/R位</th><th>是否带数据字</th><th>是否允许广播</th></tr></thead><tbody><tr><td>0x00</td><td>动态总线控制</td><td>1</td><td>否</td><td>否</td></tr><tr><td>0x01</td><td>同步</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x02</td><td>发送状态字</td><td>1</td><td>否</td><td>否</td></tr><tr><td>0x03</td><td>开始自检</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x04</td><td>发送器关闭</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x05</td><td>取消发送器关闭</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x06</td><td>禁止终端标记</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x07</td><td>取消禁止终端标记</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x08</td><td>复位RT</td><td>1</td><td>否</td><td>是</td></tr><tr><td>0x10</td><td>发送矢量字</td><td>1</td><td>从MEMORY取字</td><td>否</td></tr><tr><td>0x11</td><td>带字同步</td><td>0</td><td>存储到MEMORY（也可能存储到时间标志寄存器</td><td>是</td></tr><tr><td>0x12</td><td>发送上一条指令字</td><td>1</td><td>从内部寄存器取字</td><td>否</td></tr><tr><td>0x13</td><td>发送BIT字</td><td>1</td><td>从内部寄存器或者RAM单元</td><td>否</td></tr><tr><td>0x14</td><td>选择的发送器关闭</td><td>0</td><td>存储到MEMORY</td><td>是</td></tr><tr><td>0x15</td><td>选择的发送器打开</td><td>0</td><td>存储到MEMORY</td><td>是</td></tr></tbody></table><p><strong>状态字详细说明</strong>：</p><table><thead><tr><th><strong>位域</strong></th><th><strong>名称</strong></th><th><strong>说明</strong></th></tr></thead><tbody><tr><td>[15-11]</td><td>RT 地址字段</td><td>远程终端地址</td></tr><tr><td>[10]</td><td>消息出错位</td><td>用来表示远程终端在已收到的消息中，有一个字或多个字没有通过规定的有效性测试。逻辑1表示消息有差错，逻辑0表示消息无差错。所有的终端应提供消息差错位。</td></tr><tr><td>[9]</td><td>测试手段位</td><td>它在所有条件下总置为逻辑0。该位为可选位，如果使用，指令字中的相应位置为逻辑1，用来区分指令字和状态字。</td></tr><tr><td>[8]</td><td>服务请求位</td><td>表示本远程终端需要服务。要求总线控制器启动与本远程终端或子系统有关的预定操作。当与单一远程终端相连的多个子系统分别请求服务时，远程终端应将它们各自的服务请求信号逻辑“或”成状态字中的单一服务请求。逻辑“或”完成后设计者必须准备好一个数据字，并以相应位置1来标志具体的请求服务子系统。状态字中的“服务请求位”，应维持到几个请求信号都处理完为止。该位仅用来激发随机发生的数据传输操作。</td></tr><tr><td>[7-5]</td><td>备用状态位</td><td>置为逻辑0，这些位留作今后使用</td></tr><tr><td>[4]</td><td>广播指令接收位</td><td>表示本远程终端接收到的上一有效指令字是广播指令字。当系统中未采用广播方式，置该位为逻辑0。</td></tr><tr><td>[3]</td><td>忙位</td><td>如果远程终端在响应发送、指令时置忙位，那么只发出它的状态字。该位为可选位，逻辑0表示空闲状态或者非忙状态。</td></tr><tr><td>[2]</td><td>子系统标志位</td><td>如果与一个远程终端相连的几个子系统都呈现故障状态时，应将它们各自的信号逻辑“或”，形成状态字中的子系统标志位，并将事先准备好的一个数据字中的相应位置1，记录它们的故障报告，用于进一步检测、分析。该位为可选位。逻辑1表示有标志，逻辑0表示无标。用来向总线控制器指出子系统故障状态，且警告总线控制器本远程终端提供的数据可能无效。</td></tr><tr><td>[1]</td><td>动态总线控制接收位</td><td>若置为逻辑 1，用来表示本远程终端接受符合协议本身规定的动态总线控制的授命。逻辑 0 表示不接受。该位为可选位。</td></tr><tr><td>[0]</td><td>终端标志位</td><td>逻辑1表示本远程终端内部存在故障，请求总线控制器干预。逻辑0表示不存在故障。该位为可选位。</td></tr></tbody></table><h2 id="传输消息"><a class="markdownIt-Anchor" href="#传输消息"></a> 传输消息</h2><p>1553B 总线的信息传输以消息为单位，消息是以不同的字和状态响应间隔组成的信号序列。信息量最大长度达 32 个字，并采用指令/响应式传输协议实现半双工传输方式。 1553B 总线支持总共10种消息格式，包括：<br />（1） BC-RT 消息；<br />（2） RT-BC 消息；<br />（3） RT-RT 消息；<br />（4） 不带数据字的方式指令；<br />（5） 发送方式指令（带数据字）；<br />（6） 接收方式指令（带数据字）；<br />（7） BC-RT 广播消息；<br />（8） RT-RTs 广播消息；<br />（9） 不带数据字的广播方式指令；<br />（10） 带数据字的广播方式指令。<br />消息是构成1553B总线通讯的基本单位，如果需要完成一定的功能，就要将多个消息组织起来，形成一个新的结构叫做帧(Frame)。<br /><img src="398d0ac05e081085ffe69487343f195a.png" alt="image.png" /></p><h2 id="关键时间参数"><a class="markdownIt-Anchor" href="#关键时间参数"></a> 关键时间参数</h2><ul><li><strong>响应时间</strong>： 远程终端响应有效指令字的间隔时间为4.0~12.0µs。该时间为从状态字之前的最后一个字的最后一位的中间过零点到状态字同步头中间过零点的时间。</li><li><strong>最小无响应超时</strong>： 总线控制器在一路总线上启动传输时，测量由它发出的最后一个字的最后一位的中间过零点起，到期望的状态字同步头的中间过零点的时间。当该时间超过14.0µs时，作无响应超时处理。</li><li><strong>消息间隔</strong>： 总线控制器所发消息之间的最小间隔时间为4.0µs。该时间为从前一消息最后一位的中间过零点到邻接的消息中指令字同步头的中间过零点的时间。</li></ul><h2 id="设备分类"><a class="markdownIt-Anchor" href="#设备分类"></a> 设备分类</h2><p>根据设备在总线系统中的功能，1553B 总线通信协议将总线上的终端单元分为总线控制器、远置终端和总线监视器三种。</p><ol><li><strong>总线控制器</strong>（Bus Controller，以下简称为 <strong>BC</strong>）是指启动总线上消息传输的终端，也是总线上唯一具有总线控制权的终端。按照协议规定任何时候总线上必须有且只能有一个总线控制器。BC负责总线的调度、管理，是总线通讯的发起者和组织者。</li><li><strong>总线监视器</strong>（Bus Monitor Terminal，以下简称为 <strong>BM <strong>或</strong> MT</strong>）是指监视总线上的数据流，并有选择地提取有用信息的终端。BM对总线上的所有通讯过程对总线监视器来说都是可见的，因而总线监视器能够全部或选择性的监视总线的通讯过程，对通讯状态进行分析和判断，给出参与总线通讯的总线控制器和各个远置终端的运行状态和健康状态，BM在总线上不是必须的。</li><li><strong>远置终端</strong>（Remote Terminal，以下简称为 <strong>RT</strong>）是指总线上除总线控制器和监视器之外的所有其他终端，每 个 RT 最多可以连接 30 个子系统（子系统是指通过 1553B 总线接收数据传输服务的设备或单元）。RT只能被动的接收或者发送和自己有关的数据，对远程终端来说，和自己无关的数据是透明的，远程终端根据预先设定的通讯协议接收和发送数据。</li></ol><h2 id="连接拓扑"><a class="markdownIt-Anchor" href="#连接拓扑"></a> 连接拓扑</h2><p>1553B以总线型拓扑屏蔽双绞线连接所有终端，总线两端无节点时需要配备终端电阻，减少信号反射造成的干扰。其他节点通过较短的分支线连接到主干总线上，分支线可以是直连也可以是变压器耦合连接，变压器耦合连接方式抗干扰特性更强，分支线也允许更长，并且能规避单点短路故障。之所以采用曼彻斯特码进行编码传输是因为适用于变压器耦合，由于直接耦合不利于终端故障隔离，会因为一个终端故障而造成整个总线网络的完全瘫痪，所以协议中明确指出不推荐使用直接耦合方式。<br />1553B 数据总线采用双冗余结构，分别称之为总线 A 和总线 B。总线控制器可以根据需要，选择通过总线 A 传输消息或者通过总线 B 传输消息。<br />1553B 总线的网络结构简单、终端扩展方便、相对易于实现冗余，可以轻巧灵活地实现系统设计和设备更新。<br /><img src="47aae04dffe46c6c9fd503aae7166c38.png" alt="" /><br />基于 1553B 总线的分布式系统，有且只有一个BC，最多可以拥有 32 个 RT，可选择性的配备一个MT。当允许使用广播消息时， 最多可以拥有 31 个 RT。整个系统采用半双工的传输模式，以指令/响应方式异步工作。<br /><img src="53c46a76ba51373c39c5e04a0e1a87d2.png" alt="image.png" /></p><h2 id="实物图片"><a class="markdownIt-Anchor" href="#实物图片"></a> 实物图片</h2><p><img src="24aa05b8c1eba6ac32c1c3597bf86109.png" alt="" /></p><p><img src="6c7cf9ea789421cfe0660c3aaf6635e3.gif" alt="" /><br /><img src="e4dbf8d7e080ebbf8d2ac7b99004284b.png" alt="" /><br /><img src="01474af530459ea285e30425135a2740.png" alt="" /></p><p>————————————————<br />原文链接：<a href="https://blog.csdn.net/ScilogyHunter/article/details/140693514">https://blog.csdn.net/ScilogyHunter/article/details/140693514</a></p>]]></content>
-    
-    
-    <summary type="html">MIL-STD-1553B特性必知必会</summary>
     
     
     

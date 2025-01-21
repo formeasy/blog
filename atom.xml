@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-01-21T05:50:43.461Z</updated>
+  <updated>2025-01-21T05:57:12.898Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.formeasy.cc/2025/01/21/Ubuntu%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%A2%9E%E5%8A%A0sudo%E6%8E%88%E6%9D%83/"/>
     <id>http://www.formeasy.cc/2025/01/21/Ubuntu%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%A2%9E%E5%8A%A0sudo%E6%8E%88%E6%9D%83/</id>
     <published>2025-01-21T05:43:13.000Z</published>
-    <updated>2025-01-21T05:50:43.461Z</updated>
+    <updated>2025-01-21T05:57:12.898Z</updated>
     
-    <content type="html"><![CDATA[<p>1.安装sudo<br />apt install sudo</p><p>2.创建用户<br />sudo useradd -m username<br />sudo passwd username<br />sudo usermod -s /bin/bash username</p><p>3.让用户拥有sudo权限</p><p>在Linux系统中，如果你想让一个名为username的用户拥有sudo权限，你需要编辑/etc/sudoers文件或者使用usermod命令将该用户添加到sudo组中（假设你的系统使用sudo组来管理sudo权限）。下面是两种方法的详细步骤：</p><p>方法一:编辑/etc/sudoers文件<br />在打开的编辑器中，添加以下行来给予wws用户sudo权限：</p><p><code>wws ALL=(ALL:ALL) ALL</code><br />这行配置的意思是：用户wws可以从任何主机（ALL）以任何用户（第一个ALL）和任何组（第二个ALL）的身份执行任何命令（最后一个ALL）。</p><p>方法二:使用usermod命令将用户添加到sudo组</p><p>1）确保存在sudo组：<br />在大多数基于Debian的系统（如Ubuntu）中，sudo组是默认存在的。但在某些系统中，可能需要手动创建或确认该组的存在。</p><p>2）将用户username添加到sudo组<br />使用usermod命令的-aG选项将用户添加到sudo组，同时保留用户原有的其他组成员资格。<br /><code>sudo usermod -aG sudo wws</code></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="1安装sudo"><a class="markdownIt-Anchor" href="#1安装sudo"></a> 1.安装sudo</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install sudo</span><br></pre></td></tr></table></figure><h2 id="2创建用户"><a class="markdownIt-Anchor" href="#2创建用户"></a> 2.创建用户</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m username</span><br><span class="line">sudo passwd username</span><br><span class="line">sudo usermod -s /bin/bash username</span><br></pre></td></tr></table></figure><h2 id="3让用户拥有sudo权限"><a class="markdownIt-Anchor" href="#3让用户拥有sudo权限"></a> 3.让用户拥有sudo权限</h2><p>在Linux系统中，如果你想让一个名为username的用户拥有sudo权限，你需要编辑/etc/sudoers文件或者使用usermod命令将该用户添加到sudo组中（假设你的系统使用sudo组来管理sudo权限）。下面是两种方法的详细步骤：</p><h3 id="方法一编辑etcsudoers文件"><a class="markdownIt-Anchor" href="#方法一编辑etcsudoers文件"></a> 方法一:编辑/etc/sudoers文件</h3><p>在打开的编辑器中，添加以下行来给予username用户sudo权限：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure><p>这行配置的意思是：用户username可以从任何主机（ALL）以任何用户（第一个ALL）和任何组（第二个ALL）的身份执行任何命令（最后一个ALL）。</p><h3 id="方法二使用usermod命令将用户添加到sudo组"><a class="markdownIt-Anchor" href="#方法二使用usermod命令将用户添加到sudo组"></a> 方法二:使用usermod命令将用户添加到sudo组</h3><h4 id="1确保存在sudo组"><a class="markdownIt-Anchor" href="#1确保存在sudo组"></a> 1）确保存在sudo组：</h4><p>在大多数基于Debian的系统（如Ubuntu）中，sudo组是默认存在的。但在某些系统中，可能需要手动创建或确认该组的存在。</p><h4 id="2将用户username添加到sudo组"><a class="markdownIt-Anchor" href="#2将用户username添加到sudo组"></a> 2）将用户username添加到sudo组</h4><p>使用usermod命令的-aG选项将用户添加到sudo组，同时保留用户原有的其他组成员资格。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG sudo username</span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">Ubuntu添加用户增加sudo授权</summary>

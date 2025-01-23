@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-01-21T05:57:12.898Z</updated>
+  <updated>2025-01-23T03:43:55.402Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cursor使用介绍</title>
+    <link href="http://www.formeasy.cc/2025/01/23/Cursor%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://www.formeasy.cc/2025/01/23/Cursor%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/</id>
+    <published>2025-01-23T03:39:22.000Z</published>
+    <updated>2025-01-23T03:43:55.402Z</updated>
+    
+    <content type="html"><![CDATA[<p>Cursor是一款AI代码编辑器，官网地址为<a href="https://www.cursor.com/">https://www.cursor.com/</a>  直接在官网下载安装即可，基于VS Code二次开发而来，之所以没有采用插件方式，在官方网站上给出的答案是某些功能插件无法实现，产品专注在使用AI来进行编程方面，价格方面还不便宜，Pro单月20刀，企业版单月单个用户40刀，但某些功能确实好用啊，有找外包替你完成部分工作的感觉，不付费的话使用次数有限制。</p><p>最基本功能：Tab键代码自动补全。在写代码时，后面会有代码提示，官网上说是一个更强大的 Copilot（Github出品的代码补全工具），Copilot我只体验过，没有深度使用，不能给出比较准确的对比评价。</p><p>第二个特色功能：根据提示修改代码或生成命令。快捷键Ctrl/Cmd + k，比如下图，找到需要优化问题代码片段，选中需要优化一段代码，快捷键Ctrl/Cmd + k，输入提示“优化一下”，就会生成新代码，比较有特色是可以分段部分接受修改，根据右侧图中红框内快捷键操作即可，如果有错误，还可以继续进行AI Fix修复，用来重构代码效率会大大提高。</p><p><img src="c073be0274504fe6a16d67d06beb37eb.png" alt="" /></p><p>如果在终端中按快捷键Ctrl/Cmd + k，同样会出现提示框，输入“构建命令”，就会在命令行中生成要执行的命令，命令稍加修改就能执行，感觉已经非常厉害了，理论上可以在这个终端里连接上远程服务器，通过提示生成要执行的命令，这对于终端命令不太熟悉的同学非常有帮助。</p><p><img src="f531bfbdf9ed4d97989e80a37ec9106a.png" alt="" /></p><p>第三个特色功能：聊天功能。快捷键Ctrl/Cmd + L，会单独打开右侧窗口，同样是输入“优化一下”，生成代码后点击右上角Apply应用到代码中，下面还会总结改进的内容，也可用继续问，进行多轮聊天，直到感觉可以后再应用，也可以闲聊，问一些和代码无关的问题也没有问题。</p><p><img src="77f134b3bdeb45f882293e1959a01151.png" alt="" /></p><p>Cursor会对代码进行索引，会计算代码库中的每个文件的嵌入向量，并将使用这些嵌入向量来提高代码库答案的准确性。如果在聊天时，使用快捷键Ctrl/Cmd + Enter，会使用这项功能来搜索项目下代码内容来提高答案的准确性，也是特色功能之一。</p><p>第四个特色功能：AI Review代码</p><p>Review功能目前还是Beta测试中，需要现在设置中启用，如需要长文本功能的也在这里启用，目前聊天中token限制为20000个，快捷提示中为10000个。</p><p><img src="bf85e9a7a6824464b31c09c75682611c.png" alt="" /></p><p>根据提示，Ctrl/Cmd + Shift + P，输入Reload Window，重载窗口，就能看到聊天窗口右边出现Review标签页了。</p><p><img src="b117530903174875ad87dffa28f102c9.png" alt="" /></p><p>重载窗口后，同样是输入提示，下面也提供了四项对应的Review功能，Review Working State可以对未提交的工作空间内代码进行Review，Review Last Commit也挺方便的，在开发分支提交代码后直接进行Review，Review后再合并到上层分支。</p><p><img src="3ad2c0e915c14e8fa03bec371c84803e.png" alt="" /></p><p>Cursor可以配置使用其他AI，发送任意数量的 AI 消息</p><p><img src="9fe12b87ec7f42dd8de58ceae2780b31.png" alt="" /></p><p>可以对使用的模型进行设置，选择使用哪些模型，可以同时使用多个模型，GPT-4, GPT-4o, and Claude 3.5 Sonnet都是收费的高级模型</p><p><img src="59f8a70d1e5f4036ba884f459c8d8bda.png" alt="" /></p><p>总结Cursor使用，编写代码中可以使用tab键补全代码，使用提示（Ctrl/Cmd + k）生成、修改或重构代码，同样可以使用聊天（Ctrl/Cmd + L）方式生成、修改或重构代码，在聊天时使用Ctrl/Cmd + Enter发送信息会索引本地代码提高回答准确率，Beta测试中的Review代码功能非常好用。</p><p>以上为Cursor使用总结，Cursor是非常有创新的产品，不管是否是在计算机行业都应该体验一下。</p>]]></content>
+    
+    
+    <summary type="html">Cursor使用介绍</summary>
+    
+    
+    
+    <category term="AI" scheme="http://www.formeasy.cc/categories/AI/"/>
+    
+    
+    <category term="Cursor" scheme="http://www.formeasy.cc/tags/Cursor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Qt5.14.2与VS2022配置</title>
+    <link href="http://www.formeasy.cc/2025/01/23/Qt5.14.2%E4%B8%8EVS2022%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.formeasy.cc/2025/01/23/Qt5.14.2%E4%B8%8EVS2022%E9%85%8D%E7%BD%AE/</id>
+    <published>2025-01-23T03:21:13.000Z</published>
+    <updated>2025-01-23T03:24:27.038Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1qt6要在线安装安装时间比较长要求网络要稳定不适合快速安装"><a class="markdownIt-Anchor" href="#1qt6要在线安装安装时间比较长要求网络要稳定不适合快速安装"></a> 1.qt6要在线安装，安装时间比较长，要求网络要稳定，不适合快速安装</h3><h3 id="2使用qt5142离线安装包安装速度快可以快速安装"><a class="markdownIt-Anchor" href="#2使用qt5142离线安装包安装速度快可以快速安装"></a> 2.使用qt5.14.2离线安装包，安装速度快，可以快速安装。</h3><h3 id="3安装完qt5142后打开qtcreate401打开-工具-选项-kits发现如下图请添加图片描述"><a class="markdownIt-Anchor" href="#3安装完qt5142后打开qtcreate401打开-工具-选项-kits发现如下图请添加图片描述"></a> 3.安装完qt.5.14.2后打开QtCreate4.0.1，打开 工具-&gt;选项-&gt;Kits,发现如下图:<img src="3957818c37824febb58428f07be07c9c.png" alt="请添加图片描述" /></h3><p>没有找到MSVC2017,安装qt时选择安装MSVC2017的，</p><h3 id="4打开visual-studio-installer确保vs2022已经安装msvc2017"><a class="markdownIt-Anchor" href="#4打开visual-studio-installer确保vs2022已经安装msvc2017"></a> 4.打开Visual Studio Installer，确保VS2022已经安装MSVC2017</h3><p><img src="1739412d46f8472694f032e11ed0adc9.png" alt="请添加图片描述" /></p><h3 id="5确保windowsdk有安装"><a class="markdownIt-Anchor" href="#5确保windowsdk有安装"></a> 5.确保WindowSDK有安装</h3><p><img src="287d0be02ecb42709e3cd665e2862006.png" alt="请添加图片描述" /></p><h3 id="6到qtcreate中-工具-选项-debuggers查看有没有调试器请添加图片描述"><a class="markdownIt-Anchor" href="#6到qtcreate中-工具-选项-debuggers查看有没有调试器请添加图片描述"></a> 6.到qtcreate中 工具-&gt;选项-&gt;Debuggers，查看有没有调试器<img src="1cc37fa3551248208d90908988a0a839.png" alt="请添加图片描述" /></h3><p>如果没有,到控制面板-&gt;程序卸载，查找<br /><img src="fe6bd62734f242f38173d4de966c6f90.png" alt="请添加图片描述" /><br />右击-&gt;更改，勾选如下图<br /><img src="c6b0ed42d1cd4d9d85ccbee4e9a4c62c.png" alt="请添加图片描述" /><br />等待安装完成。</p><h3 id="7安装完成后在qtcreate-工具-选项-kits-debuggers中看到cdbexe调试器请添加图片描述"><a class="markdownIt-Anchor" href="#7安装完成后在qtcreate-工具-选项-kits-debuggers中看到cdbexe调试器请添加图片描述"></a> 7.安装完成后，在qtcreate-&gt;工具-&gt;选项-&gt;kits-&gt;Debuggers中看到cdb.exe调试器<img src="9881360ef2fb40bea4b6c0a919d74d8e.png" alt="请添加图片描述" /></h3><h3 id="8重新添加编译器"><a class="markdownIt-Anchor" href="#8重新添加编译器"></a> 8.重新添加编译器</h3><p><img src="9a6a84129e2e418ea22fe1aa8e53c1f7.png" alt="请添加图片描述" /><br /><img src="7830505dc93840c1861c605182d45ebf.png" alt="请添加图片描述" /><br /><img src="7dea8eb776ba489d9e7e448bf749c197.png" alt="请添加图片描述" /></p><h3 id="9重新配置kits中构建套件kit"><a class="markdownIt-Anchor" href="#9重新配置kits中构建套件kit"></a> 9.重新配置Kits中构建套件(Kit)</h3><p><img src="2ff9dd414e594ce7a3ca891646758410.png" alt="请添加图片描述" /><br /><img src="42f2e1b2e9ce4d458cfcb9c35eb606e2.png" alt="请添加图片描述" /></p><h3 id="10如果报错"><a class="markdownIt-Anchor" href="#10如果报错"></a> 10.如果报错</h3><p><img src="05d22aabd75f49b1a24672e94bed155a.png" alt="请添加图片描述" /><br />原因<br /><img src="81302eb55c644d749558b922042c1b0e.png" alt="请添加图片描述" /><br />解决<br /><img src="e22052e1461c4b5f933b9cea6ed9724e.png" alt="请添加图片描述" /></p>]]></content>
+    
+    
+    <summary type="html">Qt5.14.2与VS2022配置</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu添加用户增加sudo授权</title>
@@ -403,50 +445,6 @@
     
     
     <category term="DDS" scheme="http://www.formeasy.cc/tags/DDS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VS2019安装配置QT插件</title>
-    <link href="http://www.formeasy.cc/2024/12/06/VS2019%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEQT%E6%8F%92%E4%BB%B6/"/>
-    <id>http://www.formeasy.cc/2024/12/06/VS2019%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEQT%E6%8F%92%E4%BB%B6/</id>
-    <published>2024-12-06T04:12:24.000Z</published>
-    <updated>2024-12-23T02:53:44.033Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-介绍"><a class="markdownIt-Anchor" href="#1-介绍"></a> 1、介绍</h3><p>Windows的Qt开发，一般采用Visual Studio安装Qt插件的方法开发Qt程序，毕竟VS开发工具还是比QtCreator开发工具强大、好用的多。</p><p>本教程采用VS2019安装配置Qt插件（qt-vsaddin-msvc2019-2.6.0.vsix），默认已经安装了VS2019（已安装“MSVC V141-VS 2017 C++ x64/x86 生成…”选项）和Qt5.14（已安装“msvc2017 32-bit”和“msvc2017 64-bit”选项）。</p><p>如果未安装则需安装VS2019和Qt5.14，安装VS2019和Qt5.14需要注意以下：</p><p>安装VS2019，则需选择“MSVCV141-VS 2017 C++ x64/x86 生成…”选项，以支持VS2017的编译器，因为Qt5.14最高支持VS2017版本编译的Qt基础库。</p><p><img src="8d006fd85e003f26051c9ae7095ad6a4.png" alt="" /></p><p>安装Qt5.14，选中msvc201732-bit和msvc2017 64-bit选项，VS安装Qt插件后才能配置使用Qt的基础库（包括msvc201732-bit和msvc2017 64-bit编译版本），VS是不能直接使用其MinGW的Qt基础库的，不同编译器编译的基础库由于导出和引用规则不统一，无法通用。</p><p><img src="38e80854d0f5db8a7540ff0dba2acdd7.png" alt="" /></p><h3 id="2-vs2019安装qt插件"><a class="markdownIt-Anchor" href="#2-vs2019安装qt插件"></a> 2、VS2019安装Qt插件</h3><p>注意：断开互联网，防止qt-vsaddin插件安装后，VS2019自动升级为更高版本，更高版本的qt-vsaddin在VS2019中有缺陷。</p><p>去官网下载qt-vsaddin-msvc2019-2.6.0.vsix，然后双击安装。</p><p><img src="17b9f751b1d95d5b7876430a8ffdd6e7.png" alt="" /></p><p>点击Install按钮，开始安装VS2019的Qt插件，安装成功界面如下：</p><p><img src="81c8a608bbf7b377106fb71e5229db42.png" alt="" /></p><h3 id="3-vs2019配置qt插件"><a class="markdownIt-Anchor" href="#3-vs2019配置qt插件"></a> 3、VS2019配置Qt插件</h3><h4 id="1设置qt插件禁用自动升级"><a class="markdownIt-Anchor" href="#1设置qt插件禁用自动升级"></a> （1）设置Qt插件禁用自动升级</h4><p>在互联网断开情况下，Qt插件安装成功后，打开VS2019开发工具后，选择VS2019扩展菜单——&gt;管理扩展，打开管理扩展窗口，选择已安装的Qt Visual StudioTools插件，取消自动更新扩展复选框，之后就可以连接互联网了。</p><p><img src="fda68940411f8ff9a161ad64caf25004.png" alt="" /></p><h4 id="2vs2019设置qt的基础库路径"><a class="markdownIt-Anchor" href="#2vs2019设置qt的基础库路径"></a> （2）VS2019设置Qt的基础库路径</h4><p>VS2019扩展菜单——&gt;QtVS Tools——&gt;Qt Options，打开Qt的基础库路径设置窗口：</p><p><img src="5ee7adfa0d25065c07feefe8f669f61f.png" alt="" /></p><p>点击Add按钮，选择Qt的msvc2017 64bit路径：</p><p><img src="c066dfc09344f66b142e5b40a1fa2872.png" alt="" /></p><p>确定后，自动生成Version name：</p><p><img src="4fb04ff3af411cd64195fa448c0a9d11.png" alt="" /></p><p>同样也可以增加msvc2017 32bit的设置：</p><p><img src="e13df35a521831fb07be6c9b1c2f1a76.png" alt="" /></p><p>设置完成后：</p><p><img src="8713c745195210461bc72b3a25636489.png" alt="" /></p><p>窗口下方Default Qt/Win version：可设置默认msvc2017 64位还是32位的Qt库路径，以适用生成64位还是32位应用程序。</p><h3 id="4-vs2019创建和打开qt项目"><a class="markdownIt-Anchor" href="#4-vs2019创建和打开qt项目"></a> 4、VS2019创建和打开Qt项目</h3><h4 id="1新建qt项目"><a class="markdownIt-Anchor" href="#1新建qt项目"></a> （1）新建Qt项目</h4><p>VS2019文件菜单——&gt;新建——&gt;项目，打开创建新项目窗口，下拉项目类型，最后可看到支持新建Qt各类项目（后续与Qt Creator创建项目流程基本一致）：</p><p><img src="d102506b1e628b1cf9c6470807003116.png" alt="" /></p><h4 id="2打开qt项目"><a class="markdownIt-Anchor" href="#2打开qt项目"></a> （2）打开Qt项目</h4><p>VS2019扩展菜单——&gt; QtVS Tools——&gt;“Open Qt ProjectFile(.pro)…”，弹出“打开Qt项目”窗口，选择已建的Qt项目(.pro)，VS2019像Qt Creator一样打开已建的Qt项目。</p><p><img src="71eabe18d0908d4a39b7b29489485610.png" alt="" /></p><h4 id="3设置vs2019的qt项目属性"><a class="markdownIt-Anchor" href="#3设置vs2019的qt项目属性"></a> （3）设置VS2019的Qt项目属性</h4><p>VS2019界面中选择Qt项目，右键点击属性：</p><p>常规——&gt;Windows SDK版本：选择已经安装的有效Windows SDK版本。</p><p>常规——&gt;平台工具集：选择VisualStudio 2017（v141）。</p><p><img src="4f5aa62e76b7558bd8c4e430f35b01ed.png" alt="" /></p><p>Qt Project Settings——&gt;Qt Installation：选择64位还是32位msvc2017，要与编译的程序是64位还是32位一致。</p><p><img src="15396249fe134c50bc666eb5e44e1ab5.png" alt="" /></p><p>Qt Project Settings——&gt;Qt Modules：设置项目要依赖的Qt模块，本例支持xml和gui界面。</p><p><img src="e8f168136921ac30cf9e6ff8adfbc44e.png" alt="" /></p><h4 id="4编译运行qt项目"><a class="markdownIt-Anchor" href="#4编译运行qt项目"></a> （4）编译运行Qt项目</h4><p>VS2019中编译运行Qt项目与其他项目一样build和run。</p><h3 id="5-vs2019的qt项目添加和编辑qt类-qt文件"><a class="markdownIt-Anchor" href="#5-vs2019的qt项目添加和编辑qt类-qt文件"></a> 5、VS2019的Qt项目添加和编辑Qt类、Qt文件</h3><h4 id="1添加qt类"><a class="markdownIt-Anchor" href="#1添加qt类"></a> （1）添加Qt类</h4><p>VS2019界面中选择Qt项目，右键点击添加——&gt;”Add Qt Class…”，弹出Qt添加窗口，可添加Qt Class和Qt Widgets Class，像在Qt Creator中一样添加Qt类：</p><p><img src="86a2cf262e87c201cdcdfeb77478bb55.png" alt="" /></p><h4 id="2编辑qt类"><a class="markdownIt-Anchor" href="#2编辑qt类"></a> （2）编辑Qt类</h4><p>Qt类的.h和.cpp文件双击直接在VS2019中编辑，而ui文件双击后调用Qt Desiner打开文件并编辑。</p><p><img src="b393d16187db05e52aeb899117b5597c.png" alt="" /></p><h3 id="6-vs2019卸载qt插件"><a class="markdownIt-Anchor" href="#6-vs2019卸载qt插件"></a> 6、VS2019卸载Qt插件</h3><p>VS2019菜单——&gt;管理扩展，打开管理扩展窗口，点击卸载：</p><p><img src="eea1e33e9bcfae3cd5d89da0e0b351b3.png" alt="" /></p><p>确定卸载后，窗口下方提示：</p><p><img src="72173617a8b275842af3b4ce70160433.png" alt="" /></p><p>关闭VS2019，则电脑立即弹出VSIXInstaller窗口，点击Modify按钮，启动卸载:</p><p><img src="23e035588e6fbac2f6d5d4d0848dc771.png" alt="" /></p><p>显示卸载进度：</p><p><img src="7fe4037c9864bcef99247758f4ce0083.png" alt="" /></p><p>最后卸载成功：</p><p><img src="4e3214d4439e240acb94941c00c80001.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">VS2019安装配置QT插件(qt-vsaddin)</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
-    
-    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1553B命令字与消息传输</title>
-    <link href="http://www.formeasy.cc/2024/12/03/1553B%E5%91%BD%E4%BB%A4%E5%AD%97%E4%B8%8E%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93/"/>
-    <id>http://www.formeasy.cc/2024/12/03/1553B%E5%91%BD%E4%BB%A4%E5%AD%97%E4%B8%8E%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93/</id>
-    <published>2024-12-03T12:43:15.000Z</published>
-    <updated>2024-12-23T02:51:03.503Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1553b简要介绍"><a class="markdownIt-Anchor" href="#1553b简要介绍"></a> &gt;&gt;1553B简要介绍</h3><p>①1553B终端类型有总线控制器BC、远程终端RT和总线监视器MT。</p><p>②1553B字类型有命令字、数据字、状态字。</p><p>③1553B通讯方式为命令响应式，因此所有消息传输都必须由总线控制器发出的命令字来进行控制。</p><h3 id="1553b-命令字定义"><a class="markdownIt-Anchor" href="#1553b-命令字定义"></a> &gt;&gt;1553B 命令字定义</h3><p>①调制信号为曼彻斯特码，信号电平由高到低为“1”，由低到高为“0”。</p><p>②总线传输速率为1Mb/s，即1us/位。</p><p>③同步头由高到低占3位，共3微秒，与状态字同步头相同，与数据字同步头相反。</p><p>④RT地址为11111时表示广播命令，此时T/R=0；</p><p>⑤方式域为全0（00000）或全1（11111）时表示方式命令，具体由方式码决定。</p><p>⑥校验位为奇校验，当1—19位1的个数为偶数时校验位P=1;否则P=0。</p><h3 id="1553b十种消息格式"><a class="markdownIt-Anchor" href="#1553b十种消息格式"></a> &gt;&gt;1553B十种消息格式</h3><p>说明：** 表示状态响应时间     # 表示消息间隔时间</p><p>①BC-&gt;RT数据传输</p><p>②RT-&gt;BC数据传输</p><p>③RT-&gt;RT数据传输</p><p>④广播命令数据传输</p><p>⑤RT-&gt;RT广播命令数据传输</p><p>⑥不带数据字的方式命令</p><p>⑦带数据收方式命令</p><p>⑧带数据发方式命令</p><p>⑨不带数据广播方式命令</p><p>⑩带数据广播方式命令</p><h3 id="1553b命令字与消息说明"><a class="markdownIt-Anchor" href="#1553b命令字与消息说明"></a> &gt;&gt;1553B命令字与消息说明</h3><p>①总线使用效率</p><p>式中：NDW表示数据字数；CW表示指令字数；SW表示<br />状态字数； 表示指令响应时间； 表示消息间隔时间。</p><p>②有命令字，而不见的有数据字；</p><p>③有命令字，而不见的有状态字。</p><p>④有数据字一定有命令字；</p><p>⑤有状态字一定有命令字；</p><h3 id="命令字与状态字的同步头相同在总线上如何区分"><a class="markdownIt-Anchor" href="#命令字与状态字的同步头相同在总线上如何区分"></a> ※命令字与状态字的同步头相同，在总线上如何区分？</h3><p>答：因为命令字与状态字要么成对出现，要么只有命令字，</p><p>所以在总线上最先出现的肯定是命令字，以此可以区分。</p><p>————————————————<br />原文链接：<a href="https://blog.csdn.net/phnumber/article/details/49611913">https://blog.csdn.net/phnumber/article/details/49611913</a></p>]]></content>
-    
-    
-    <summary type="html">1553B命令字与消息传输</summary>
-    
-    
-    
-    <category term="串行通讯" scheme="http://www.formeasy.cc/categories/%E4%B8%B2%E8%A1%8C%E9%80%9A%E8%AE%AF/"/>
-    
-    
-    <category term="1553B" scheme="http://www.formeasy.cc/tags/1553B/"/>
     
   </entry>
   

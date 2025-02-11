@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-02-06T01:35:50.691Z</updated>
+  <updated>2025-02-11T08:25:45.662Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows11下安装Docker</title>
+    <link href="http://www.formeasy.cc/2025/02/11/Windows11%E4%B8%8B%E5%AE%89%E8%A3%85Docker/"/>
+    <id>http://www.formeasy.cc/2025/02/11/Windows11%E4%B8%8B%E5%AE%89%E8%A3%85Docker/</id>
+    <published>2025-02-11T08:16:39.000Z</published>
+    <updated>2025-02-11T08:25:45.662Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h2><p>先下载以下资源，暂时不要安装：<br /><a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" title="Docker安装包">Docker安装包</a><br /><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" title="Wsl2安装包">Wsl2安装包</a></p><h2 id="二-开始安装"><a class="markdownIt-Anchor" href="#二-开始安装"></a> 二、开始安装</h2><h3 id="1打开主板bios的虚拟化选项可以在任务管理器中确实是否已经打开"><a class="markdownIt-Anchor" href="#1打开主板bios的虚拟化选项可以在任务管理器中确实是否已经打开"></a> 1.打开主板BIOS的虚拟化选项，可以在任务管理器中确实是否已经打开</h3><p><img src="383486-20240823102848468-621425153.png" alt="image" /></p><h3 id="2勾上虚拟机平台所有选项建议完成这一步骤重启"><a class="markdownIt-Anchor" href="#2勾上虚拟机平台所有选项建议完成这一步骤重启"></a> 2.勾上虚拟机平台所有选项（建议完成这一步骤重启）</h3><p><img src="383486-20240823102936461-2085152227.png" alt="image" /></p><h3 id="3用管理员身份打开powershell执行下面命令启动wsl"><a class="markdownIt-Anchor" href="#3用管理员身份打开powershell执行下面命令启动wsl"></a> 3.用管理员身份打开PowerShell，执行下面命令启动wsl</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure><h3 id="4执行下面命令启动虚拟机给功能"><a class="markdownIt-Anchor" href="#4执行下面命令启动虚拟机给功能"></a> 4.执行下面命令启动虚拟机给功能</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure><h3 id="5安装之前下载的安装包wsl_update_x64msi建议完成这一步骤重启"><a class="markdownIt-Anchor" href="#5安装之前下载的安装包wsl_update_x64msi建议完成这一步骤重启"></a> 5.安装之前下载的安装包【wsl_update_x64.msi】（建议完成这一步骤重启）</h3><h3 id="6将wsl2设置为默认版本"><a class="markdownIt-Anchor" href="#6将wsl2设置为默认版本"></a> 6.将WSL2设置为默认版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-default-version 2</span><br></pre></td></tr></table></figure><h3 id="7安装docker安装包docker-desktop-installerexe"><a class="markdownIt-Anchor" href="#7安装docker安装包docker-desktop-installerexe"></a> 7.安装docker安装包【Docker Desktop Installer.exe】</h3><h2 id="三-docker配置"><a class="markdownIt-Anchor" href="#三-docker配置"></a> 三、docker配置</h2><h3 id="1修改docker默认镜像下载目录"><a class="markdownIt-Anchor" href="#1修改docker默认镜像下载目录"></a> 1.修改docker默认镜像下载目录</h3><p>Windows11 Docker镜像存储路径更改（非C盘路径）<br />基于WSL2安装docker后，在使用过程中会发现大量的docker镜像文件，使系统C盘容量激增，对电脑后续使用造成不便，所以需要在安装的时候，手动修改docker的镜像地址，使得镜像文件保存到另外的非系统盘中。<br /><img src="383486-20240823104424706-999894212.png" alt="image" /></p><p>最新的windows提供了新的虚拟化技术（WSL/WSL2），所以设置页面不能镜像的存储位置进行修改了。</p><h4 id="修改方案"><a class="markdownIt-Anchor" href="#修改方案"></a> 修改方案</h4><p>退出Docker Desktop</p><h4 id="step-01-cmd-查看wsl应用"><a class="markdownIt-Anchor" href="#step-01-cmd-查看wsl应用"></a> step 01 cmd 查看WSL应用</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list -v</span><br></pre></td></tr></table></figure><p>确保所有wsl应用都停止<br /><img src="383486-20240823104439916-867659365.png" alt="image" /></p><h4 id="step-02-导出docker镜像文件"><a class="markdownIt-Anchor" href="#step-02-导出docker镜像文件"></a> step 02 导出docker镜像文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --export docker-desktop-data &quot;D:\docker\docker-desktop-data.tar&quot;</span><br><span class="line">wsl --export docker-desktop &quot;D:\docker\docker-desktop.tar&quot;</span><br></pre></td></tr></table></figure><h4 id="step-03-注销docker-desktop-data-docker-desktop"><a class="markdownIt-Anchor" href="#step-03-注销docker-desktop-data-docker-desktop"></a> step 03 注销docker-desktop-data、docker-desktop</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --unregister docker-desktop-data</span><br><span class="line">wsl --unregister docker-desktop</span><br></pre></td></tr></table></figure><h4 id="step-04-指定文件夹重新导入"><a class="markdownIt-Anchor" href="#step-04-指定文件夹重新导入"></a> step 04 指定文件夹重新导入</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --import docker-desktop-data D:\docker\data &quot;D:\docker\docker-desktop-data.tar&quot; --version 2</span><br><span class="line">wsl --import docker-desktop D:\docker\desktop &quot;D:\docker\docker-desktop.tar&quot; --version 2</span><br></pre></td></tr></table></figure><h4 id="step-05-重启docker"><a class="markdownIt-Anchor" href="#step-05-重启docker"></a> step 05 重启Docker</h4><h3 id="2配置docker阿里镜像仓库"><a class="markdownIt-Anchor" href="#2配置docker阿里镜像仓库"></a> 2.配置docker阿里镜像仓库</h3><pre><code>&quot;registry-mirrors&quot;: [    &quot;https://r32otmli.mirror.aliyuncs.com&quot;  ]</code></pre><p><img src="383486-20240823103412875-760451404.png" alt="image" /></p><h2 id="四-安装后图片展示"><a class="markdownIt-Anchor" href="#四-安装后图片展示"></a> 四、安装后图片展示</h2><p><img src="383486-20240823103427125-280064765.png" alt="image" /></p><p>本文作者：jory</p><p>本文链接：<a href="https://www.cnblogs.com/jory/p/18375482">https://www.cnblogs.com/jory/p/18375482</a></p><p>版权声明：本作品采用知识共享署名-非商业性使用-禁止演绎 2.5 中国大陆许可协议进行许可。</p>]]></content>
+    
+    
+    <summary type="html">Windows11下安装Docker</summary>
+    
+    
+    
+    <category term="虚拟化" scheme="http://www.formeasy.cc/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+    <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Qt中手动配置MSVC2017环境</title>
@@ -33,9 +54,9 @@
     <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
-    
     <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
+    
+    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
     
   </entry>
   
@@ -56,9 +77,9 @@
     <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
-    
     <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
+    
+    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
     
   </entry>
   
@@ -420,29 +441,6 @@
     
     
     <category term="MySQL" scheme="http://www.formeasy.cc/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu20.04版本的NVIDIA显卡驱动程序安装</title>
-    <link href="http://www.formeasy.cc/2024/12/19/Ubuntu20.04%E7%89%88%E6%9C%AC%E7%9A%84NVIDIA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85/"/>
-    <id>http://www.formeasy.cc/2024/12/19/Ubuntu20.04%E7%89%88%E6%9C%AC%E7%9A%84NVIDIA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85/</id>
-    <published>2024-12-19T02:43:13.000Z</published>
-    <updated>2024-12-23T02:45:57.169Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h3><p>我在学习深度学习时，在Ubuntu系统下安装NVIDIA显卡驱动踩过了一些坑，浪费了很多的时间，现在想出一个宝宝级的攻略，希望能够帮助大家节约时间，规避一些毒教程的糟粕。</p><p>如果大家通过我的攻略安装成功，请在评论区打出“<strong>好用</strong>“希望能够帮助到更多人。</p><h3 id="1下载nvidia官方驱动"><a class="markdownIt-Anchor" href="#1下载nvidia官方驱动"></a> 1.下载NVIDIA官方驱动</h3><p>官方链接如下:</p><p><a href="https://www.nvidia.cn/geforce/drivers/" title="NVIDIA显卡驱动">NVIDIA显卡驱动</a></p><p><strong>提醒：</strong></p><p>1.由于是外国网站没有“vip”可能会慢一点请耐心等待。</p><p>2.这里要准备一个U盘在Windows系统下载后传入Ubuntu的系统，主要是操作方便，避免一些不必要的麻烦。当然你也可以尝试从Ubuntu系统里下载（不建议啊）</p><p>1.进入官网</p><p>1.查看配置：</p><p>控制面板-&gt;硬件和声音-&gt;设备管理器-&gt;显示适配器  查看相关配置。</p><p><img src="531963dd01bc4ba8bfd21a2764c8f955.png" alt="531963dd01bc4ba8bfd21a2764c8f955.png" /></p><p>2.选择配置：</p><ul><li>其中前三个选项根据自己的显卡型号来。</li><li>后三个选项要根据下方图片进行选择。</li><li>开始搜索。</li></ul><p><img src="95167edb6a014665a2d4b8f713158444.png" alt="95167edb6a014665a2d4b8f713158444.png" /></p><p>2.下载安装包</p><p>1.获取下载</p><p>下载最新的版本即可</p><p><img src="0cd7f535fbaf4a4c88edec49ed18c4ad.png" alt="0cd7f535fbaf4a4c88edec49ed18c4ad.png" /></p><p>2.立即下载</p><p><img src="e9be9beb532e43ca83ce28e574b33698.png" alt="e9be9beb532e43ca83ce28e574b33698.png" /></p><p>3.移动至U盘</p><p>将下载后的安装包移至U盘传入到Ubuntu系统的主目录下。</p><h3 id="2安装nvidia官方驱动"><a class="markdownIt-Anchor" href="#2安装nvidia官方驱动"></a> 2.安装NVIDIA官方驱动</h3><h4 id="1设置bios"><a class="markdownIt-Anchor" href="#1设置bios"></a> 1.设置BIOS</h4><p>将电脑重启，重启过程中一直按住F2键进入bios界面（<strong>联想拯救者是这个按键，若是不同品牌要先查询一下对应按键</strong>）</p><p>找到Security将<strong>secure boot</strong>关闭（<strong>一定要进行这一步</strong>）否则在后续的安装时会要求咱们对驱动程序进行签名之类的操作，大大增加了安装的繁琐程度和失败的可能性。（不过我相信安装双系统的时候大家已经将该设置关闭了，不过为了以防万一请大家再次进入确认一下）</p><p>按F10保存并退出。</p><p>进入Ubuntu系统。</p><h4 id="2执行相关操作"><a class="markdownIt-Anchor" href="#2执行相关操作"></a> 2.执行相关操作</h4><p>1.找到传入ubuntu的驱动文件</p><p>右键在终端进行打开。</p><p>添加执行权限。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +<span class="built_in">x</span> (该文件名)</span><br></pre></td></tr></table></figure><p>输入NV之后按下Tab键它会自动补齐。输入密码开始安装。</p><p><img src="c2442f91a2b24a55b335acb31e451089.png" alt="c2442f91a2b24a55b335acb31e451089.png" /></p><p>2.运行安装程序</p><p>在目标文件夹下打开终端输入：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash （对应的软件包名称）(NV.....用Tab键自动补齐)</span><br></pre></td></tr></table></figure><p><img src="30ae6de3aafb4e3e8b3ebfcc5d9aefbe.png" alt="30ae6de3aafb4e3e8b3ebfcc5d9aefbe.png" /></p><p>3.执行相关权限</p><p><strong>continue-&gt;yes-&gt;ok</strong></p><p><img src="2c3595e614924626a2297db3b7e83fd4.png" alt="2c3595e614924626a2297db3b7e83fd4.png" /><img src="bdabf91c4abc4c91aca243aed2a97009.png" alt="bdabf91c4abc4c91aca243aed2a97009.png" /><img src="53a7153c47ff4cd9bb0b4004cb86785a.png" alt="53a7153c47ff4cd9bb0b4004cb86785a.png" /></p><h4 id="3重启电脑确认驱动是否安装"><a class="markdownIt-Anchor" href="#3重启电脑确认驱动是否安装"></a> 3.重启电脑确认驱动是否安装</h4><p>打开终端输入命令：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure><p>进入如下界面代表您已经安装成功了。</p><p><img src="0557c0a261b64e8b9e021959eb8c5d2f.png" alt="0557c0a261b64e8b9e021959eb8c5d2f.png" /></p><p>————————————————<br />原文链接：<a href="https://blog.csdn.net/2301_76831056/article/details/143232570">https://blog.csdn.net/2301_76831056/article/details/143232570</a></p>]]></content>
-    
-    
-    <summary type="html">Ubuntu20.04版本的NVIDIA显卡驱动程序安装</summary>
-    
-    
-    
-    <category term="操作系统" scheme="http://www.formeasy.cc/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-    <category term="Ubuntu" scheme="http://www.formeasy.cc/tags/Ubuntu/"/>
-    
-    <category term="NVIDIA" scheme="http://www.formeasy.cc/tags/NVIDIA/"/>
     
   </entry>
   

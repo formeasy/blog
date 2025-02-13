@@ -38,6 +38,29 @@
   </entry>
   
   <entry>
+    <title>使用Docker搭建Ollama DeepSeek和Open Web UI的步骤</title>
+    <link href="http://www.formeasy.cc/2025/02/12/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAOllama%20DeepSeek%E5%92%8COpen%20Web%20UI%E7%9A%84%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://www.formeasy.cc/2025/02/12/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAOllama%20DeepSeek%E5%92%8COpen%20Web%20UI%E7%9A%84%E6%AD%A5%E9%AA%A4/</id>
+    <published>2025-02-12T02:12:15.000Z</published>
+    <updated>2025-02-13T02:11:03.375Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h3><ul><li><p>安装Docker：<br />确保你的系统中已经安装了Docker。如果尚未安装，可以从Docker官方网站下载并安装适合你操作系统的Docker版本。</p></li><li><p>拉取镜像：<br />从Docker Hub或其他镜像仓库中拉取Ollama、DeepSeek（通常作为Ollama的一个模型存在）和Open Web UI的镜像。 对于不同操作系统，重启命令可能有所不同。</p></li></ul><blockquote><p>例如，在Ubuntu/Debian系统上，可以使用systemctl daemon-reload和systemctl restart ollama命令；在CentOS系统上，则可能需要使用sudo yum update、sudo yum install lsof、stop ollama、lsof -i :11434、kill 和ollama serve等命令组合。</p></blockquote><h3 id="二-部署ollama"><a class="markdownIt-Anchor" href="#二-部署ollama"></a> 二、部署Ollama</h3><ul><li>拉取Ollama镜像：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ollama/ollama</span><br></pre></td></tr></table></figure><p>或者，如果你需要特定版本的Ollama，可以使用带版本的标签，如ollama/ollama:0.3.0。</p><ul><li>运行Ollama容器：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v /path/to/ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama</span><br></pre></td></tr></table></figure><p>-d：后台运行容器。<br />-v：将本地文件夹挂载到容器内，用于存储模型和数据。<br />-p：映射端口，方便外部访问。<br />–name：指定容器名称。<br />启动DeepSeek模型（在Ollama容器中）：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it ollama ollama run deepseek-r1:1.5b</span><br></pre></td></tr></table></figure><p>或者，根据你下载的DeepSeek模型版本进行调整。</p><h3 id="三-部署open-web-ui"><a class="markdownIt-Anchor" href="#三-部署open-web-ui"></a> 三、部署Open Web UI</h3><ul><li>拉取Open Web UI镜像：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.io/open-webui/open-webui:main</span><br></pre></td></tr></table></figure><p>运行Open Web UI容器：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=http://localhost:11434 -v /path/to/open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</span><br></pre></td></tr></table></figure><p>-p：将容器的8080端口映射到宿主机的3000端口。<br />-e：配置Ollama服务的基础URL地址。<br />-v：挂载本地目录到容器，用于存储Open Web UI的数据。<br />–name：指定容器名称。<br />–restart always：容器异常退出后自动重启。</p><blockquote><p>注意：OLLAMA_BASE_URL应该设置为Ollama服务的实际访问地址。如果你的Ollama服务部署在远程服务器上，那么这里应该填写远程服务器的IP地址或域名。如果部署在本机，可以使用localhost或127.0.0.1。但是，在Docker容器中访问宿主机时，可能需要使用宿主机的实际IP地址或host.docker.internal（在某些Docker版本中支持）。</p></blockquote><h3 id="四-访问和使用"><a class="markdownIt-Anchor" href="#四-访问和使用"></a> 四、访问和使用</h3><ul><li><p>访问Open Web UI：<br />打开浏览器，访问<a href="http://localhost:3000">http://localhost:3000</a>（或你设置的其他端口）。<br />你应该能够看到Open Web UI的界面，并通过它与DeepSeek模型进行交互。</p></li><li><p>使用Open Web UI：<br />在Open Web UI界面中，选择DeepSeek模型。<br />输入你想让模型回答的问题或文本。<br />点击“生成”或类似的按钮，查看模型的输出结果。</p></li></ul><blockquote><p>注意：也可以使用ChatBox桌面客户端访问<br />下载ChatBox(<a href="https://chatboxai.app/zh">https://chatboxai.app/zh</a>)<br />在设置中，设置API域名为 <a href="http://localhost:11434">http://localhost:11434</a><br />也可以查看模型的输出结果</p></blockquote><h3 id="五-注意事项"><a class="markdownIt-Anchor" href="#五-注意事项"></a> 五、注意事项</h3><ul><li><p>硬件配置：<br />Ollama和DeepSeek对硬件配置有一定的要求。确保你的服务器或计算机有足够的CPU、内存和存储空间来运行这些服务。</p></li><li><p>网络配置：<br />如果你的Ollama服务部署在远程服务器上，确保你的服务器能够访问外部网络（特别是如果你需要从外部下载模型或更新）。<br />同时，确保你的Open Web UI能够访问Ollama服务的基础URL地址。</p></li><li><p>安全性：<br />在生产环境中部署时，请注意安全性问题。例如，使用HTTPS来保护你的Web界面和数据传输；限制对Ollama服务的访问权限；定期更新和备份你的数据和模型等。</p></li><li><p>性能优化：<br />根据你的实际需求和硬件配置，调整Ollama和DeepSeek的运行参数以优化性能。例如，调整模型的批量大小、并发请求数等。</p></li><li><p>Docker Compose：<br />为了简化部署和管理过程，你可以使用Docker Compose来一次性启动整个应用栈。编写一个docker-compose.yml文件来定义Ollama和Open Web UI的服务和配置，然后使用docker-compose up命令来启动所有服务。<br />通过以上步骤，你应该能够成功使用Docker搭建Ollama、DeepSeek和Open Web UI，并通过Open Web UI与DeepSeek模型进行交互。</p></li></ul>]]></content>
+    
+    
+    <summary type="html">使用Docker搭建Ollama DeepSeek和Open Web UI的步骤</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
+    
+    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
+    
+  </entry>
+  
+  <entry>
     <title>大模型ollama命令详解大全</title>
     <link href="http://www.formeasy.cc/2025/02/12/%E5%A4%A7%E6%A8%A1%E5%9E%8Bollama%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%E5%A4%A7%E5%85%A8/"/>
     <id>http://www.formeasy.cc/2025/02/12/%E5%A4%A7%E6%A8%A1%E5%9E%8Bollama%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%E5%A4%A7%E5%85%A8/</id>
@@ -53,29 +76,6 @@
     
     <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
     
-    
-    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Docker搭建Ollama DeepSeek和Open Web UI的步骤</title>
-    <link href="http://www.formeasy.cc/2025/02/12/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAOllama%20DeepSeek%E5%92%8COpen%20Web%20UI%E7%9A%84%E6%AD%A5%E9%AA%A4/"/>
-    <id>http://www.formeasy.cc/2025/02/12/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAOllama%20DeepSeek%E5%92%8COpen%20Web%20UI%E7%9A%84%E6%AD%A5%E9%AA%A4/</id>
-    <published>2025-02-12T02:12:15.000Z</published>
-    <updated>2025-02-12T02:35:49.756Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h3><ul><li><p>安装Docker：<br />确保你的系统中已经安装了Docker。如果尚未安装，可以从Docker官方网站下载并安装适合你操作系统的Docker版本。</p></li><li><p>拉取镜像：<br />从Docker Hub或其他镜像仓库中拉取Ollama、DeepSeek（通常作为Ollama的一个模型存在）和Open Web UI的镜像。 对于不同操作系统，重启命令可能有所不同。</p></li></ul><blockquote><p>例如，在Ubuntu/Debian系统上，可以使用systemctl daemon-reload和systemctl restart ollama命令；在CentOS系统上，则可能需要使用sudo yum update、sudo yum install lsof、stop ollama、lsof -i :11434、kill 和ollama serve等命令组合。</p></blockquote><h3 id="二-部署ollama"><a class="markdownIt-Anchor" href="#二-部署ollama"></a> 二、部署Ollama</h3><ul><li>拉取Ollama镜像：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ollama/ollama</span><br></pre></td></tr></table></figure><p>或者，如果你需要特定版本的Ollama，可以使用带版本的标签，如ollama/ollama:0.3.0。</p><ul><li>运行Ollama容器：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v /path/to/ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama</span><br></pre></td></tr></table></figure><p>-d：后台运行容器。<br />-v：将本地文件夹挂载到容器内，用于存储模型和数据。<br />-p：映射端口，方便外部访问。<br />–name：指定容器名称。<br />启动DeepSeek模型（在Ollama容器中）：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it ollama ollama run deepseek-r1:1.5b</span><br></pre></td></tr></table></figure><p>或者，根据你下载的DeepSeek模型版本进行调整。</p><h3 id="三-部署open-web-ui"><a class="markdownIt-Anchor" href="#三-部署open-web-ui"></a> 三、部署Open Web UI</h3><ul><li>拉取Open Web UI镜像：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.io/open-webui/open-webui:main</span><br></pre></td></tr></table></figure><p>运行Open Web UI容器：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=http://localhost:11434 -v /path/to/open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</span><br></pre></td></tr></table></figure><p>-p：将容器的8080端口映射到宿主机的3000端口。<br />-e：配置Ollama服务的基础URL地址。<br />-v：挂载本地目录到容器，用于存储Open Web UI的数据。<br />–name：指定容器名称。<br />–restart always：容器异常退出后自动重启。</p><blockquote><p>注意：OLLAMA_BASE_URL应该设置为Ollama服务的实际访问地址。如果你的Ollama服务部署在远程服务器上，那么这里应该填写远程服务器的IP地址或域名。如果部署在本机，可以使用localhost或127.0.0.1。但是，在Docker容器中访问宿主机时，可能需要使用宿主机的实际IP地址或host.docker.internal（在某些Docker版本中支持）。</p></blockquote><h3 id="四-访问和使用"><a class="markdownIt-Anchor" href="#四-访问和使用"></a> 四、访问和使用</h3><ul><li><p>访问Open Web UI：<br />打开浏览器，访问<a href="http://localhost:3000">http://localhost:3000</a>（或你设置的其他端口）。<br />你应该能够看到Open Web UI的界面，并通过它与DeepSeek模型进行交互。</p></li><li><p>使用Open Web UI：<br />在Open Web UI界面中，选择DeepSeek模型。<br />输入你想让模型回答的问题或文本。<br />点击“生成”或类似的按钮，查看模型的输出结果。</p></li></ul><h3 id="五-注意事项"><a class="markdownIt-Anchor" href="#五-注意事项"></a> 五、注意事项</h3><ul><li><p>硬件配置：<br />Ollama和DeepSeek对硬件配置有一定的要求。确保你的服务器或计算机有足够的CPU、内存和存储空间来运行这些服务。</p></li><li><p>网络配置：<br />如果你的Ollama服务部署在远程服务器上，确保你的服务器能够访问外部网络（特别是如果你需要从外部下载模型或更新）。<br />同时，确保你的Open Web UI能够访问Ollama服务的基础URL地址。</p></li><li><p>安全性：<br />在生产环境中部署时，请注意安全性问题。例如，使用HTTPS来保护你的Web界面和数据传输；限制对Ollama服务的访问权限；定期更新和备份你的数据和模型等。</p></li><li><p>性能优化：<br />根据你的实际需求和硬件配置，调整Ollama和DeepSeek的运行参数以优化性能。例如，调整模型的批量大小、并发请求数等。</p></li><li><p>Docker Compose：<br />为了简化部署和管理过程，你可以使用Docker Compose来一次性启动整个应用栈。编写一个docker-compose.yml文件来定义Ollama和Open Web UI的服务和配置，然后使用docker-compose up命令来启动所有服务。<br />通过以上步骤，你应该能够成功使用Docker搭建Ollama、DeepSeek和Open Web UI，并通过Open Web UI与DeepSeek模型进行交互。</p></li></ul>]]></content>
-    
-    
-    <summary type="html">使用Docker搭建Ollama DeepSeek和Open Web UI的步骤</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
     
     <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
     

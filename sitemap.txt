@@ -1,3 +1,4 @@
+http://www.formeasy.cc/2025/02/13/%E8%A7%A3%E5%86%B3Docker%20Desktop%E9%94%99%E8%AF%AF%EF%BC%9A%E5%AE%89%E8%A3%85kubernetes%E6%97%B6%E4%B8%80%E7%9B%B4%E5%9C%A8StartingKubernetes%20failed%20to%20start/
 http://www.formeasy.cc/2025/02/12/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAOllama%20DeepSeek%E5%92%8COpen%20Web%20UI%E7%9A%84%E6%AD%A5%E9%AA%A4/
 http://www.formeasy.cc/2025/02/12/%E5%A6%82%E4%BD%95%E5%9C%A8%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2Ollama%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E8%AE%BF%E9%97%AE/
 http://www.formeasy.cc/2025/02/12/%E5%A4%A7%E6%A8%A1%E5%9E%8Bollama%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%E5%A4%A7%E5%85%A8/
@@ -53,8 +54,8 @@ http://www.formeasy.cc/tags/1553B/
 http://www.formeasy.cc/tags/Cursor/
 http://www.formeasy.cc/tags/EA/
 http://www.formeasy.cc/tags/DDS/
-http://www.formeasy.cc/tags/Navicat/
 http://www.formeasy.cc/tags/K8s/
+http://www.formeasy.cc/tags/Navicat/
 http://www.formeasy.cc/tags/MySQL/
 http://www.formeasy.cc/tags/PostgreSQL/
 http://www.formeasy.cc/tags/ClickHouse/
@@ -63,8 +64,8 @@ http://www.formeasy.cc/tags/Qt/
 http://www.formeasy.cc/tags/VS/
 http://www.formeasy.cc/tags/UE/
 http://www.formeasy.cc/tags/Docker/
-http://www.formeasy.cc/tags/ROS/
 http://www.formeasy.cc/tags/Ubuntu/
+http://www.formeasy.cc/tags/ROS/
 http://www.formeasy.cc/tags/NVIDIA/
 http://www.formeasy.cc/tags/C/
 http://www.formeasy.cc/tags/ollama/

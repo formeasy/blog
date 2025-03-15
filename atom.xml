@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-03-09T06:52:43.568Z</updated>
+  <updated>2025-03-15T03:35:58.307Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qt中的QByteArray和自定义结构体之间的相互转换</title>
+    <link href="http://www.formeasy.cc/2025/03/15/Qt%E4%B8%AD%E7%9A%84QByteArray%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://www.formeasy.cc/2025/03/15/Qt%E4%B8%AD%E7%9A%84QByteArray%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/</id>
+    <published>2025-03-15T03:32:43.000Z</published>
+    <updated>2025-03-15T03:35:58.307Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在Qt项目开发中，经常会碰到自定义结构体和字符数组之间的转换问题，不妨假设结构体名字为custom_struct, 字符数组名字为array_data</p></blockquote><h3 id="1qbytearray转换为自定义结构体"><a class="markdownIt-Anchor" href="#1qbytearray转换为自定义结构体"></a> 1.QByteArray转换为自定义结构体</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">custom_struct *struct_data = <span class="built_in">reinterpret_cast</span>&lt;custom_struct *&gt;(array_data.<span class="built_in">data</span>());</span><br></pre></td></tr></table></figure><h3 id="2自定义结构体转换为qbytearray"><a class="markdownIt-Anchor" href="#2自定义结构体转换为qbytearray"></a> 2.自定义结构体转换为QByteArray</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QByteArray array_data;</span><br><span class="line">array_data.<span class="built_in">append</span>((<span class="type">char</span>*)&amp;struct_data, <span class="built_in">sizeof</span>(struct_data));</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">Qt中的QByteArray和自定义结构体之间的相互转换</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
+    
+  </entry>
   
   <entry>
     <title>Win10中docker的安装与使用</title>
@@ -420,27 +441,6 @@
     
     
     <category term="C" scheme="http://www.formeasy.cc/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Enterprise Architect画类图和顺序图</title>
-    <link href="http://www.formeasy.cc/2025/01/23/%E7%94%A8Enterprise%20Architect%E7%94%BB%E7%B1%BB%E5%9B%BE%E5%92%8C%E9%A1%BA%E5%BA%8F%E5%9B%BE/"/>
-    <id>http://www.formeasy.cc/2025/01/23/%E7%94%A8Enterprise%20Architect%E7%94%BB%E7%B1%BB%E5%9B%BE%E5%92%8C%E9%A1%BA%E5%BA%8F%E5%9B%BE/</id>
-    <published>2025-01-23T07:26:21.000Z</published>
-    <updated>2025-01-23T07:33:26.728Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="新建一个project"><a class="markdownIt-Anchor" href="#新建一个project"></a> 新建一个Project</h3><p>没什么好说的，“<strong>文件-新建项目</strong>”，然后选择保存位置就好了，模式的话由于我喜欢一个包一张图所以一般都选择“<strong>新建包的时候同时新建图</strong>”。<br />会弹出一个模型向导的对话框， 是给你导入模板的，我不需要，所以都不选直接点确定。<br /><img src="bVxO8f.png" alt="图片描述" title="图片描述" /><br />在项目浏览器里新增包，一个图一个包比较舒服：<br /><img src="bVxPbe.png" alt="图片描述" title="图片描述" /><br />UML的图就主要在<strong>UML Structural</strong>和<strong>UML Behavioral</strong>两个包里：<br /><img src="bVxPaz.png" alt="图片描述" title="图片描述" /><br /><img src="bVxPaL.png" alt="图片描述" title="图片描述" /><br />有时候你新建在图里的元素删除了只是在图里删除而没有在包里删除，作为一个强迫症，总是要多动手删一次= =<br />EA还提供一些像Word那样的操作，比如这两个按钮可以修改元素的层次关系：<br /><img src="bVxPdw.png" alt="图片描述" title="图片描述" /></p><h3 id="类图"><a class="markdownIt-Anchor" href="#类图"></a> 类图</h3><p>类图挺好画的，从工具箱里拖一个“<strong>Class</strong>”进去，会自动弹出一个设置Class的界面。<br /><img src="bVxO75.png" alt="图片描述" title="图片描述" /><br />在“Class1”那个位置写类的名称：<br /><img src="bVxPaO.png" alt="图片描述" title="图片描述" /><br />右下方的“<strong>详细</strong>”选项卡里可以设置类的属性的操作，后期如果想设置可以在类上“<strong>右键-功能与属性</strong>”里也可以修改：<br /><img src="bVxPaz.png" alt="图片描述" title="图片描述" /><br />类之间的关联在工具箱子的这个位置：<br /><img src="bVxPbu.png" alt="图片描述" title="图片描述" /><br /><strong>添加两个类的关联的方法</strong>是：选中相应关联工具，然后按住鼠标在一个类和另一个类之间拖出一条线<br /><strong>双击关联的线</strong>或者**选中线后“右键-特性”**都可以设置关联的属性：<br /><img src="bVxPbO.png" alt="图片描述" title="图片描述" /><br />在“角色”选项卡里可以设置多重性：<br /><img src="bVxPbQ.png" alt="图片描述" title="图片描述" /></p><p><strong>不过EA12的类图有一个特点，如果一个类没有属性或者没有操作，它就会显示成二栏或者一栏而不是标准的三栏……对于要考试的还是EA新手的人来说TAT……只好加一个叫“…”的属性和操作顶上= =</strong></p><h3 id="顺序图"><a class="markdownIt-Anchor" href="#顺序图"></a> 顺序图</h3><p>EA的顺序图的每个对象的生命线都是从相同的高度开始的，反正我试图拖的时候不能把某个对象拖下来Orz<br /><strong>Actor</strong>和<strong>Lifeline</strong>是两个有生命线的东西，先要新建它们，拖到图里就好了<br /><strong>Fragment</strong>是用于表示结构化控制的<br />消息传递在Interaction Relationship里，一共有4个，1是对象之间传递的消息，2是自传递的消息，3和4我目前发现没有太大的区别——如果想要表示自调用就在单一对象的生命线上点一下，如果表示两个对象之间的调用就在调用者和被调用者之间拖一条线……<br /><img src="bVxPb1.png" alt="图片描述" title="图片描述" /><br />用Lifeline新建一个对象，双击它或者右键-特性可以设置属性，对象的名称貌似是要自己写“：”来符合UML规范。<br /><img src="bVxPck.png" alt="图片描述" title="图片描述" /><br />消息就是点击一下单一对象的生命线或者在调用者和被调用者之间拖一条线产生出来的对象，同样是双击或者右键就可以设置属性，具体如下：<br /><img src="bVxPcl.png" alt="图片描述" title="图片描述" /><br />有时候消息需要在特定条件下才能发出，也可以设置：<br /><img src="bVxPc2.png" alt="图片描述" title="图片描述" /><br />新建一个如下设置的自调用，可以规定条件：<br /><img src="bVxPc3.png" alt="图片描述" title="图片描述" /><br />还有结构化控制，用Fragment实现，拖一个到图里，然后可以双击设置属性：<br /><img src="bVxPda.png" alt="图片描述" title="图片描述" /><br />最后的结果：<br /><img src="bVxPdn.png" alt="图片描述" title="图片描述" /></p><h3 id="导出"><a class="markdownIt-Anchor" href="#导出"></a> 导出</h3><p><strong>Ctrl+T</strong>或者在菜单栏里“<strong>图-保存图到文件</strong>”就可以把图导出为图片。</p>]]></content>
-    
-    
-    <summary type="html">用Enterprise Architect画类图和顺序图</summary>
-    
-    
-    
-    <category term="设计" scheme="http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/"/>
-    
-    
-    <category term="EA" scheme="http://www.formeasy.cc/tags/EA/"/>
     
   </entry>
   

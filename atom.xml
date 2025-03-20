@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-03-19T04:48:51.307Z</updated>
+  <updated>2025-03-20T01:05:24.107Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件为UDP服务却收不到数据问题解析</title>
+    <link href="http://www.formeasy.cc/2025/03/20/%E8%BD%AF%E4%BB%B6%E4%B8%BAUDP%E6%9C%8D%E5%8A%A1%E5%8D%B4%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/"/>
+    <id>http://www.formeasy.cc/2025/03/20/%E8%BD%AF%E4%BB%B6%E4%B8%BAUDP%E6%9C%8D%E5%8A%A1%E5%8D%B4%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/</id>
+    <published>2025-03-20T03:21:13.000Z</published>
+    <updated>2025-03-20T01:05:24.107Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="问题软件为udp服务却收不到数据问题解析"><a class="markdownIt-Anchor" href="#问题软件为udp服务却收不到数据问题解析"></a> 问题：软件为UDP服务却收不到数据问题解析</h3><blockquote><p>【问题描述】安装了一软件，基础UDP服务，用来接收UDP数据协议，但软件启动后，就是收不到任何UDP数据。</p></blockquote><blockquote><p>【原因分析】</p></blockquote><h4 id="1安装wireshark或udp测试工具正常能接收udp数据说明发送端没有问题"><a class="markdownIt-Anchor" href="#1安装wireshark或udp测试工具正常能接收udp数据说明发送端没有问题"></a> 1.安装wireshark或UDP测试工具，正常能接收UDP数据，说明发送端没有问题。</h4><h4 id="2启动此软件查看是否占用端口查看到"><a class="markdownIt-Anchor" href="#2启动此软件查看是否占用端口查看到"></a> 2.启动此软件，查看是否占用端口，查看到:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr :9999</span><br><span class="line"> UDP    192.168.110.1:9999   *:*    3934</span><br></pre></td></tr></table></figure><p>说明软件正常启动，但是其中的192.168.110.1并不是我主网卡的网卡。<br />本机有三个网卡（WMware Network Adapter VMnet1、WMware Network Adapter VMnet8和以太网）<br />其中安装虚拟机软件WMware后，安装了前两块网卡，其中WMware Network Adapter VMnet8网段是192.168.110.1<br />也就是说，软件默认的用的是WMware Network Adapter VMnet8网卡而不是本机的以太网网卡</p><blockquote><p>【解决方案】通过跃点数（Metric）设置优先级</p></blockquote><h4 id="1打开网络连接设置"><a class="markdownIt-Anchor" href="#1打开网络连接设置"></a> 1.打开网络连接设置：</h4><ul><li>按 Win + R 输入 ncpa.cpl 回车。</li><li>或依次点击：控制面板 → 网络和Internet → 网络连接。</li></ul><h4 id="2调整网卡跃点数"><a class="markdownIt-Anchor" href="#2调整网卡跃点数"></a> 2.调整网卡跃点数：</h4><ul><li>右键点击要设为“主网卡”的适配器 → 属性 → 双击 “Internet协议版本4（TCP/IPv4）”。</li><li>点击 “高级” → 切换到 “自动跃点” 标签。</li><li>取消勾选 “自动跃点”，输入一个较小的数值（如 10），跃点数越低优先级越高。</li><li>对其他网卡设置更高的跃点数（如 20、30）。</li></ul><h4 id="3重启网络服务或重启电脑"><a class="markdownIt-Anchor" href="#3重启网络服务或重启电脑"></a> 3.重启网络服务或重启电脑：</h4><ul><li>按 Win + R 输入 cmd，右键选择“以管理员身份运行”。</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br><span class="line">netsh int ip reset</span><br><span class="line">netsh winsock reset</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">软件为UDP服务却收不到数据问题解析</summary>
+    
+    
+    
+    <category term="网络通讯" scheme="http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>UE4&amp;5 C++类创建后重启项目C++类不显示并且其蓝图子类丢失父类等问题原因及解决方法</title>
@@ -418,29 +437,6 @@
     <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
     
     <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows搭建Docker+K8s</title>
-    <link href="http://www.formeasy.cc/2025/01/24/Windows%E6%90%AD%E5%BB%BADocker+K8s/"/>
-    <id>http://www.formeasy.cc/2025/01/24/Windows%E6%90%AD%E5%BB%BADocker+K8s/</id>
-    <published>2025-01-24T08:18:15.000Z</published>
-    <updated>2025-01-24T08:40:36.309Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="修改-docker-desktop-的默认安装路径optional"><a class="markdownIt-Anchor" href="#修改-docker-desktop-的默认安装路径optional"></a> 修改 Docker Desktop 的默认安装路径（Optional）</h2><ul><li>确保 <code>C:\Program Files</code> 路径中没有 <code>Docker</code> 文件夹</li><li>在想要的安装路径中新建 <code>Docker</code> 文件夹</li><li>管理员模式打开 Windows Terminal</li><li>创建目录链接，其中 <code>F:\Docker</code> 为想要安装的位置</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j &quot;C:\Program Files\Docker&quot; &quot;F:\Docker&quot;</span><br></pre></td></tr></table></figure><ul><li>下载并运行安装包</li><li>安装完成后，可以发现 C 盘占用没有发生变化</li></ul><h2 id="安装docker-desktop"><a class="markdownIt-Anchor" href="#安装docker-desktop"></a> 安装Docker Desktop</h2><p>从官网下载，然后直接安装即可，过程很简单，一直Next就行。</p><p>有一点需要注意就是要看好对应的版本，因为后边涉及到版本的问题。</p><p><a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></p><p>安装完成，双击图标，打开桌面程序，就可以看到左下角有一个绿色的鲸鱼标识，注意，这个时候只有一个：</p><p><img src="25f999589a3468fcfcaf8d18f900f5f7.png" alt="" /></p><p><img src="b7049175ecf74a547f73a00205ff2fc7.png" alt="" /></p><p>中间的打马赛克的默认也是没有的，这是我已经安装好的。</p><h2 id="修改本地镜像的存储位置optional"><a class="markdownIt-Anchor" href="#修改本地镜像的存储位置optional"></a> 修改本地镜像的存储位置（Optional）</h2><p>原存储路径：<code>C:\Users\GCH\AppData\Local\Docker\wsl</code></p><p><img src="0554d5d96a567fcd86f550d4e5e0f79c.png" alt="" /></p><p>1、停止运行中的容器<br />查询是否有运行中的容器</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>2、右键图标，点击 <code>Quit Docker Desktop</code>，退出 <code>Docker Desktop</code><br />Docker Desktop 安装了两个特殊用途的内部 Linux 发行版: <code>docker-desktop</code> 和 <code>docker-desktop-data</code>（两者都不能用于一般开发）</p><ul><li>第一个（docker-desktop）用于运行 Docker engine</li><li>第二个（docker-desktop-data）用于存储 containers 和 images</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询 Docker Desktop 运行状态</span><br><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure><p><img src="39c3ae52994cec409c1f991ea077630f.png" alt="" /></p><p>3、导出，注销，然后导入<br />只迁移 <code>docker-desktop-data</code> 即可，若已有的 images 较大，这个过程会耗点时间。</p><pre><code>wsl --export docker-desktop-data F:\docker-desktop-data.tarwsl --unregister docker-desktop-datawsl --import docker-desktop-data &quot;F:\\docker_images&quot; &quot;F:\\docker-desktop-data.tar&quot; --version 2</code></pre><p><img src="facd9cfda47b9de1d20e01ffec1dbadc.png" alt="" /><br />4、重新启动 Docker Desktop<br />5、pull 一个镜像，测试一下<br />没问题的话，就可以把 docker-desktop-data.tar 压缩文件删掉了</p><h2 id="配置镜像加速"><a class="markdownIt-Anchor" href="#配置镜像加速"></a> 配置镜像加速</h2><p><img src="22b85504c32aacaab0e1f6459c84fa05.png" alt="" /></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;https://registry.docker-cn.com&quot;,</span><br><span class="line">&quot;http://hub-mirror.c.163.com&quot;,</span><br><span class="line">&quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">&quot;https://xxxx.mirror.aliyuncs.com&quot; //阿里云镜像加速，登录自己的阿里云账号获取</span><br></pre></td></tr></table></figure><p>安装好Docker服务和配置镜像加速以后，K8s默认是关闭状态的，需要我们手动打开：<br /><img src="82a2da0bd6c803ca9f424bf007cde56b.png" alt="" /></p><p>请注意！</p><p><code>这个时候不要轻易的打开它</code>，除非你有VPN，且网速比较好。</p><p>因为开启K8s，主要是启动对应的服务，大概有七八个服务，镜像是很麻烦的，特别是没有配置本地加速的情况下（加速可以用阿里云或者中科大的地址，百度即可）。所以需要从远程仓库把镜像拉下来，过程很慢，即便我用VPN了，也一个小时未成功，无奈只能重装，换了第二种方案。</p><h2 id="安装k8s服务"><a class="markdownIt-Anchor" href="#安装k8s服务"></a> 安装K8s服务</h2><p>上边直接手动启动的方式已经放弃，换成了阿里的本地镜像：<br /><a href="https://github.com/AliyunContainerService/k8s-for-docker-desktop">https://github.com/AliyunContainerService/k8s-for-docker-desktop</a></p><p>直接clone代码，切换到当前Docker Desktop对应版本的分支，然后根据他们的README操作即可，比较简单，镜像拉取完成后，就可以看到多了一些镜像：<br /><img src="14674957b54cefd333a75e0180d82a7e.png" alt="" /></p><blockquote><p>注意Docker Desktop的k8s版本要求 Docker -&gt; About Docker Desktop</p></blockquote><blockquote><p>阿里云README操作在PowerShell，都是基于克隆下来的目录进行</p></blockquote><h3 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h3><h4 id="克隆代码"><a class="markdownIt-Anchor" href="#克隆代码"></a> 克隆代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/AliyunContainerService/k8s-for-docker-desktop.git</span><br></pre></td></tr></table></figure><h4 id="在windows上使用-powershell进来克隆的代码目录"><a class="markdownIt-Anchor" href="#在windows上使用-powershell进来克隆的代码目录"></a> 在Windows上，使用 PowerShell,进来克隆的代码目录</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\load_images.ps1</span><br></pre></td></tr></table></figure><p>说明:</p><blockquote><p>如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 Set-ExecutionPolicy RemoteSigned 命令。</p></blockquote><blockquote><p>如果需要，可以通过修改 images.properties 文件自行加载你自己需要的镜像<br />开启 Kubernetes，并等待 Kubernetes 开始运行</p></blockquote><p>开启 Kubernetes，并等待 Kubernetes 开始运行<br /><img src="af4e6a12d5c387ea90863da12eba7fe7.png" alt="" /></p><h3 id="配置-kubernetes-控制台"><a class="markdownIt-Anchor" href="#配置-kubernetes-控制台"></a> 配置 Kubernetes 控制台</h3><h4 id="部署-kubernetes-dashboard"><a class="markdownIt-Anchor" href="#部署-kubernetes-dashboard"></a> 部署 Kubernetes dashboard</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure><p>检查 kubernetes-dashboard 应用状态</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -n kubernetes-dashboard</span><br></pre></td></tr></table></figure><p>开启 API Server 访问代理</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl proxy</span><br></pre></td></tr></table></figure><p>通过如下 URL 访问 Kubernetes dashboard</p><p><a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</a></p><h4 id="配置控制台访问令牌"><a class="markdownIt-Anchor" href="#配置控制台访问令牌"></a> 配置控制台访问令牌</h4><p>授权kube-system默认服务账号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f kube-system-default.yaml</span><br></pre></td></tr></table></figure><p>对于Windows环境</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$TOKEN=((kubectl -n kube-system describe secret default | Select-String &quot;token:&quot;) -split &quot; +&quot;)[1]</span><br><span class="line">kubectl config set-credentials docker-desktop --token=&quot;$&#123;TOKEN&#125;&quot;</span><br><span class="line">echo $TOKEN</span><br></pre></td></tr></table></figure><p>登录dashboard的时候</p><p>选择 令牌</p><p><img src="3c6750c6430e8753178f5730455c5f4a.png" alt="" /></p><p>输入上文控制台输出的内容</p><p>或者选择 Kubeconfig 文件,路径如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Win: %UserProfile%\.kube\config</span><br></pre></td></tr></table></figure><p>点击登陆，进入Kubernetes Dashboard</p><p>参考：<a href="https://www.bilibili.com/video/BV1m5411J7Q6?p=1&amp;vd_source=10332ffe931de86faa42900544751c8c">https://www.bilibili.com/video/BV1m5411J7Q6?p=1&amp;vd_source=10332ffe931de86faa42900544751c8c</a></p>]]></content>
-    
-    
-    <summary type="html">Windows搭建Docker+K8s</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="K8s" scheme="http://www.formeasy.cc/tags/K8s/"/>
-    
-    <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
     
   </entry>
   

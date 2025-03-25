@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-03-23T14:33:31.227Z</updated>
+  <updated>2025-03-25T02:54:47.527Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pycharm无法安装插件显示网络错误无法安装汉化插件</title>
+    <link href="http://www.formeasy.cc/2025/03/25/pycharm%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E9%94%99%E8%AF%AF%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%B1%89%E5%8C%96%E6%8F%92%E4%BB%B6/"/>
+    <id>http://www.formeasy.cc/2025/03/25/pycharm%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E9%94%99%E8%AF%AF%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%B1%89%E5%8C%96%E6%8F%92%E4%BB%B6/</id>
+    <published>2025-03-25T02:50:41.000Z</published>
+    <updated>2025-03-25T02:54:47.527Z</updated>
+    
+    <content type="html"><![CDATA[<p>【pycharm】pycharm无法安装插件显示网络错误/无法安装汉化插件(报错：Marketplace plugins are not loaded，Check the internet connection and refresh）</p><h3 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 【问题描述】</h3><p>进行pycharm汉化时，无法安装插件，弹出提示：Marketplace plugins are not loaded，Check the internet connection and refresh<br /><img src="f1398c0fcf614b5593b43e0ecb2dcd62.png" alt="" /></p><h3 id="尝试"><a class="markdownIt-Anchor" href="#尝试"></a> 尝试：</h3><p>百度说在settings-&gt; Appearance&amp;Behavior -&gt; System Settings -&gt; Updats 中,取消勾选Use secre Connections 即可<br />但是我这个版本没有这个选项</p><h3 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 【解决方法】</h3><p>1、进入file-&gt;settings-&gt; Appearance&amp;Behavior -&gt; System Settings -&gt; HTTP Proxy下；<br />2、勾选 auto-detect proxy seting、automatic proxy configuration URL；<br />3、将automatic proxy configuration URL其后的网址修改为：<a href="https://plugins.jetbrains.com/%EF%BC%9B">https://plugins.jetbrains.com/；</a><br />4、保存后重启，即可解决问题。<br /><img src="135f2818d8076a8f28cff51f31926adb.png" alt="" /><br />5、再次进行汉化插件搜索时，即可成功搜索到：<br /><img src="948600ca87d519fbb7ab070f9927a787.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">pycharm无法安装插件显示网络错误无法安装汉化插件</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="http://www.formeasy.cc/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vs code插件Continue + 本地语言模型使用方法</title>
+    <link href="http://www.formeasy.cc/2025/03/25/vs%20code%E6%8F%92%E4%BB%B6Continue+%E6%9C%AC%E5%9C%B0%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>http://www.formeasy.cc/2025/03/25/vs%20code%E6%8F%92%E4%BB%B6Continue+%E6%9C%AC%E5%9C%B0%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</id>
+    <published>2025-03-25T02:40:27.000Z</published>
+    <updated>2025-03-25T02:45:50.301Z</updated>
+    
+    <content type="html"><![CDATA[<p>ollama如何运行模型，此文不涉及，随便查一查很简单。</p><h3 id="1-在拓展商店中找到continue"><a class="markdownIt-Anchor" href="#1-在拓展商店中找到continue"></a> 1. 在拓展商店中找到Continue</h3><p><img src="cf3809ffb8624c6fa6098653c54aaa48.png" alt="" /></p><h3 id="2-安装好continue插件以后左侧会多出continue的图标进去"><a class="markdownIt-Anchor" href="#2-安装好continue插件以后左侧会多出continue的图标进去"></a> 2. 安装好continue插件以后，左侧会多出continue的图标，进去</h3><h4 id="21-现在我们先设置一下对话模型点右上角加号进入new-session下拉框选择模型选择add-chat-model"><a class="markdownIt-Anchor" href="#21-现在我们先设置一下对话模型点右上角加号进入new-session下拉框选择模型选择add-chat-model"></a> 2.1 现在我们先设置一下对话模型，点右上角加号进入new session，下拉框选择模型，选择add chat model</h4><p><img src="28869bfaf46440358ecf0eb894c8365a.png" alt="" /></p><p>provider选择ollama，model可以自己找，官方推荐用Qwen 2.5 1.5b，我这里用的是7b，根据你自己的条件和个人喜好决定。</p><p>添加完json配置里的models列表就会多出一个模型选项，有时候模型名称与你本地跑的有出入，报错的话，你自己到这里改一下。</p><p>或者添加表单里，有自动检测模型选项，可以用。</p><p><img src="d8c6efa19583419d9922a4ed5f7dfc07.png" alt="" /></p><h4 id="22-再设置一下自动补全"><a class="markdownIt-Anchor" href="#22-再设置一下自动补全"></a> 2.2 再设置一下，自动补全</h4><p>找到configuration，找不到就点右上角设置小圆圈。</p><p><img src="c0350dfea97f435db00fd57eb1e3ca3d.png" alt="" /></p><p>在配置json中，models选项下面，就可以看到tabAutocompleteModel，在里面给个名字，provider填ollama，model填qwen2.5-coder:1.5b-base，这个根据你自己的模型来填。如果这里model名字填的有问题，会直接报错。如果不报错，但是补全没任何反应，一般一会儿就会正常。如果一直不行，看看你自己是不是填了base url什么的。因为是本地模型，base url用默认，不需要指定，直接删掉。</p><p><img src="ed6cdfbc60e24062929975b3f65c5ff4.png" alt="" /></p><p>正常来讲，每当你进行代码编辑，右下角的Continue都回转圈，然后跳出补全。</p><p><img src="867cf295290341f08cb03d35ef72e12c.png" alt="" /></p><p>桌面右下角，能看到ollama在后台运行，continue就可以与ollama的模型去对话。</p><p><img src="ad01fcd05a5e4f039c49023ef7a37472.png" alt="" /></p><p>你下载的模型参数不同对应的内存不同，ollama会自行判断，如果你的显卡内存足够，会跑在显卡上(nvidia cuda)，否则会运行在cpu上，然后占用cpu的内存，所以个人电脑1.5b是最佳选择。</p>]]></content>
+    
+    
+    <summary type="html">vs code插件Continue + 本地语言模型使用方法</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ollama模型离线迁移/复制</title>
+    <link href="http://www.formeasy.cc/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/"/>
+    <id>http://www.formeasy.cc/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/</id>
+    <published>2025-03-25T02:25:20.000Z</published>
+    <updated>2025-03-25T02:31:58.535Z</updated>
+    
+    <content type="html"><![CDATA[<p>在ollama中可以使用命令<code>ollama pull deepseek-r1:7b</code>下载模型，但在某些特殊情况下（如：离线环境）需要手动迁移模型，本文详细讲解了ollama中离线迁移模型的方式。</p><h2 id="一-下载特定模型"><a class="markdownIt-Anchor" href="#一-下载特定模型"></a> 一、下载特定模型</h2><p>在一个有网的环境中，使用<code>ollama pull</code>命令下载模型，如：deepseek-r1:7b</p><p><img src="v2-bc39552763b810cac1bd8ddf0759f60e_1440w.jpg" alt="" /></p><h3 id="二-进行离线迁移"><a class="markdownIt-Anchor" href="#二-进行离线迁移"></a> 二、进行离线迁移</h3><p>迁移之前首先需要确定ollama主目录。在windows系统中，通常是用户主目录下的.ollama文件夹，例如： <code>C:\Users\wangk\.ollama</code>；在Linux系统中，同样的，通常也是用户主目录下的.ollama文件夹，例如：<code>/root/.ollama</code></p><p><img src="v2-ebe6d26a89f39584a055503de79cad77_1440w.jpg" alt="" /></p><p>windows系统下的ollama主目录</p><p><img src="v2-c1a2fc3fb4cdbac4e76fc2803ee0be37_1440w.jpg" alt="" /></p><p>linux系统下的ollama主目录</p><p>在ollama主目录下，有两部分内容需要迁移</p><p><img src="v2-b3c5690beec2fb7cbd3da28fcbc7f474_1440w.jpg" alt="" /></p><h3 id="1-blobs文件夹"><a class="markdownIt-Anchor" href="#1-blobs文件夹"></a> 1、blobs文件夹</h3><p>在blobs文件夹下是一些二进制文件，这时，需要到ollama官网去，找到对应模型的唯一标识，这里以deepseek-r1:7b为例，ollama官网的models中搜索deepseek-r1，并进入主页，如下所示：</p><p><img src="v2-d2e2fd842e52625a65ec4bff7688aa44_1440w.jpg" alt="" /></p><p>点击model，然后拷贝这部分 <code>96c415656d37</code></p><p><img src="v2-76ff6221344ddb966eda71dbfd3cf0ad_1440w.jpg" alt="" /></p><p>在blobs文件夹搜索 <code>96c415656d37</code></p><p><img src="v2-04e01d89ac6b10f695be22d2bd437977_1440w.jpg" alt="" /></p><p>可以定位到一个二进制文件，找到这个文件，并将与这个文件具有相同修改时间的其它文件一起复制到目标主机的对应文件夹下</p><p><img src="v2-e40c2fda99e759e9f0c774aa9efea2ed_1440w.jpg" alt="" /></p><h3 id="2-manifests文件夹"><a class="markdownIt-Anchor" href="#2-manifests文件夹"></a> 2、manifests文件夹</h3><p>这个比较简单，复制manifests文件夹下特定目录到目标主机的对应文件夹下</p><p><img src="v2-e418ca41dcf6cc9313c31c2d49e70ecb_1440w.jpg" alt="" /></p><h2 id="三-模型离线迁移完成"><a class="markdownIt-Anchor" href="#三-模型离线迁移完成"></a> 三、模型离线迁移完成</h2><p>在目标主机运行<code>ollama list</code>命令，发现deepseekr1:7b模型已经迁移过来了</p><p><img src="v2-11602e6d9a4920cd8ee0a82b3550fdbb_1440w.jpg" alt="" /></p><p><strong>备注：ollama的模型在windows、linux和mac系统中都是通用的，模型不同系统之间可以进行相互拷贝。</strong></p>]]></content>
+    
+    
+    <summary type="html">ollama模型离线迁移/复制</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
+    
+  </entry>
   
   <entry>
     <title>向量数据库的分类概况_向量库类型</title>
@@ -101,7 +164,7 @@
     <link href="http://www.formeasy.cc/2025/03/18/Windows%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%EF%BC%88%E4%BB%A5Win10%E4%B8%BA%E4%BE%8B%EF%BC%89/"/>
     <id>http://www.formeasy.cc/2025/03/18/Windows%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%EF%BC%88%E4%BB%A5Win10%E4%B8%BA%E4%BE%8B%EF%BC%89/</id>
     <published>2025-03-18T01:13:08.000Z</published>
-    <updated>2025-03-23T14:34:45.107Z</updated>
+    <updated>2025-03-24T03:20:16.248Z</updated>
     
     <content type="html"><![CDATA[<p>Docker 是一个轻量级的容器虚拟化平台，能够帮助开发者快速构建、测试和部署应用程序，本文以 Windows 10 为例，详细讲解 Windows 系统下 Docker 环境的安装与配置步骤。</p><h2 id="一-系统虚拟化"><a class="markdownIt-Anchor" href="#一-系统虚拟化"></a> 一、系统虚拟化</h2><h3 id="1启用虚拟化"><a class="markdownIt-Anchor" href="#1启用虚拟化"></a> 1，启用虚拟化</h3><p>打开任务管理器（CTRL + Shift + Esc），选择性能，查看 CPU 虚拟化，确认是否已启用（默认启用）。</p><p><img src="2024120815334337490.png" alt="" /></p><h3 id="2启用-hyper-v-并开启虚拟任务"><a class="markdownIt-Anchor" href="#2启用-hyper-v-并开启虚拟任务"></a> 2，启用 Hyper-v 并开启虚拟任务</h3><p>（1）打开“控制面板”-&gt;“程序”</p><p><img src="2024120815361271640.png" alt="" /></p><p>（2）然后点击“启用或关闭 Windows 功能”</p><p><img src="2024120815372846110.png" alt="" /></p><p>（3）然后勾选下面红框标注的 4 个功能组件，点击确定开始安装。安装完毕后根据提示重启电脑。</p><p><img src="2024120815404222103.png" alt="" /></p><h2 id="二-安装-wsl"><a class="markdownIt-Anchor" href="#二-安装-wsl"></a> 二、安装 WSL</h2><p>提示：Windows Subsystem for Linux（简称 WSL）是一个在 Windows 10\11 上能够运行原生 Linux 二进制可执行文件（ELF 格式）的兼容层。</p><h3 id="1检验安装"><a class="markdownIt-Anchor" href="#1检验安装"></a> 1，检验安装</h3><p>（1）再终端中输入如下命令，查看是否有安装 wsl。</p><p>（2）若没有安装，则会显示如下信息：</p><p><img src="2024120815533095203.png" alt="" /></p><h3 id="2安装-wsl"><a class="markdownIt-Anchor" href="#2安装-wsl"></a> 2，安装 WSL</h3><p>（1）安装 WSL 2 之前，必须启用“虚拟机平台”可选功能。 计算机需要虚拟化功能才能使用此功能。以管理员身份打开 PowerShell 并运行下面命令：</p><p><code>dism.exe</code> <code>/``online</code> <code>/``enable``-``feature</code> <code>/``featurename:VirtualMachinePlatform</code> <code>/``all</code> <code>/``norestart</code></p><p>（2）然后我们直接下载下方的安装包，然后双击安装。</p><ul><li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl%5C_update%5C_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl\_update\_x64.msi</a></li></ul><p>（3）最后执行如下命令将 WSL 2 设置为默认版本：</p><p><code>wsl</code> <code>-``-``set``-``default``-``version</code> <code>2</code></p><h2 id="三-安装-docker"><a class="markdownIt-Anchor" href="#三-安装-docker"></a> 三、安装 Docker</h2><h3 id="1下载安装包"><a class="markdownIt-Anchor" href="#1下载安装包"></a> 1，下载安装包</h3><p>（1）下面分别是官网下载地址和阿里云的下载地址，根据需求选择下载：</p><ul><li>官方下载地址：<a href="https://docs.docker.com/desktop/setup/install/windows-install/">https://docs.docker.com/desktop/setup/install/windows-install/</a></li><li>阿里云下载地址：<a href="https://mirrors.aliyun.com/docker-toolbox/windows/docker-for-windows/">https://mirrors.aliyun.com/docker-toolbox/windows/docker-for-windows/</a></li></ul><p>（2）接着双击安装包进行安装即可。安装完成后，任务栏会出现一个小鲸鱼图标（注意安装完成后可能会重启系统）</p><p><img src="2024120816093559319.png" alt="" /></p><h3 id="2检查是否安装成功"><a class="markdownIt-Anchor" href="#2检查是否安装成功"></a> 2，检查是否安装成功</h3><p>（1）我们在 CMD 终端中输入如下命令：</p><p>（2）如果成功返回版本信息，则说明 Docker 安装成功了。</p><p><img src="2024120816132515423.png" alt="" /></p><h2 id="四-docker-配置"><a class="markdownIt-Anchor" href="#四-docker-配置"></a> 四、Docker 配置</h2><h3 id="1打开-docker-配置中心"><a class="markdownIt-Anchor" href="#1打开-docker-配置中心"></a> 1，打开 Docker 配置中心</h3><p>右键点击 docker 图标，然后选择弹出菜单中的“Settings”菜单项。</p><p><img src="2024120816171054905.png" alt="" /></p><h3 id="2配置-docker-国内镜像"><a class="markdownIt-Anchor" href="#2配置-docker-国内镜像"></a> 2，配置 Docker 国内镜像</h3><p>（1）在弹出的窗口中，点击左侧的 Docker Engine</p><p><img src="2024120816192855591.png" alt="" /></p><p>（2）然后在右侧的 registry-mirrors 节点中添加国内的镜像地址，加快镜像拉取速度。</p><p>（3）最后点击下方的 Apply &amp; Restart 按钮保存重启即可。</p><p><img src="2024120816284282535.png" alt="" /></p><h2 id="五-使用测试"><a class="markdownIt-Anchor" href="#五-使用测试"></a> 五、使用测试</h2><h3 id="1拉取并运行容器"><a class="markdownIt-Anchor" href="#1拉取并运行容器"></a> 1，拉取并运行容器</h3><p>（1）我们执行如下命令启动一个基于 docker/getting-started 镜像的 Docker 容器，该镜像是 Docker 官方的一个示例镜像，包含了入门教程和一些展示内容。</p><p><code>docker run</code> <code>-``d</code> <code>-``p</code> <code>80``:``80</code> <code>docker``/``getting``-``started</code></p><p>（2）容器启动后，我们可以使用浏览器访问 <a href="http://localhost">http://localhost</a> 访问我们启动的服务了：</p><p><img src="2024120816451120082.png" alt="" /></p><p></p><h3 id="2查看状态"><a class="markdownIt-Anchor" href="#2查看状态"></a> 2，查看状态</h3><p>（1）我们可以通过如下命令查看当前运行的所有容器：</p><p>（2）返回结果如下：</p><p><img src="2024120816432910381.png" alt="" /></p>]]></content>
     
@@ -368,71 +431,6 @@
     <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
     
     <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型ollama命令详解大全</title>
-    <link href="http://www.formeasy.cc/2025/02/12/%E5%A4%A7%E6%A8%A1%E5%9E%8Bollama%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%E5%A4%A7%E5%85%A8/"/>
-    <id>http://www.formeasy.cc/2025/02/12/%E5%A4%A7%E6%A8%A1%E5%9E%8Bollama%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%E5%A4%A7%E5%85%A8/</id>
-    <published>2025-02-12T02:12:15.000Z</published>
-    <updated>2025-03-09T01:59:22.720Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一-启动与停止服务"><a class="markdownIt-Anchor" href="#一-启动与停止服务"></a> 一、启动与停止服务</h3><ol><li><strong>启动Ollama服务</strong></li></ol><ul><li><strong>ollama serve</strong>：启动Ollama服务器，以便运行模型和处理请求。首次启动可能会生成ssh私钥文件，并提示服务端口状态。如果服务已在运行中，可以通过netstat -tulpn | grep 11434命令进行确认。</li></ul><ol start="2"><li><strong>重启Ollama服务</strong></li></ol><ul><li>对于不同操作系统，重启命令可能有所不同。例如，在Ubuntu/Debian系统上，可以使用systemctl daemon-reload和systemctl restart ollama命令；在CentOS系统上，则可能需要使用sudo yum update、sudo yum install lsof、stop ollama、lsof -i :11434、kill 和ollama serve等命令组合。</li></ul><h3 id="二-模型管理"><a class="markdownIt-Anchor" href="#二-模型管理"></a> 二、模型管理</h3><ol><li><strong>创建模型</strong><ul><li>ollama create [Modelfile路径]：使用包含模型信息的Modelfile来创建一个新模型。</li></ul></li><li><strong>显示模型信息</strong><ul><li>ollama show：显示特定模型的详细信息，如模型名称、版本等。</li></ul></li><li><strong>列出模型</strong><ul><li>ollama list：列出本地所有可用的模型。</li></ul></li><li><strong>从注册表拉取模型</strong><ul><li>ollama pull [模型名称]：从模型注册表中拉取一个模型到本地使用。</li></ul></li><li><strong>推送模型到注册表</strong><ul><li>ollama push [模型名称]：将本地模型推送到模型注册表中，以便他人或其他系统使用。</li></ul></li><li><strong>复制模型</strong><ul><li>ollama cp [原模型名称] [新模型名称]：复制一个模型到另一个位置或给定名称的地方。</li></ul></li><li><strong>删除模型</strong><ul><li>ollama rm [模型名称]：删除一个已安装的模型。</li></ul></li></ol><h3 id="三-运行模型"><a class="markdownIt-Anchor" href="#三-运行模型"></a> 三、运行模型</h3><ul><li><strong>ollama run [模型名称]</strong>：运行一个已安装的模型，执行某些任务。可以根据需要指定模型的参数和配置。</li></ul><h3 id="四-会话管理"><a class="markdownIt-Anchor" href="#四-会话管理"></a> 四、会话管理</h3><p>Ollama还提供了一些与会话管理相关的命令，这些命令可以帮助更好地控制和管理与模型的交互：</p><ol><li>加载会话或模型<ul><li><code>/load &lt;model&gt;</code>：加载一个特定的模型或会话。可以指定一个模型的名称或路径来加载它。</li></ul></li><li>保存会话<ul><li><code>/save &lt;model&gt;</code>：保存当前的会话状态或模型。可以将当前会话或模型的配置保存为一个文件，以便以后使用。</li></ul></li><li>清除会话上下文<ul><li><code>/clear</code>：清除会话上下文。这将删除当前会话中的所有历史记录或对话内容。</li></ul></li><li>退出会话<ul><li><code>/bye</code>：退出会话。这个命令将结束当前与模型的对话，并退出程序。</li></ul></li></ol><h3 id="五-其他命令"><a class="markdownIt-Anchor" href="#五-其他命令"></a> 五、其他命令</h3><ol><li>查看帮助信息<ul><li>ollama help [命令名称] 或 ollama --help：获取有关Ollama任何命令的帮助信息。如果指定了命令名称，则显示该命令的详细帮助信息。</li></ul></li><li>查看版本信息<ul><li>ollama version：显示当前Ollama工具的版本信息。</li></ul></li><li>设置会话参数和配置<ul><li>/set：用于设置会话参数和配置。例如，设置消息格式、启用或禁用历史记录等。具体参数包括<code>/set system&lt;string&gt;、/set template&lt;string&gt;、/set history、/set nohistory、/set wordwrap、/set nowordwrap、/set format json、/set noformat、/set verbose和/set quiet</code>等。</li></ul></li><li>显示键盘快捷键<ul><li>/?shortcuts 或 /help shortcuts：显示键盘快捷键的帮助信息，帮助更快速地进行操作。</li></ul></li></ol><h3 id="六-示例安装qwen"><a class="markdownIt-Anchor" href="#六-示例安装qwen"></a> 六、示例：安装qwen</h3><h4 id="1-安装ollama"><a class="markdownIt-Anchor" href="#1-安装ollama"></a> 1、安装Ollama</h4><ol><li>打开终端或命令提示符。</li><li>输入以下命令以安装Ollama：</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://ollama.com/install.sh | sh</span><br></pre></td></tr></table></figure><p>该命令会从Ollama的官方网站下载并安装Ollama。</p><h4 id="2-下载并运行qwen25模型"><a class="markdownIt-Anchor" href="#2-下载并运行qwen25模型"></a> 2、下载并运行qwen2.5模型</h4><ol><li>安装完成后，可以使用以下命令来拉取（下载）qwen2.5模型：</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen2.5-coder:7b</span><br></pre></td></tr></table></figure><p>这里以qwen2.5-coder的7b版本为例。如果想下载其他版本的qwen2.5模型，请将7b替换为相应的版本号。</p><ol start="2"><li>下载完成后，可以使用以下命令来运行qwen2.5模型：</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama run qwen2.5-coder:7b</span><br></pre></td></tr></table></figure><p>该命令会启动Ollama服务，并加载qwen2.5-coder:7b模型。之后，可以通过Ollama提供的API接口与模型进行交互。</p><h4 id="3-测试qwen25模型"><a class="markdownIt-Anchor" href="#3-测试qwen25模型"></a> 3、测试qwen2.5模型</h4><p>可以使用curl命令或Python脚本来测试qwen2.5模型是否正常工作。以下是一个使用curl命令测试qwen2.5模型的示例：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/v1/chat/completions \</span><br><span class="line">-H &quot;Content-Type: application/json&quot; \</span><br><span class="line">-d &#x27;&#123; &quot;model&quot;: &quot;qwen2.5-coder:7b&quot;,&quot;stream&quot;:true, &quot;messages&quot;: [ &#123; &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;你好&quot; &#125; ] &#125;&#x27;</span><br></pre></td></tr></table></figure><p>该命令会向Ollama服务发送一个包含用户消息的请求，并等待模型返回回答。如果模型正常工作，应该能够看到模型返回的“你好”对应的回答。</p><blockquote><p>请注意，随着Ollama的更新和发展，可能会有新的命令和功能被添加或修改。因此，建议定期查看Ollama的官方文档或GitHub仓库以获取最新的命令和功能信息。</p></blockquote>]]></content>
-    
-    
-    <summary type="html">大模型ollama命令详解大全</summary>
-    
-    
-    
-    <category term="智能" scheme="http://www.formeasy.cc/categories/%E6%99%BA%E8%83%BD/"/>
-    
-    
-    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows11下安装Docker</title>
-    <link href="http://www.formeasy.cc/2025/02/11/Windows11%E4%B8%8B%E5%AE%89%E8%A3%85Docker/"/>
-    <id>http://www.formeasy.cc/2025/02/11/Windows11%E4%B8%8B%E5%AE%89%E8%A3%85Docker/</id>
-    <published>2025-02-11T08:16:39.000Z</published>
-    <updated>2025-02-11T08:25:45.662Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h2><p>先下载以下资源，暂时不要安装：<br /><a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" title="Docker安装包">Docker安装包</a><br /><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" title="Wsl2安装包">Wsl2安装包</a></p><h2 id="二-开始安装"><a class="markdownIt-Anchor" href="#二-开始安装"></a> 二、开始安装</h2><h3 id="1打开主板bios的虚拟化选项可以在任务管理器中确实是否已经打开"><a class="markdownIt-Anchor" href="#1打开主板bios的虚拟化选项可以在任务管理器中确实是否已经打开"></a> 1.打开主板BIOS的虚拟化选项，可以在任务管理器中确实是否已经打开</h3><p><img src="383486-20240823102848468-621425153.png" alt="image" /></p><h3 id="2勾上虚拟机平台所有选项建议完成这一步骤重启"><a class="markdownIt-Anchor" href="#2勾上虚拟机平台所有选项建议完成这一步骤重启"></a> 2.勾上虚拟机平台所有选项（建议完成这一步骤重启）</h3><p><img src="383486-20240823102936461-2085152227.png" alt="image" /></p><h3 id="3用管理员身份打开powershell执行下面命令启动wsl"><a class="markdownIt-Anchor" href="#3用管理员身份打开powershell执行下面命令启动wsl"></a> 3.用管理员身份打开PowerShell，执行下面命令启动wsl</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure><h3 id="4执行下面命令启动虚拟机给功能"><a class="markdownIt-Anchor" href="#4执行下面命令启动虚拟机给功能"></a> 4.执行下面命令启动虚拟机给功能</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure><h3 id="5安装之前下载的安装包wsl_update_x64msi建议完成这一步骤重启"><a class="markdownIt-Anchor" href="#5安装之前下载的安装包wsl_update_x64msi建议完成这一步骤重启"></a> 5.安装之前下载的安装包【wsl_update_x64.msi】（建议完成这一步骤重启）</h3><h3 id="6将wsl2设置为默认版本"><a class="markdownIt-Anchor" href="#6将wsl2设置为默认版本"></a> 6.将WSL2设置为默认版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-default-version 2</span><br></pre></td></tr></table></figure><h3 id="7安装docker安装包docker-desktop-installerexe"><a class="markdownIt-Anchor" href="#7安装docker安装包docker-desktop-installerexe"></a> 7.安装docker安装包【Docker Desktop Installer.exe】</h3><h2 id="三-docker配置"><a class="markdownIt-Anchor" href="#三-docker配置"></a> 三、docker配置</h2><h3 id="1修改docker默认镜像下载目录"><a class="markdownIt-Anchor" href="#1修改docker默认镜像下载目录"></a> 1.修改docker默认镜像下载目录</h3><p>Windows11 Docker镜像存储路径更改（非C盘路径）<br />基于WSL2安装docker后，在使用过程中会发现大量的docker镜像文件，使系统C盘容量激增，对电脑后续使用造成不便，所以需要在安装的时候，手动修改docker的镜像地址，使得镜像文件保存到另外的非系统盘中。<br /><img src="383486-20240823104424706-999894212.png" alt="image" /></p><p>最新的windows提供了新的虚拟化技术（WSL/WSL2），所以设置页面不能镜像的存储位置进行修改了。</p><h4 id="修改方案"><a class="markdownIt-Anchor" href="#修改方案"></a> 修改方案</h4><p>退出Docker Desktop</p><h4 id="step-01-cmd-查看wsl应用"><a class="markdownIt-Anchor" href="#step-01-cmd-查看wsl应用"></a> step 01 cmd 查看WSL应用</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list -v</span><br></pre></td></tr></table></figure><p>确保所有wsl应用都停止<br /><img src="383486-20240823104439916-867659365.png" alt="image" /></p><h4 id="step-02-导出docker镜像文件"><a class="markdownIt-Anchor" href="#step-02-导出docker镜像文件"></a> step 02 导出docker镜像文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --export docker-desktop-data &quot;D:\docker\docker-desktop-data.tar&quot;</span><br><span class="line">wsl --export docker-desktop &quot;D:\docker\docker-desktop.tar&quot;</span><br></pre></td></tr></table></figure><h4 id="step-03-注销docker-desktop-data-docker-desktop"><a class="markdownIt-Anchor" href="#step-03-注销docker-desktop-data-docker-desktop"></a> step 03 注销docker-desktop-data、docker-desktop</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --unregister docker-desktop-data</span><br><span class="line">wsl --unregister docker-desktop</span><br></pre></td></tr></table></figure><h4 id="step-04-指定文件夹重新导入"><a class="markdownIt-Anchor" href="#step-04-指定文件夹重新导入"></a> step 04 指定文件夹重新导入</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl --import docker-desktop-data D:\docker\data &quot;D:\docker\docker-desktop-data.tar&quot; --version 2</span><br><span class="line">wsl --import docker-desktop D:\docker\desktop &quot;D:\docker\docker-desktop.tar&quot; --version 2</span><br></pre></td></tr></table></figure><h4 id="step-05-重启docker"><a class="markdownIt-Anchor" href="#step-05-重启docker"></a> step 05 重启Docker</h4><h3 id="2配置docker阿里镜像仓库"><a class="markdownIt-Anchor" href="#2配置docker阿里镜像仓库"></a> 2.配置docker阿里镜像仓库</h3><pre><code>&quot;registry-mirrors&quot;: [    &quot;https://r32otmli.mirror.aliyuncs.com&quot;  ]</code></pre><p><img src="383486-20240823103412875-760451404.png" alt="image" /></p><h2 id="四-安装后图片展示"><a class="markdownIt-Anchor" href="#四-安装后图片展示"></a> 四、安装后图片展示</h2><p><img src="383486-20240823103427125-280064765.png" alt="image" /></p><p>本文作者：jory</p><p>本文链接：<a href="https://www.cnblogs.com/jory/p/18375482">https://www.cnblogs.com/jory/p/18375482</a></p><p>版权声明：本作品采用知识共享署名-非商业性使用-禁止演绎 2.5 中国大陆许可协议进行许可。</p>]]></content>
-    
-    
-    <summary type="html">Windows11下安装Docker</summary>
-    
-    
-    
-    <category term="虚拟化" scheme="http://www.formeasy.cc/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-    
-    <category term="Docker" scheme="http://www.formeasy.cc/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Qt中手动配置MSVC2017环境</title>
-    <link href="http://www.formeasy.cc/2025/02/06/Qt%E4%B8%AD%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AEMSVC2017%E7%8E%AF%E5%A2%83/"/>
-    <id>http://www.formeasy.cc/2025/02/06/Qt%E4%B8%AD%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AEMSVC2017%E7%8E%AF%E5%A2%83/</id>
-    <published>2025-02-06T01:31:11.000Z</published>
-    <updated>2025-02-06T01:35:50.691Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-安装msvc2017"><a class="markdownIt-Anchor" href="#1-安装msvc2017"></a> 1. 安装MSVC2017</h3><p>首先安装VS2017（过程略）</p><h3 id="2-安装qt-5142"><a class="markdownIt-Anchor" href="#2-安装qt-5142"></a> 2. 安装Qt 5.14.2</h3><p>下载Qt 5.14.2，点击安装包，勾选MSVC 2017 64-bit、MinGW 7.3.0 64-bit，点击下一步进行安装。<br /><img src="9aa5b29506314228b3e66586aa36f95f.png" alt="在这里插入图片描述" /></p><h3 id="3-通过visual-studio安装msvc2017编译器以及window10-sdk工具"><a class="markdownIt-Anchor" href="#3-通过visual-studio安装msvc2017编译器以及window10-sdk工具"></a> 3. 通过Visual Studio安装MSVC2017编译器以及window10 SDK工具</h3><ul><li><p><strong>1）下载Visual studio 2022安装包：</strong><a href="https://visualstudio.microsoft.com/zh-hans/downloads/">下载地址</a></p><p>勾选C<ins>桌面开发以及Windows 10 SDK、MSVC 2017 C</ins>，然后下一步开始安装。<br /><img src="ab0b03c183014571bdf7196cbfd36730.png" alt="在这里插入图片描述" /></p></li><li><p><strong>2）配置Windows10调试工具包：</strong><br />在应用程序中找到Windows kit<br /><img src="ed2d19ff308b4f85bb2e5ed7438de395.png" alt="在这里插入图片描述" /><br />右键更改，再点击Repair，将图中的选项勾选<br /><img src="0b906899a7974c56bda9a9f873e9e317.png" alt="在这里插入图片描述" /><br />配置成功后退出，并重启qtcreator。</p></li><li><p><strong>3）在qtcreator中配置msvc2017编译器：</strong><br />按照上面步骤安装完成后，进入到qtcreator配置Kit界面，会发现新增加了编译器：<br /><img src="e13906c00ecb4afe967e243af8048cbc.png" alt="在这里插入图片描述" /><br />点击右边添加按钮，再点击MSVC，选择C++：<br /><img src="4ac985d386bb4bc39460bdff6fe95b5f.png" alt="在这里插入图片描述" /></p><p>新建一个MSVC，依次配置相关参数，下图中红色方框中参数为：</p><blockquote><p>64位系统 SDK版本号 -vcvars_ver= MSVC版本号<br />此处为x64 10.0.20348.0 -vcvars_ver=14.16<br />以上版本号全部可以在第二步的安装工具中查到</p></blockquote><p><img src="bcd5e82d2cf84db7ab73125e1db2b3c7.png" alt="在这里插入图片描述" /><br />配置完成后点击应用，然后选择构建套件(Kit)选项界面：<br />点击下图中的序号1，然后在第二个红色方框中选择上一步配置好的MSVC编译器，最后点击应用，MSVC2017手动配置完成。<br /><img src="4bdc2380f1994ce7b6280de71b0d15c5.png" alt="在这里插入图片描述" /><br />MSVC2017手动配置完成后，重新构建项目，选择MSVC2017 debug运行即可.</p></li></ul>]]></content>
-    
-    
-    <summary type="html">Qt中手动配置MSVC2017环境</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
-    
-    <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
     
   </entry>
   

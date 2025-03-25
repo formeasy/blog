@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>pycharm无法安装插件显示网络错误无法安装汉化插件</title>
+      <link href="/2025/03/25/pycharm%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E9%94%99%E8%AF%AF%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%B1%89%E5%8C%96%E6%8F%92%E4%BB%B6/"/>
+      <url>/2025/03/25/pycharm%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E9%94%99%E8%AF%AF%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E6%B1%89%E5%8C%96%E6%8F%92%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<p>【pycharm】pycharm无法安装插件显示网络错误/无法安装汉化插件(报错：Marketplace plugins are not loaded，Check the internet connection and refresh）</p><h3 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 【问题描述】</h3><p>进行pycharm汉化时，无法安装插件，弹出提示：Marketplace plugins are not loaded，Check the internet connection and refresh<br /><img src="f1398c0fcf614b5593b43e0ecb2dcd62.png" alt="" /></p><h3 id="尝试"><a class="markdownIt-Anchor" href="#尝试"></a> 尝试：</h3><p>百度说在settings-&gt; Appearance&amp;Behavior -&gt; System Settings -&gt; Updats 中,取消勾选Use secre Connections 即可<br />但是我这个版本没有这个选项</p><h3 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 【解决方法】</h3><p>1、进入file-&gt;settings-&gt; Appearance&amp;Behavior -&gt; System Settings -&gt; HTTP Proxy下；<br />2、勾选 auto-detect proxy seting、automatic proxy configuration URL；<br />3、将automatic proxy configuration URL其后的网址修改为：<a href="https://plugins.jetbrains.com/%EF%BC%9B">https://plugins.jetbrains.com/；</a><br />4、保存后重启，即可解决问题。<br /><img src="135f2818d8076a8f28cff51f31926adb.png" alt="" /><br />5、再次进行汉化插件搜索时，即可成功搜索到：<br /><img src="948600ca87d519fbb7ab070f9927a787.png" alt="" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vs code插件Continue + 本地语言模型使用方法</title>
+      <link href="/2025/03/25/vs%20code%E6%8F%92%E4%BB%B6Continue+%E6%9C%AC%E5%9C%B0%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+      <url>/2025/03/25/vs%20code%E6%8F%92%E4%BB%B6Continue+%E6%9C%AC%E5%9C%B0%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p>ollama如何运行模型，此文不涉及，随便查一查很简单。</p><h3 id="1-在拓展商店中找到continue"><a class="markdownIt-Anchor" href="#1-在拓展商店中找到continue"></a> 1. 在拓展商店中找到Continue</h3><p><img src="cf3809ffb8624c6fa6098653c54aaa48.png" alt="" /></p><h3 id="2-安装好continue插件以后左侧会多出continue的图标进去"><a class="markdownIt-Anchor" href="#2-安装好continue插件以后左侧会多出continue的图标进去"></a> 2. 安装好continue插件以后，左侧会多出continue的图标，进去</h3><h4 id="21-现在我们先设置一下对话模型点右上角加号进入new-session下拉框选择模型选择add-chat-model"><a class="markdownIt-Anchor" href="#21-现在我们先设置一下对话模型点右上角加号进入new-session下拉框选择模型选择add-chat-model"></a> 2.1 现在我们先设置一下对话模型，点右上角加号进入new session，下拉框选择模型，选择add chat model</h4><p><img src="28869bfaf46440358ecf0eb894c8365a.png" alt="" /></p><p>provider选择ollama，model可以自己找，官方推荐用Qwen 2.5 1.5b，我这里用的是7b，根据你自己的条件和个人喜好决定。</p><p>添加完json配置里的models列表就会多出一个模型选项，有时候模型名称与你本地跑的有出入，报错的话，你自己到这里改一下。</p><p>或者添加表单里，有自动检测模型选项，可以用。</p><p><img src="d8c6efa19583419d9922a4ed5f7dfc07.png" alt="" /></p><h4 id="22-再设置一下自动补全"><a class="markdownIt-Anchor" href="#22-再设置一下自动补全"></a> 2.2 再设置一下，自动补全</h4><p>找到configuration，找不到就点右上角设置小圆圈。</p><p><img src="c0350dfea97f435db00fd57eb1e3ca3d.png" alt="" /></p><p>在配置json中，models选项下面，就可以看到tabAutocompleteModel，在里面给个名字，provider填ollama，model填qwen2.5-coder:1.5b-base，这个根据你自己的模型来填。如果这里model名字填的有问题，会直接报错。如果不报错，但是补全没任何反应，一般一会儿就会正常。如果一直不行，看看你自己是不是填了base url什么的。因为是本地模型，base url用默认，不需要指定，直接删掉。</p><p><img src="ed6cdfbc60e24062929975b3f65c5ff4.png" alt="" /></p><p>正常来讲，每当你进行代码编辑，右下角的Continue都回转圈，然后跳出补全。</p><p><img src="867cf295290341f08cb03d35ef72e12c.png" alt="" /></p><p>桌面右下角，能看到ollama在后台运行，continue就可以与ollama的模型去对话。</p><p><img src="ad01fcd05a5e4f039c49023ef7a37472.png" alt="" /></p><p>你下载的模型参数不同对应的内存不同，ollama会自行判断，如果你的显卡内存足够，会跑在显卡上(nvidia cuda)，否则会运行在cpu上，然后占用cpu的内存，所以个人电脑1.5b是最佳选择。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ollama </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ollama模型离线迁移/复制</title>
+      <link href="/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/"/>
+      <url>/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<p>在ollama中可以使用命令<code>ollama pull deepseek-r1:7b</code>下载模型，但在某些特殊情况下（如：离线环境）需要手动迁移模型，本文详细讲解了ollama中离线迁移模型的方式。</p><h2 id="一-下载特定模型"><a class="markdownIt-Anchor" href="#一-下载特定模型"></a> 一、下载特定模型</h2><p>在一个有网的环境中，使用<code>ollama pull</code>命令下载模型，如：deepseek-r1:7b</p><p><img src="v2-bc39552763b810cac1bd8ddf0759f60e_1440w.jpg" alt="" /></p><h3 id="二-进行离线迁移"><a class="markdownIt-Anchor" href="#二-进行离线迁移"></a> 二、进行离线迁移</h3><p>迁移之前首先需要确定ollama主目录。在windows系统中，通常是用户主目录下的.ollama文件夹，例如： <code>C:\Users\wangk\.ollama</code>；在Linux系统中，同样的，通常也是用户主目录下的.ollama文件夹，例如：<code>/root/.ollama</code></p><p><img src="v2-ebe6d26a89f39584a055503de79cad77_1440w.jpg" alt="" /></p><p>windows系统下的ollama主目录</p><p><img src="v2-c1a2fc3fb4cdbac4e76fc2803ee0be37_1440w.jpg" alt="" /></p><p>linux系统下的ollama主目录</p><p>在ollama主目录下，有两部分内容需要迁移</p><p><img src="v2-b3c5690beec2fb7cbd3da28fcbc7f474_1440w.jpg" alt="" /></p><h3 id="1-blobs文件夹"><a class="markdownIt-Anchor" href="#1-blobs文件夹"></a> 1、blobs文件夹</h3><p>在blobs文件夹下是一些二进制文件，这时，需要到ollama官网去，找到对应模型的唯一标识，这里以deepseek-r1:7b为例，ollama官网的models中搜索deepseek-r1，并进入主页，如下所示：</p><p><img src="v2-d2e2fd842e52625a65ec4bff7688aa44_1440w.jpg" alt="" /></p><p>点击model，然后拷贝这部分 <code>96c415656d37</code></p><p><img src="v2-76ff6221344ddb966eda71dbfd3cf0ad_1440w.jpg" alt="" /></p><p>在blobs文件夹搜索 <code>96c415656d37</code></p><p><img src="v2-04e01d89ac6b10f695be22d2bd437977_1440w.jpg" alt="" /></p><p>可以定位到一个二进制文件，找到这个文件，并将与这个文件具有相同修改时间的其它文件一起复制到目标主机的对应文件夹下</p><p><img src="v2-e40c2fda99e759e9f0c774aa9efea2ed_1440w.jpg" alt="" /></p><h3 id="2-manifests文件夹"><a class="markdownIt-Anchor" href="#2-manifests文件夹"></a> 2、manifests文件夹</h3><p>这个比较简单，复制manifests文件夹下特定目录到目标主机的对应文件夹下</p><p><img src="v2-e418ca41dcf6cc9313c31c2d49e70ecb_1440w.jpg" alt="" /></p><h2 id="三-模型离线迁移完成"><a class="markdownIt-Anchor" href="#三-模型离线迁移完成"></a> 三、模型离线迁移完成</h2><p>在目标主机运行<code>ollama list</code>命令，发现deepseekr1:7b模型已经迁移过来了</p><p><img src="v2-11602e6d9a4920cd8ee0a82b3550fdbb_1440w.jpg" alt="" /></p><p><strong>备注：ollama的模型在windows、linux和mac系统中都是通用的，模型不同系统之间可以进行相互拷贝。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ollama </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>向量数据库的分类概况_向量库类型</title>
       <link href="/2025/03/21/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%86%E7%B1%BB%E6%A6%82%E5%86%B5_%E5%90%91%E9%87%8F%E5%BA%93%E7%B1%BB%E5%9E%8B/"/>
       <url>/2025/03/21/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%86%E7%B1%BB%E6%A6%82%E5%86%B5_%E5%90%91%E9%87%8F%E5%BA%93%E7%B1%BB%E5%9E%8B/</url>

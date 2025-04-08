@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-04-05T13:23:20.569Z</updated>
+  <updated>2025-04-08T03:03:21.941Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python虚拟环境venv直接复制迁移的方法</title>
+    <link href="http://www.formeasy.cc/2025/04/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83venv%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E8%BF%81%E7%A7%BB%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://www.formeasy.cc/2025/04/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83venv%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E8%BF%81%E7%A7%BB%E7%9A%84%E6%96%B9%E6%B3%95/</id>
+    <published>2025-04-08T02:58:46.000Z</published>
+    <updated>2025-04-08T03:03:21.941Z</updated>
+    
+    <content type="html"><![CDATA[<p>python虚拟环境venv迁移布署有很多的方法，大家自行搜索。这里只介绍一种：直接复制的方法</p><p>1、将整个文件夹复制到新的电脑</p><p>2、修改pyvenv.cfg文件内的home为你新电脑python的安装路径。</p><p><img src="2561d6a86a203d8b4bd82a7ab8261fb8.jpeg" alt="" /></p><p>3、 如果你使用vscode，还需要修改vscode的配置文件launch.json，这样就可以在新的电脑上调试了。</p><p><img src="44635dd5dc688c83c120ac20e3be4eac.jpeg" alt="" /></p><p>4、修改程序目录下Scripts\activate文件（可以用记事本打开）</p><p>VIRTUAL_ENV=&quot;E:\your_folder&quot;改为你新电脑的位置</p><p><img src="b43fcb5d7e5c6dea6eaa6e5b0564a4b1.jpeg" alt="" /></p><p>5、修改程序目录下Scripts\activate.bat文件（可以用记事本打开）</p><p>set VIRTUAL_ENV=E:\mySourse\anzhi4改为你新电脑的位置</p><p><img src="8eed3e4007d12b5dbe5d523ece25ac27.png" alt="" /></p><p>6、运行程序目录下Scripts\activate.bat文件，激活虚拟环境。</p>]]></content>
+    
+    
+    <summary type="html">python虚拟环境venv直接复制迁移的方法</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Python" scheme="http://www.formeasy.cc/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>技术人的大模型应用初学指南</title>
@@ -395,27 +416,6 @@
     
     
     <summary type="html">proxmox的安装及配置_proxmox安装教程</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="proxmox" scheme="http://www.formeasy.cc/tags/proxmox/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>史上最全安装proxmox教程（基于vmware workstation）</title>
-    <link href="http://www.formeasy.cc/2025/03/09/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%AE%89%E8%A3%85proxmox%E6%95%99%E7%A8%8B%EF%BC%88%E5%9F%BA%E4%BA%8Evmware%20workstation%EF%BC%89/"/>
-    <id>http://www.formeasy.cc/2025/03/09/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%AE%89%E8%A3%85proxmox%E6%95%99%E7%A8%8B%EF%BC%88%E5%9F%BA%E4%BA%8Evmware%20workstation%EF%BC%89/</id>
-    <published>2025-03-09T06:24:04.000Z</published>
-    <updated>2025-03-09T06:31:37.637Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="安装proxmox"><a class="markdownIt-Anchor" href="#安装proxmox"></a> 安装Proxmox</h3><ul><li><p>使用vmware workstation新建虚拟机</p><p><img src="x-image-process=image.png" alt="" /><br /><img src="x-image-process=image.1.png" alt="" /><br /><img src="x-image-process=image.2.png" alt="" /><br /><img src="x-image-process=image.3.png" alt="" /><br /><img src="x-image-process=image.4.png" alt="" /><br /><img src="x-image-process=image.5.png" alt="" /><br /><img src="x-image-process=image.6.png" alt="" /><br /><img src="x-image-process=image.7.png" alt="" /></p></li><li><p>选择install Proxmox VE</p><p><img src="x-image-process=image.8.png" alt="" /></p></li><li><p>选择【ok】</p><p><img src="cf2d34d98153c45eb862018f5815b551.png" alt="" /></p></li><li><p>选择【iagree】</p><p><img src="dcd90eabaadec79f3ca3555f5e7d1b49.png" alt="" /></p></li><li><p>选择系统安装的磁盘，可以选择【option】分区，新手不建议。</p><p><img src="02056df29f7ea113d651e993648a59a1.png" alt="" /></p></li><li><p>修改时区，然后选择【Next】</p><p><img src="feedb8ec9ce0b447fe9729c74cc140c6.png" alt="" /></p></li><li><p>输入密码和邮箱，选择【Next】</p><p><img src="efffa058edef9400ddb445ff02a98709.png" alt="" /></p></li><li><p>设置网络信息，选择【Next】</p><p><img src="5371f9d5cdd960b2589b72e4cda4eb61.png" alt="" /></p></li><li><p>确认信息，然后选择【install】</p><p><img src="f0f9d0e849d8a9516ec60ef0087758f9.png" alt="" /></p></li><li><p>安装完成后，选择【reboot】</p><p><img src="84335404bdd4b9e45b18bb1d30142b63.png" alt="" /></p></li><li><p>选择第一个选项引导</p><p><img src="d4b8a8d0e339fa5dcca9b923413f8cd0.png" alt="" /></p></li><li><p>输入用户名密码登录</p><p><img src="8a24c9a082a6832836d6c036f59fff6a.png" alt="" /></p></li><li><p>创建一个集群</p><p>root@shaonian:~# pvecm  create yunwei-clusterCorosync Cluster Engine Authentication key generator.Gathering 1024 bits for key from /dev/urandom.Writing corosync key to /etc/corosync/authkey.Writing corosync config to /etc/pve/corosync.confRestart corosync and cluster filesystemroot@shaonian:~#</p></li><li><p>查看集群状态</p><p>root@shaonian:~# pvecm statusQuorum information------------------Date:             Mon May 20 16:23:08 2019Quorum provider:  corosync_votequorumNodes:            1Node ID:          0x00000001Ring ID:          1/8Quorate:          YesVotequorum information----------------------Expected votes:   1Highest expected: 1Total votes:      1Quorum:           1  Flags:            Quorate Membership information----------------------    Nodeid      Votes Name0x00000001          1 192.168.108.200 (local)root@shaonian:~#</p></li><li><p>查看集群节点</p><p>root@shaonian:~# pvecm nodesMembership information----------------------    Nodeid      Votes Name         1          1 192.168.108.200 (local)root@shaonian:~#</p></li><li><p>修改apt源</p><p>vi /etc/apt/source.listdeb <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch main non-free contribdeb <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch-updates main non-free contribdeb <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch-backports main non-free contribdeb-src <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch main non-free contribdeb-src <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch-updates main non-free contribdeb-src <a href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> stretch-backports main non-free contribdeb <a href="http://mirrors.163.com/debian-security/">http://mirrors.163.com/debian-security/</a> stretch/updates main non-free contribdeb-src <a href="http://mirrors.163.com/debian-security/">http://mirrors.163.com/debian-security/</a> stretch/updates main non-free contrib</p></li><li><p>更新apt源</p><p>root@shaonian:/etc/apt# apt-get -y update</p></li><li><p>安装net-tools</p><p>apt-get install net-tools -y</p></li><li><p>打开网页（注意是https），然后输入用户名密码（用户名root，密码是安装时设置的）<br /><img src="7da01944c6e1d60d532793d134908333.png" alt="" /></p></li><li><p>登录后<br /><img src="00c8da0d7573c906ad75ad6ec243b449.png" alt="" /></p></li></ul>]]></content>
-    
-    
-    <summary type="html">史上最全安装proxmox教程（基于vmware workstation）</summary>
     
     
     

@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-04-15T03:05:09.155Z</updated>
+  <updated>2025-04-16T06:36:24.945Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyPy、Numba 与 Cython，哪个是最佳 Python运算解决方案？</title>
+    <link href="http://www.formeasy.cc/2025/04/16/PyPy%E3%80%81Numba%20%E4%B8%8E%20Cython%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%98%AF%E6%9C%80%E4%BD%B3%20Python%E8%BF%90%E7%AE%97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F/"/>
+    <id>http://www.formeasy.cc/2025/04/16/PyPy%E3%80%81Numba%20%E4%B8%8E%20Cython%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%98%AF%E6%9C%80%E4%BD%B3%20Python%E8%BF%90%E7%AE%97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F/</id>
+    <published>2025-04-16T06:31:47.000Z</published>
+    <updated>2025-04-16T06:36:24.945Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>正如Python之父说：“大部分觉得Python慢的应用都是没有正确地使用Python。”</strong></p><p>由于Python由于要在运行时编译和解释执行字节码，而且这个过程中参与了很多类似运行时类型检查的操作等一系列其他操作，从而产生了很多额外开销，降低了性能。</p><p>为了让这门语言变得完美，PyPy、Numba、Cython解决方案应用而生。</p><h3 id="pypy"><a class="markdownIt-Anchor" href="#pypy"></a> PyPy</h3><p>PyPy是用RPython(CPython的子集)实现的Python，根据官网的基准测试数据，它比CPython实现的Python要快6倍以上。快的原因是使用了<strong>Just-in-Time(JIT)编译器</strong>，即动态编译器，与静态编译器(如gcc,javac等)不同，它是利用程序运行的过程的数据进行优化。</p><p><img src="87f59cbfddd95aef894add2a3d2d7f77.jpeg" alt="" /></p><p>**适用场景：**PyPy最适合纯Python应用程序，不适用于C扩展</p><h3 id="numba"><a class="markdownIt-Anchor" href="#numba"></a> Numba</h3><p>Numba 是 python 的即时（Just-in-time）编译器，即当您调用 python 函数时，您的全部或部分代码就会被转换为“即时”执行的机器码，它将以您的本地机器码速度运行。</p><p>python 代码的编译过程包括四个阶段：词法分析 -&gt; 语法分析 -&gt; 生成字节码 -&gt; 将字节码解释为机器码执行, 常见的 python 解释器的类型有 cpython、IPython、PyPy、Jython、IronPython，与其他解释器不同，<strong>numba 是使用 LLVM 编译技术来解释字节码的</strong>。</p><p><img src="e07fcd76332154afdda11339a5d7195a.jpeg" alt="" /></p><p>代码编译方式</p><p>**适用场景：**使用numpy数组做大量科学计算时、使用for循环时</p><h3 id="cython"><a class="markdownIt-Anchor" href="#cython"></a> Cython</h3><p>与Numba不同，所有的Cython代码应该在专门文件中与常规Python代码分开。Cython将这些文件解析并转换成C代码，然后使用提供的C编译器 (例如，gcc)编译它。</p><p>编写快速Cython代码需要理解C和Python内部结构。<strong>如果你熟悉C，你的Cython代码可以运行得和C代码一样快。</strong></p><p>**适用场景：**优化Python脚本性能或Python调用C函数库</p><h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> <strong>总结：</strong></h3><p>以上三种方法都有各自最适合的使用场景，也有相对的局限性，没法说谁最是优秀的运算解决方案，大家可以根据不同场景选择使用。</p>]]></content>
+    
+    
+    <summary type="html">PyPy、Numba 与 Cython，哪个是最佳 Python运算解决方案？</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Python" scheme="http://www.formeasy.cc/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>在你的html页面里执行python</title>
@@ -389,27 +410,6 @@
     
     
     <summary type="html">UE4&amp;5 C++类创建后重启项目C++类不显示并且其蓝图子类丢失父类等问题原因及解决方法</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5（虚幻5）解决The following modules are missing or built with a different engine version</title>
-    <link href="http://www.formeasy.cc/2025/03/18/UE5%EF%BC%88%E8%99%9A%E5%B9%BB5%EF%BC%89%E8%A7%A3%E5%86%B3The%20following%20modules%20are%20missing%20or%20built%20with%20a%20different%20engine%20version/"/>
-    <id>http://www.formeasy.cc/2025/03/18/UE5%EF%BC%88%E8%99%9A%E5%B9%BB5%EF%BC%89%E8%A7%A3%E5%86%B3The%20following%20modules%20are%20missing%20or%20built%20with%20a%20different%20engine%20version/</id>
-    <published>2025-03-18T03:21:13.000Z</published>
-    <updated>2025-03-18T02:51:28.238Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="最近正在用ue5开发项目创建了一个c项目或加一个c类后重新打开后会报以下错误"><a class="markdownIt-Anchor" href="#最近正在用ue5开发项目创建了一个c项目或加一个c类后重新打开后会报以下错误"></a> 最近正在用UE5开发项目，创建了一个C++项目或加一个C++类后，重新打开后会报以下错误：</h3><blockquote><p>The following modules are missing or built with a different engine version:<br />XXXX<br />Would you like to rebuild them now?</p></blockquote><p>出现以上提示是让重新编译，<br />原因是C++项目程序或插件没有正确编译，或者项目文件路径名是中文。</p><p>点击“是”后，进行重新编译，如何编译过程中还是报错，从以下分析：</p><p>1.C++类工程是否有错误，使用VS打开工程重新编译，直到无错误</p><p>2.插件是否有错误，或者插件是否拷贝到项目下的Plugins目录中</p><p>以上都没问题后，可正确编译。</p>]]></content>
-    
-    
-    <summary type="html">UE5（虚幻5）解决The following modules are missing or built with a different engine version</summary>
     
     
     

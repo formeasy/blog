@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-04-16T06:36:24.945Z</updated>
+  <updated>2025-04-17T08:47:54.477Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,82 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试工具使用心得：Testbed与Klocwork</title>
+    <link href="http://www.formeasy.cc/2025/04/17/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97%EF%BC%9ATestbed%E4%B8%8EKlocwork/"/>
+    <id>http://www.formeasy.cc/2025/04/17/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97%EF%BC%9ATestbed%E4%B8%8EKlocwork/</id>
+    <published>2025-04-17T08:40:03.000Z</published>
+    <updated>2025-04-17T08:47:54.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>在测评工作中，一般静态分析和逻辑测试使用Testbed工具帮助测试，代码扫描使用Klocwork工具辅助分析，本文是在测试过程中的总结。</p><p><strong>一、测试类型的思考</strong></p><p>逻辑测试：选取核心代码进行插桩，将插桩后代码替代原代码进行编译，执行用例，使相关功能全部执行完成，通过testbed测试工具对软件的语句/分支覆盖情况进行检查，并对未覆盖的语句进行原因分析：</p><p>1） 逻辑测试选定的代码要有针对性的选择关键模块代码，这样会更有说服力；</p><p>2） 插装后的程序应按照步骤进行修改，要不会分析不出覆盖率数据；</p><p>3） 如果分析的覆盖率数据达不到指标要求，应仔细分析覆盖率报告中那些程序未执行到，针对这些未执行到的代码，有针对性的执行动态测试用例，根据输出的覆盖数据再进行覆盖率分析；</p><p>4） 对于确有执行不到、看不明白的代码要和开发人及时沟通，分析原因，针对为执行到的代码进行叠加分析。</p><p>代码扫描：使用Klocwork对编程规范性进行检查，包括编程缺陷和安全漏洞等，提交至开发人员确认，使用源码统计专家统计代码注释率不低于20%。</p><p>静态分析：用Testbed进行静态分析，分析控制流，检测有无不能运行的单元，有无无效的函数参数，扇入扇出不大于10，圈复杂度小于等于7。</p><p><strong>二、工具的测试步骤</strong></p><p>逻辑测试</p><p>1、选取核心代码进行插桩。（一般为代码总量20%）</p><p>2、将插桩后代码更名，替代原代码进行编译，执行功能、接口测试用例，插桩代码的功能全部执行完成。</p><p>3、对生成的exh文件进行分析。</p><p>进入Set-Select/Create/Delete Set窗口，输入项目名称ceshi0823，点击Create弹出的窗口中选择Group进入Set-List/Add/Remove Files in Set窗口，点击Add，添加需要插桩的代码（插桩代码最好不存在中文路径），点击OK，添加成功。</p><p><img src="15326880_2023112414594016uqt.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Main Static Analysis（基本静态分析）和Generate Instrumented Program(s)（生成插桩程序），点击Generate Instrumented Program(s)后面的configure。</p><p><img src="15326880_202311241459431c4IN.png" alt="" /></p><p>勾选下图中红框框起来的选项进行插桩配置，点击OK，保存配置信息。</p><p><img src="15326880_202311241459471MfFs.png" alt="" /></p><p>点击Start Analysis ，进行插桩，插桩后生成以inszt_为前缀的文件。此文件夹下的文件不要进行删除、移动、修改操作（对结果进行分析时testbed识别此路径下的文件及时间）将inszt_为前缀的文件复制出来，去掉前缀，原名替换代码中相应的.c文件。进行编译后，打开软件，动态执行功能、接口等测试用例，覆盖插桩的功能。</p><p>执行完测试用例后，退出软件。在程序路径下搜索.exh，搜索到的文件为插桩程序生成的文件，格式如下所示：打开后每一行有一个数字（0-255之间，数字越大，说明覆盖率越高），前面空5个格。（当exh文件不符合此格式时，需手动调整为此格式）</p><p><img src="15326880_202311241459501pr3z.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Dynamic coverage Analysis，点击后面的configure，选择生成的.exh文件存放路径（最好不要用中文路径），点击确定按钮，点击Start Analysis ，进行分析查看分析结果，分支覆盖、语句覆盖率。</p><p><img src="15326880_202311241459541Okah.png" alt="" /></p><p><strong>代码扫描</strong></p><p>K8安装成功后，首先以管理员身份Start Klocwork Severs。</p><p>点击file-New Project，输入项目名称、选择需要分析的语言，点击Next。</p><p><img src="15326880_202311241459571F66H.png" alt="" /></p><p>选择Bulid from Source Root Directories，点击Add，添加源码所在文件夹（不要有中文），点击Finish。</p><p><img src="15326880_202311241500011Sys0.png" alt="" /></p><p>右键点击项目名称，选择Build，在弹出的窗口中选择存放分析结果的路径（路径不要有中文），点击Build，软件开始进行分析，在存放结果路径下查看测试结果，测试结果保存。</p><p><img src="15326880_202311241500051qcW7.png" alt="" /></p><p>对需要扫描的规则进行勾选，点击OK，保存后进行扫描。</p><p><img src="15326880_20231124150008170jc.png" alt="" /></p><p><strong>静态分析</strong></p><p>进入Set-Select/Create/Delete Set窗口，输入项目名称ceshi0803-jt，点击Create，弹出的窗口中选择System。</p><p>进入Set-List/Add/Remove Files in Set窗口，点击Add，添加需要分析的代码。</p><p><img src="15326880_202311241500121x1d2.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Main Static Analysis（基本静态分析）、Complexity Analysis（复杂度分析）和Static Data Flow Analysis（静态数据流分析），点击Start Analysis ，开始进行分析。</p><p><img src="15326880_202311241500151XsNA.png" alt="" /></p><p>分析完后，选择Group Results-Text Results-Quality Review Report，查看质量度量结果。</p><p><img src="15326880_202311241500191D3t6.png" alt="" /></p><p><img src="15326880_202311241500241iS2r.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">测试工具使用心得：Testbed与Klocwork</summary>
+    
+    
+    
+    <category term="测试" scheme="http://www.formeasy.cc/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>白盒测试工具Testbed 白盒测试 工具</title>
+    <link href="http://www.formeasy.cc/2025/04/17/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7Testbed%20%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%20%E5%B7%A5%E5%85%B7/"/>
+    <id>http://www.formeasy.cc/2025/04/17/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7Testbed%20%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%20%E5%B7%A5%E5%85%B7/</id>
+    <published>2025-04-17T08:36:00.000Z</published>
+    <updated>2025-04-17T08:39:01.582Z</updated>
+    
+    <content type="html"><![CDATA[<p>白盒测试又称结构测试、透明盒测试、逻辑驱动测试或基于代码的测试。白盒测试是一种测试用例设计，白盒指的是盒子是可视的，你清楚盒子内部的东西以及里面是如何运作的。&quot;白盒&quot;法全面了解程序内部逻辑结构、对所有逻辑路径进行测试。&quot;白盒&quot;法是穷举路径测试。在使用这一方案时，测试者必须检查程序的内部结构，从检查程序的逻辑着手，得出测试数据。贯穿程序的独立路径数是天文数字。</p><p>白盒测试是一种典型的测试方法<br />• 它是一种按照程序内部逻辑结构和编码结构设计测试数据并完成测试的一种测试方法<br />• 测试覆盖全部代码、分支、路径和条件<br />• 它利用查看代码功能和实现方式得到的信息来确定哪些需要测试、哪些不需要、如何展开测试<br />• 又称为结构测试或逻辑驱动测试</p><p>白盒测试特点主要有<br />•1. 可以构成测试数据使特定程序部分得到测试<br />•2. 有一定的充分性度量手段<br />•3. 可获得较多工具支持<br />•4. 通常只用于单元测试和集成测试(主要是单元测试)</p><p>白盒测试的基本测试内容<br />基本测试内容<br />•对程序模块的所有独立执行路径至少测试一次<br />•对所有的逻辑判定，取“真”与取“假”的两种情况都至少测试一次<br />•在循环的边界和运行的边界限内执行循环体<br />•测试内部数据结构的有效性<br />白盒测试所采用的测试方法是<br />•逻辑覆盖（包括语句覆盖、分支覆盖、条件覆盖、分支-条件覆盖、条件组合覆盖以及路径覆盖）</p><p>六种逻辑覆盖标准：语句覆盖、判定覆盖、条件覆盖、判定/条件覆盖、条件组合覆盖和路径覆盖发现错误的能力呈由弱至强的变化。</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.webp" alt="白盒测试工具Testbed 白盒测试 工具_结构" /></p><h6 id="语句覆盖要求独立执行路径至少一次-每条语句至少执行一次"><a class="markdownIt-Anchor" href="#语句覆盖要求独立执行路径至少一次-每条语句至少执行一次"></a> 语句覆盖要求：独立执行路径至少一次。每条语句至少执行一次。</h6><p>·它对程序的逻辑覆盖很少，是很弱的逻辑覆盖标准<br />·为了更充分地测试程序，需要采用后边讲述的其他逻辑覆盖方法<br />·为了暴露程序中的错误，语句覆盖是最起码的测试要求，要求设计足够多的测试用例，使得每一条语句至少被执行一次</p><p>·语句覆盖的优点<br />• 检查所有语句<br />• 结构简单的代码的测试效果较好<br />• 容易实现自动测试<br />• 代码覆盖率高<br />• 如果是程序块覆盖，则不用考虑程序块中的源代码<br />语句覆盖不能检查出的错误有<br />• 条件语句错误、逻辑运算错误、循环语句错误</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.1.webp" alt="白盒测试工具Testbed 白盒测试 工具_软件_02" /></p><h6 id="判定覆盖要求逻辑判断至少一次-每个判定的每个分支至少执行一次"><a class="markdownIt-Anchor" href="#判定覆盖要求逻辑判断至少一次-每个判定的每个分支至少执行一次"></a> 判定覆盖要求：逻辑判断至少一次。每个判定的每个分支至少执行一次。</h6><p>要求设计做够多的测试用例，使得程序中的每一个分支至少通过一次<br />• 即每一条分支语句的“真”值和“假”值都至少执行一次<br />• while语句、switch语句、异常处理、跳转语句和三目运算符(a？b：c)等等同样可以使用分支覆盖来测试<br />• 对多分支语句，如C语言中的case语句，分支覆盖必须对每一个分支的每一种可能的结果都进行测试<br />判定覆盖要比语句覆盖查错能力强一些：<br />• 执行了分支覆盖，实际也就执行了语句覆盖<br />判定覆盖与语句覆盖存在同样的缺点<br />• 不能查出条件语句错误，不能查出逻辑运算错误，不能查出循环次数错误，不能查出循环条件错误</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.2.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_03" /></p><h6 id="条件覆盖要求每个判定的每个条件应取到各种可能的值"><a class="markdownIt-Anchor" href="#条件覆盖要求每个判定的每个条件应取到各种可能的值"></a> 条件覆盖要求：每个判定的每个条件应取到各种可能的值。</h6><p>不仅每一个语句至少执行一次，使得判定中的每个条件获得各种可能结果<br />判定覆盖只关心整个判定表达式的结果，条件覆盖关心的则是每个条件各种取值的结果<br />条件覆盖的利弊<br />•− 能够检查所有的条件错误<br />•− 不能实现对每个分支的检查<br />•− 用例数增加</p><h6 id="判定条件覆盖要求同时满足判定覆盖条件覆盖"><a class="markdownIt-Anchor" href="#判定条件覆盖要求同时满足判定覆盖条件覆盖"></a> 判定/条件覆盖要求：同时满足判定覆盖条件覆盖。</h6><p>设计足够多的测试用例，使得判定中每个条件的所有可能取值至少能够获取一次，同时每个判断的所有可能的判定结果至少执行一次<br />•− 用于解决条件覆盖不一定包括判定覆盖，判定覆盖也不一定包括条件覆盖的问题<br />分支-条件覆盖的利弊：<br />•− 既考虑了每一个条件，又考虑了每一个分支，发现错误能力强于分支覆盖和条件覆盖<br />•− 并不能全面覆盖所有路径<br />•− 用例数量的增加</p><h6 id="条件组合覆盖要求每个判定中各条件的每一种组合至少出现一次"><a class="markdownIt-Anchor" href="#条件组合覆盖要求每个判定中各条件的每一种组合至少出现一次"></a> 条件组合覆盖要求：每个判定中各条件的每一种组合至少出现一次。</h6><p>要求设计足够多的测试用例，使得每个判定中条件的各种组合至少出现一次<br />满足条件组合覆盖标准的测试用例，也一定满足判定覆盖、条件覆盖和判定/条件覆盖标准<br />• 条件组合覆盖是前面几种覆盖标准中最强的<br />• 但是，满足条件组合覆盖要求的测试用例并不一定能使程序中的每条路径都执行到</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.3.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_04" /></p><p>路径覆盖要求：使程序中每一条可能的路径至少执行一次。 所有出入口测试。(全覆盖)</p><p>覆盖率：逻辑与功能覆盖 = 至少一次items/总item数。</p><p>程序流程图的各个符号：</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.4.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试工具Testbed_05" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.5.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_06" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.6.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_07" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.7.webp" alt="白盒测试工具Testbed 白盒测试 工具_软件_08" /></p><h6 id="程序图"><a class="markdownIt-Anchor" href="#程序图"></a> 程序图</h6><p>定义：给定一个采用命令式程序设计语言编写的程序，其程序图是一种有向图，其中：<br />•传统定义：<br />• 节点是程序语句，边表示控制流（从节点i到节点j有一条边，当且仅当对应节点j的语句可以立即在节点i对应的语句之后执行）。<br />•改进后的定义：<br />• 节点要么是整个语句，要么是语句的一部分，边表示控制流（从节点i到节点j有一条边,当且仅当对应节点j的语句或语句的一部分，可以立即在节点i对应的语句或语句的一部分之后执行）</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.8.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试工具Testbed_09" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.9.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_10" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.10.webp" alt="白盒测试工具Testbed 白盒测试 工具_结构_11" /></p><p>环形复杂度(McCabe度量法)是一种为程序逻辑复杂性提供定量测度的 <a href="http://baike.baidu.com/view/1659931.htm">软件度量</a>，将该度量用于计算程序的基本的独立路径数目，为确保所有语句至少执行一次的测度数量的上界。</p><p>范例：</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.11.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_12" /></p><p>复杂度:6</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.12.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_13" /></p><p>复杂度:3</p>]]></content>
+    
+    
+    <summary type="html">白盒测试工具Testbed 白盒测试 工具</summary>
+    
+    
+    
+    <category term="测试" scheme="http://www.formeasy.cc/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用testbed进行代码静态分析的步骤详解</title>
+    <link href="http://www.formeasy.cc/2025/04/17/%E4%BD%BF%E7%94%A8testbed%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://www.formeasy.cc/2025/04/17/%E4%BD%BF%E7%94%A8testbed%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/</id>
+    <published>2025-04-17T08:32:18.000Z</published>
+    <updated>2025-04-17T08:35:08.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用testbed进行代码的静态分析主要有四个步骤：</p><p>选择分析对象</p><p>分析前的设置</p><p>分析项的选择与分析过程</p><p>查看分析结果</p><p>1、选择分析对象</p><p>可通过两种方式选择被分析对象：单个文件分析、以集（set）的形式分析，其中以set形式可一次分析多个文件</p><p>进行单个文件分析时，点击testbed菜单file-select file打开要分析的文件点击select即可,可在工具快捷按钮栏下方看见所选择的文件</p><p><img src="707774df45c1cea8deee664b287d9a62.png" alt="" /></p><p><img src="c98ffbe7f4db64f4965ac991be1b9ffc.png" alt="" /></p><p>以set形式进行分析时，点击testbed菜单Set-select/create/delete sets创建一个set</p><p><img src="d0493ac11c36763687a727d7a4ed6ce8.png" alt="" /></p><p>输入set名点击create后会弹出set的属性设置对话框，有两种属性：group和system</p><p><img src="93cbb95d3898f7b8d780b34a7bc32f20.png" alt="" /></p><p><img src="3b4debd0c205525e25d1ca3a77cd57c0.png" alt="" /></p><p>创建好set后可看见set名及其属性</p><p><img src="28efbbc37b393fd5b0b7c72f1478cb25.png" alt="" /></p><p>接下来向集合中添加文件，点击testbed菜单set-list/add/remove files in sets，在弹出的对话框中点击add添加多个文件到set中</p><p><img src="9b570d2c5cd9b18598cea8d208fc0c92.png" alt="" /></p><p>2、分析前的设置</p><p><strong>基本静态设置</strong></p><p>点击testbed菜单configure-static option，弹出static analysis option对话框</p><p><img src="59016575700f89275ca6845a9e70548e.png" alt="" /></p><p>选项卡include files中的内容是对头文件的设置，其中：</p><p>analysis include files区域设定是否分析头文件，一般选择第二种analysis the first instance of each found include</p><p>interactive include file analysis 区域设定代码中出现头文件包含语句时，testbed与用户的交互方式，一般选择第三种display dialog only when include file not found</p><p>include search directories区域设置头文件的查找目录和系统头文件的处理方式，其中search options设置头文件的查找目录，分析前须添加头文件目录，system include search设置系统头文件的展开方式，建议设为don’t expand</p><p><img src="fc9f2fdea695ed6f5fc8b11e9f22caa1.png" alt="" /></p><p>选项卡macros设定用户代码编译宏的处理方式</p><p><img src="e55dedfc3fe5a97d12bf336a3694d4fe.png" alt="" /></p><p>sysppvar区域设置编译宏的定义，对于在编译命令中定义的宏，而在代码中使用此宏影响代码的编译的情况，需要用户把该宏添加到testbed的设置文件中，可点击edit default打开文件sysppvar.dat，在此文件中添加相应的宏定义</p><p>interactive conditional preprocessing options区域设置针对代码中未识别的宏的处理及交互方式，选中interactive preprocessing时，出现未识别的宏时会弹出对话框让用户定义此宏，AutoMacro设定宏的自动定义处理方式：</p><p>Enable-promt for macro vaule弹窗提示并让用户指定宏值</p><p>Enable-no promt , use default 不弹窗提示，使用默认值</p><p>Disable-stop static analysis 弹窗，并停止分析</p><p><strong>代码评审报告设定</strong></p><p>点击testbed 菜单configure-quality report options，弹出对话框quality report，在选项卡report based congiguration 中的programming standards model区域选择进行编码规则检查所使用的规则集，在additional detail  for each standards violation区域设定分析结果报告是否包含源代码行号和格式化后的代码行号</p><p><img src="538f44da9c16adead673c854bb39e2ef.png" alt="" /></p><p>在选项卡data files中的standards models editor区域点击launch editor可以打开编码规则图形化定制页面实现规则集的定制</p><p><strong>质量评审报告设定</strong></p><p>点击testbed菜单configure-metrics report options，弹出metrics report对话框，在metpen configuration区域可以设定质量评审报告中每个度量元的上下限阈值，定制质量模型，点击C:\LDRA_Toolsuite\metpen.dat后的edit，打开质量模型配置文件，修改此文件中度量元的上下限阈值即可修改质量模型</p><p><strong>数据对象分析报告设定</strong></p><p>点击configure-data object analysis report options，弹出data object analysis configuration 对话框，设定数据对象分析报告中显示的对象范围</p><p>3、分析项的选择与分析过程</p><p>点击菜单analysis-select analysis，在弹出的对话框中选择要执行的静态分析项，接着点击start analysis开始分析</p><p>4、查看分析结果</p><p><strong>单个文件结果查看</strong></p><p>点击菜单individual results 可看到下拉项source code 、text results、graphical results分别显示了分析结果，这三个下拉项分别展开可查看详细的分类结果</p><p><strong>set的结果查看</strong></p><p>点击菜单set results 可看到下拉项text results、graphical results分别显示了分析结果，这两个下拉项分别展开可查看详细的分类结果</p>]]></content>
+    
+    
+    <summary type="html">使用testbed进行代码静态分析的步骤详解</summary>
+    
+    
+    
+    <category term="测试" scheme="http://www.formeasy.cc/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>软件开发的四大悖论</title>
+    <link href="http://www.formeasy.cc/2025/04/17/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%9B%E5%A4%A7%E6%82%96%E8%AE%BA/"/>
+    <id>http://www.formeasy.cc/2025/04/17/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%9B%E5%A4%A7%E6%82%96%E8%AE%BA/</id>
+    <published>2025-04-17T08:29:37.000Z</published>
+    <updated>2025-04-17T08:31:07.162Z</updated>
+    
+    <content type="html"><![CDATA[<p>Infoworld 特约撰稿人 Nick Hodges 发布了一篇名为 “Four paradoxes of software development” 的文章，阐述了他眼中的软件开发领域的四大悖论。</p><p>全文内容如下：</p><blockquote><h3 id="桥梁建设-vs-软件开发四个令人困惑的悖论"><a class="markdownIt-Anchor" href="#桥梁建设-vs-软件开发四个令人困惑的悖论"></a> <strong>桥梁建设 vs 软件开发：四个令人困惑的悖论</strong></h3><p>土木工程师可以理直气壮地说，世界上没有两座完全相同的桥梁。然而，桥梁共享许多已知特性，其建筑材料也有明确参数。桥梁建设涉及大量已知的已知项，未知的未知项远比人们想象的少得多。</p><p>我并非土木工程师，对设计和建造桥梁的杰出人士充满敬意。但我想通过这种对比说明：<strong>编写优秀、可运行的软件极其困难</strong>。软件开发团队承接的每个项目都是独一无二的。尽管项目之间存在相似性，但每个软件项目都有其独特的细微差别、需求，以及大量的未知未知项。</p><p>或者说，软件开发充满了难以处理的悖论。以下是四个典型案例：</p><h4 id="悖论一无人知晓工期但客户坚持要交付日期"><a class="markdownIt-Anchor" href="#悖论一无人知晓工期但客户坚持要交付日期"></a> <strong>悖论一：无人知晓工期，但客户坚持要交付日期</strong></h4><p>坦率地说，这可能是软件开发组织面临的最大挑战。我们根本无法确定任何项目需要多长时间。当然，我们可以估算，但结果几乎总是大错特错 —— 有时严重高估，但更多时候是严重低估。</p><p>对客户而言，这既神秘又痛苦。由于不理解悖论的第一部分，他们不明白为何无法确定新软件的交付时间。当软件未能如期交付时，挫败感自然产生。</p><p>我们尝试使用 story points、planning poker 和其他敏捷方法来预测进度，但始终无法摆脱霍夫施塔特定律（Hofstadter’s Law）的魔咒：即使考虑了霍夫施塔特定律，事情总会比你预期的更久。</p><h4 id="悖论二向延期项目加派人手只会让项目更晚"><a class="markdownIt-Anchor" href="#悖论二向延期项目加派人手只会让项目更晚"></a> <strong>悖论二：向延期项目加派人手，只会让项目更晚</strong></h4><p>这条被称为布鲁克斯定律（Brooks’s Law）的规则，对旁观者而言可能是最诡异的悖论。</p><p>通常，如果你发现无法按时完成牙膏管灌装任务，可以通过增加人手来赶上截止日期。如果你想在一年内建造双倍数量的房屋，通常只需双倍投入劳动力和材料即可实现（误差很小）。</p><p>然而，正如弗雷德・布鲁克斯（Fred Brooks）在其著作《人月神话》中所揭示的：“向延期的软件项目增加人力，只会让它更晚。” 这是一个悖论，却是软件开发领域最接近定律的真理。布鲁克斯指出，新成员需要时间理解复杂系统的上下文，并增加沟通成本，因此无法立即贡献生产力 —— 这反而会延长项目周期并推高成本。</p><h4 id="悖论三编码能力越强编码量反而越少"><a class="markdownIt-Anchor" href="#悖论三编码能力越强编码量反而越少"></a> <strong>悖论三：编码能力越强，编码量反而越少</strong></h4><p>成为一名经验丰富的软件开发者需要多年积累。学习正确的编码方式、设计方法，以及编写整洁可维护代码的规则与技巧，绝非一日之功。</p><p>但讽刺的是，随着经验增长，你往往会被推向领导岗位，实际编码量反而减少。你不再写代码，而是参加设计会议、审查他人代码、管理团队。有时，你甚至因晋升而彻底告别编码。</p><p>这并不意味着资深开发者的贡献减少。通过规划项目、指导新人、维护编码标准，并确保团队产出优质代码，资深开发者对团队和公司的成功至关重要。</p><p>但你的确会写更少的代码。</p><h4 id="悖论四开发工具日益强大但开发效率并未提升"><a class="markdownIt-Anchor" href="#悖论四开发工具日益强大但开发效率并未提升"></a> <strong>悖论四：开发工具日益强大，但开发效率并未提升</strong></h4><p>对比当今使用 React、Astro、Next.js 等强大工具构建的 Web 应用，与 30 年前通过通用网关接口（CGI）处理数据和 HTML 的网站，你会发现我们已经比早期进步了数光年。</p><p>然而，尽管工具日益先进、处理器速度飙升，软件开发效率似乎从未真正提高。工作量不仅总是超出时间预算，甚至超出了每个 CPU 周期的负荷。</p><p>我们的网站更美观了，但开发效率真的提升了吗？网站运行更快、数据处理更高效了吗？诚然，新框架和库抽象了许多复杂性（还有人想写 jQuery 代码吗？），但它们也带来了构建流程冗长、配置复杂、依赖膨胀等新问题。</p><h3 id="与桥梁的终极差异软件永无-完工-之日"><a class="markdownIt-Anchor" href="#与桥梁的终极差异软件永无-完工-之日"></a> <strong>与桥梁的终极差异：软件永无 “完工” 之日</strong></h3><p>这些悖论的存在并不意味着绝望。我指出它们，是为了让我们意识到其存在，学会接受并应对，从而避开潜在的陷阱。我们无法消除软件开发的陌生感和混乱，但可以预见并驾驭它们。我们的使命是：<strong>在悖论中交付</strong>。</p><p>最后一个悖论或许是：<strong>软件开发永远没有真正完成之日</strong>。总有新功能可以添加。而桥梁工程至少有一个明确的终点 —— 当桥梁建成并按设计运行时，工作便宣告结束。</p></blockquote>]]></content>
+    
+    
+    <summary type="html">软件开发的四大悖论</summary>
+    
+    
+    
+    <category term="软件工程" scheme="http://www.formeasy.cc/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>PyPy、Numba 与 Cython，哪个是最佳 Python运算解决方案？</title>
@@ -337,86 +413,6 @@
     
     
     <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ollama模型离线迁移/复制</title>
-    <link href="http://www.formeasy.cc/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/"/>
-    <id>http://www.formeasy.cc/2025/03/25/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/</id>
-    <published>2025-03-25T02:25:20.000Z</published>
-    <updated>2025-03-25T02:31:58.535Z</updated>
-    
-    <content type="html"><![CDATA[<p>在ollama中可以使用命令<code>ollama pull deepseek-r1:7b</code>下载模型，但在某些特殊情况下（如：离线环境）需要手动迁移模型，本文详细讲解了ollama中离线迁移模型的方式。</p><h2 id="一-下载特定模型"><a class="markdownIt-Anchor" href="#一-下载特定模型"></a> 一、下载特定模型</h2><p>在一个有网的环境中，使用<code>ollama pull</code>命令下载模型，如：deepseek-r1:7b</p><p><img src="v2-bc39552763b810cac1bd8ddf0759f60e_1440w.jpg" alt="" /></p><h3 id="二-进行离线迁移"><a class="markdownIt-Anchor" href="#二-进行离线迁移"></a> 二、进行离线迁移</h3><p>迁移之前首先需要确定ollama主目录。在windows系统中，通常是用户主目录下的.ollama文件夹，例如： <code>C:\Users\wangk\.ollama</code>；在Linux系统中，同样的，通常也是用户主目录下的.ollama文件夹，例如：<code>/root/.ollama</code></p><p><img src="v2-ebe6d26a89f39584a055503de79cad77_1440w.jpg" alt="" /></p><p>windows系统下的ollama主目录</p><p><img src="v2-c1a2fc3fb4cdbac4e76fc2803ee0be37_1440w.jpg" alt="" /></p><p>linux系统下的ollama主目录</p><p>在ollama主目录下，有两部分内容需要迁移</p><p><img src="v2-b3c5690beec2fb7cbd3da28fcbc7f474_1440w.jpg" alt="" /></p><h3 id="1-blobs文件夹"><a class="markdownIt-Anchor" href="#1-blobs文件夹"></a> 1、blobs文件夹</h3><p>在blobs文件夹下是一些二进制文件，这时，需要到ollama官网去，找到对应模型的唯一标识，这里以deepseek-r1:7b为例，ollama官网的models中搜索deepseek-r1，并进入主页，如下所示：</p><p><img src="v2-d2e2fd842e52625a65ec4bff7688aa44_1440w.jpg" alt="" /></p><p>点击model，然后拷贝这部分 <code>96c415656d37</code></p><p><img src="v2-76ff6221344ddb966eda71dbfd3cf0ad_1440w.jpg" alt="" /></p><p>在blobs文件夹搜索 <code>96c415656d37</code></p><p><img src="v2-04e01d89ac6b10f695be22d2bd437977_1440w.jpg" alt="" /></p><p>可以定位到一个二进制文件，找到这个文件，并将与这个文件具有相同修改时间的其它文件一起复制到目标主机的对应文件夹下</p><p><img src="v2-e40c2fda99e759e9f0c774aa9efea2ed_1440w.jpg" alt="" /></p><h3 id="2-manifests文件夹"><a class="markdownIt-Anchor" href="#2-manifests文件夹"></a> 2、manifests文件夹</h3><p>这个比较简单，复制manifests文件夹下特定目录到目标主机的对应文件夹下</p><p><img src="v2-e418ca41dcf6cc9313c31c2d49e70ecb_1440w.jpg" alt="" /></p><h2 id="三-模型离线迁移完成"><a class="markdownIt-Anchor" href="#三-模型离线迁移完成"></a> 三、模型离线迁移完成</h2><p>在目标主机运行<code>ollama list</code>命令，发现deepseekr1:7b模型已经迁移过来了</p><p><img src="v2-11602e6d9a4920cd8ee0a82b3550fdbb_1440w.jpg" alt="" /></p><p><strong>备注：ollama的模型在windows、linux和mac系统中都是通用的，模型不同系统之间可以进行相互拷贝。</strong></p>]]></content>
-    
-    
-    <summary type="html">ollama模型离线迁移/复制</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="ollama" scheme="http://www.formeasy.cc/tags/ollama/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>向量数据库的分类概况_向量库类型</title>
-    <link href="http://www.formeasy.cc/2025/03/21/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%86%E7%B1%BB%E6%A6%82%E5%86%B5_%E5%90%91%E9%87%8F%E5%BA%93%E7%B1%BB%E5%9E%8B/"/>
-    <id>http://www.formeasy.cc/2025/03/21/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%86%E7%B1%BB%E6%A6%82%E5%86%B5_%E5%90%91%E9%87%8F%E5%BA%93%E7%B1%BB%E5%9E%8B/</id>
-    <published>2025-03-21T09:01:16.000Z</published>
-    <updated>2025-03-23T14:33:31.227Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="向量数据库的分类概况"><a class="markdownIt-Anchor" href="#向量数据库的分类概况"></a> 向量数据库的分类概况</h2><p>保存和检索矢量数据的五种方法：</p><ol><li><p>像 Pinecone 这样的纯矢量数据库</p></li><li><p>全文搜索数据库，例如 ElasticSearch</p></li><li><p><strong>矢量库</strong>，如 Faiss、Annoy 和 Hnswlib</p></li><li><p>支持矢量的<strong>NoSQL 数据库</strong>，例如 MongoDB、Cosmos DB 和 Cassandra</p></li><li><p>支持矢量的<strong>SQL 数据库</strong>，例如 SingleStoreDB 或 PostgreSQL</p><p><img src="163d5fc517dc58b53456f98deafed0db.png" alt="" /></p><p>1.纯矢量数据库</p><p>纯向量数据库专门用于存储和检索向量。示例包括 Chroma、LanceDB、Marqo、Milvus/Zilliz、Pinecone、Qdrant、Vald、Vespa、Weaviate 等。</p><p><img src="ae6d1ac179df0eda690dd9b5f640b9e5.png" alt="" /></p><p>在纯矢量数据库中，数据是根据对象或数据点的矢量表示来组织和索引的。这些向量可以是各种类型数据的数值表示，包括图像、文本文档、音频文件或任何其他形式的结构化或非结构化数据。</p><p><strong>纯载体数据库的优点</strong></p><p>利用索引技术进行高效的相似性搜索<br />大型数据集和高查询工作负载的可扩展性<br />支持高维数据<br />支持基于 HTTP 和 JSON 的 API<br />对向量运算的本机支持，包括加法、减法、点积、余弦相似度</p><p><strong>纯载体数据库的缺点</strong></p><p><strong>仅矢量</strong><br />纯矢量数据库可以存储矢量和一些元数据，但仅此而已。对于大多数企业人工智能用例，您可能需要包括实体、属性和层次结构（图形）、位置（地理空间）等的描述等数据。</p><p><strong>有限或没有 SQL 支持</strong><br />纯向量数据库通常使用自己的查询语言，这使得很难对向量和相关信息运行传统分析，或者将向量和其他数据类型结合起来。</p><p><strong>没有完整的 CRUD</strong><br />纯向量数据库并不是真正为创建、更新和删除操作而设计的。对于读取操作，数据必须首先进行矢量化和索引以进行持久化和检索。这些数据库专注于提取矢量数据、对其进行索引以进行有效的相似性搜索以及基于矢量相似性查询最近邻居。</p><p><strong>建立索引非常耗时</strong><br />索引矢量数据计算量大、成本高且耗时。这使得很难将新数据用于生成人工智能应用程序。</p><p><strong>被迫权衡</strong><br />根据所使用的索引技术，矢量数据库要求客户在准确性、效率和存储之间进行权衡。例如，Pinecone 的 IMI 索引（反向多重索引，ANN 的一种变体）会产生存储开销，并且计算量很大。它主要针对静态或半静态数据集而设计，如果频繁添加、修改或删除向量，则可能会受到挑战。Milvus 使用称为“产品量化”和“分层可导航小世界”(HNSW) 的索引，这些索引是权衡搜索准确性和效率的近似技术。此外，其索引需要配置各种参数，使用不正确的参数选择可能会影响搜索结果的质量或导致效率低下。</p><p><strong>企业特征值得怀疑</strong><br />许多矢量数据库在基本功能上严重落后，包括 ACID 事务、灾难恢复、RBAC、元数据过滤、数据库可管理性、可观察性等。这可能会导致严重的业务问题 - 类似于丢失所有数据的客户<a href="https://twitter.com/daraladje/status/1631050397841342465" title="。">。</a></p><p>对于许多客户来说，矢量数据库的局限性将归结为性价比。鉴于矢量运算的计算量大，OSS矢量数据库或矢量库成为特别大规模应用程序的可行替代方案。</p><p><strong>2. 全文检索数据库</strong></p><p>此类别包括 Elastic/Lucene、OpenSearch 和 Solr 等数据库。</p><p><img src="8a5d8011f85d2dc2d0c73ce7ebfc87e3.png" alt="" /></p><p><strong>优点</strong></p><p>--高可扩展性和性能，特别是对于非结构化文本文档</p><p>--丰富的文本检索功能，例如内置外语支持、可自定义分词器、词干分析器、停止列表和 N 元语法</p><p>--基于开源库（Apache Lucene）</p><p>--大型集成生态系统，包括向量库</p><p><strong>矢量数据全文检索数据库的局限性</strong></p><p>--未针对向量搜索或相似性匹配进行优化</p><p>--专为全文搜索而不是语义搜索而设计，因此基于其构建的应用程序不会具有检索增强生成 (RAG) 和其他用例的完整上下文。为了实现语义搜索功能，这些数据库需要使用其他工具以及大量的自定义评分和相关性模型进行扩充。</p><p>--其他数据格式（图像、音频、视频）的应用有限</p><p>--缺乏 GPU 支持</p><p><strong>3. 向量库</strong></p><p>对于许多开发人员来说，Faiss、Annoy 和 Hnswlib 等开源矢量库是一个不错的起点。</p><p><img src="6d5c702aad0c5d31e3cde5925dcf1988.png" alt="" /></p><p>Faiss是一个用于密集向量的相似性搜索和聚类的库。Annoy（Approximate Nearest Neighbors Oh Yeah）是一个用于 ANN 搜索的轻量级库。Hnswlib是一个实现 ANN 搜索的 HNSW 算法的库。</p><p><strong>开源向量库的优点</strong></p><p>--快速最近邻搜索</p><p>--专为高维而打造</p><p>--支持面向 ANN 的索引结构，包括倒排文件、乘积量化和随机投影</p><p>--支持推荐系统、图像搜索和 NLP 的用例</p><p>--SIMD（单指令、多数据）和 GPU 支持可加速矢量相似性搜索操作</p><p><strong>开源向量库的局限性</strong></p><p>--繁琐的维护和集成</p><p>--与精确方法相比，牺牲搜索精度</p><p>--自带基础设施。矢量库需要大量内存和计算资源，它们需要您构建和维护复杂的基础设施，以便为应用程序需求提供足够的 CPU、GPU 和内存资源。</p><p>--对元数据过滤、SQL、CRUD 操作、事务、高可用性、灾难恢复以及备份和恢复的支持有限或不支持</p></li></ol><p><strong>4.支持向量的NoSQL数据库</strong></p><p>该类别包括：</p><ol><li><p><strong>NoSQL 数据库</strong>，例如 MongoDB、Cassandra/DataStax Astra 和 CosmosDB。</p></li><li><p><strong>键值数据库</strong>，例如 Redis</p></li><li><p><strong>其他特殊用途数据库</strong>，例如 Neo4j（图）</p></li></ol><p>几乎所有这些 NoSQL 数据库最近才通过添加矢量搜索扩展而变得支持矢量。</p><p><img src="fe418e6d6d6dab71d15710c0437935b5.png" alt="" /></p><p><strong>优点</strong></p><ul><li>对于其特定的数据模型，NoSQL 数据库提供高性能和规模。Neo4j（图形数据库）可以与社交网络或知识图的法学硕士结合使用。具有矢量功能的时间序列数据库（例如 kdb）也许能够将矢量数据与金融市场数据结合起来。</li></ul><p><strong>局限性</strong></p><ul><li><p>NoSQL 数据库的向量功能是基本的/新生的/未经测试的。许多 NoSQL 数据库今年才添加了向量支持。五月，Cassandra 宣布计划添加矢量搜索。4 月份，Rockset 宣布支持基本向量搜索，Azure Cosmos DB于 5 月份宣布支持 MongoDB vCore 的向量搜索。DataStax和MongoDB就在本月宣布了矢量搜索功能（均为预览版）！</p></li><li><p>NoSQL 数据库的矢量搜索性能差异很大，具体取决于支持的矢量函数、索引方法和硬件加速。</p><p><strong>5. 支持向量的 SQL 数据库</strong></p><p>该类别由一组非常小的数据库组成——SingleStoreDB、PostgreSQL 的 pgvector/Supabase Vector（测试版）、Clickhouse、Kinetica 和 Rockset。我们预计更多流行的数据库会出现在这个列表中，因为向已建立的数据库添加基本矢量功能并不是一件繁重的工作。事实上，矢量数据库 Chroma 是从 ClickHouse 中诞生的。<br />更新：2023 年 9 月，Oracle 也宣布了矢量搜索功能。</p><p><img src="ede714ef9b1feb17438666a0643d78cb.png" alt="" /></p><p><strong>支持矢量的 SQL 数据库的优点</strong></p><p>--具有点积、余弦相似度、欧氏距离和曼哈顿距离等功能的幂向量搜索。</p><p>--使用相似度分数查找 K 最近邻</p><p>--多模型 SQL 数据库提供混合搜索，并且可以将向量与其他数据结合起来以获得更有意义的结果</p><p>--大多数 SQL 数据库可以部署为服务，并在任何主要云上完全管理。</p><p><strong>SQL 数据库用于矢量数据处理的局限性</strong></p><p>--SQL 数据库是为结构化数据而设计的。生成式人工智能应用程序背后的语料库主要包含非结构化数据，例如图像、音频和文本。虽然关系数据库通常可以存储文本和 blob，但大多数数据库不会对这种非结构化数据进行矢量化以用于机器学习。</p><p>--大多数 SQL 数据库尚未针对矢量搜索进行优化。关系数据库的索引和查询机制主要是为结构化数据设计的，而不是高维向量数据。虽然用于矢量数据处理的 SQL 数据库的性能可能并不出色，但支持矢量的 SQL 数据库可能会添加扩展或新功能来支持矢量搜索。例如，虽然 SingleStoreDB 支持精确的 k-NN 搜索，但我们打算添加 ANN 搜索来提高非常大、高维数据集的性能。</p><p>--传统的 SQL 数据库无法横向扩展，因此其性能会随着数据的增长而下降。使用 SQL 数据库处理高维向量的大型数据集可能需要您进行额外的优化，例如对数据进行分区或采用专门的索引技术来保持高效的查询性能。</p></li></ul>]]></content>
-    
-    
-    <summary type="html">向量数据库的分类概况_向量库类型</summary>
-    
-    
-    
-    <category term="数据库" scheme="http://www.formeasy.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>软件为UDP服务却收不到数据问题解析</title>
-    <link href="http://www.formeasy.cc/2025/03/20/%E8%BD%AF%E4%BB%B6%E4%B8%BAUDP%E6%9C%8D%E5%8A%A1%E5%8D%B4%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/"/>
-    <id>http://www.formeasy.cc/2025/03/20/%E8%BD%AF%E4%BB%B6%E4%B8%BAUDP%E6%9C%8D%E5%8A%A1%E5%8D%B4%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/</id>
-    <published>2025-03-20T03:21:13.000Z</published>
-    <updated>2025-03-20T01:05:24.107Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="问题软件为udp服务却收不到数据问题解析"><a class="markdownIt-Anchor" href="#问题软件为udp服务却收不到数据问题解析"></a> 问题：软件为UDP服务却收不到数据问题解析</h3><blockquote><p>【问题描述】安装了一软件，基础UDP服务，用来接收UDP数据协议，但软件启动后，就是收不到任何UDP数据。</p></blockquote><blockquote><p>【原因分析】</p></blockquote><h4 id="1安装wireshark或udp测试工具正常能接收udp数据说明发送端没有问题"><a class="markdownIt-Anchor" href="#1安装wireshark或udp测试工具正常能接收udp数据说明发送端没有问题"></a> 1.安装wireshark或UDP测试工具，正常能接收UDP数据，说明发送端没有问题。</h4><h4 id="2启动此软件查看是否占用端口查看到"><a class="markdownIt-Anchor" href="#2启动此软件查看是否占用端口查看到"></a> 2.启动此软件，查看是否占用端口，查看到:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr :9999</span><br><span class="line"> UDP    192.168.110.1:9999   *:*    3934</span><br></pre></td></tr></table></figure><p>说明软件正常启动，但是其中的192.168.110.1并不是我主网卡的网卡。<br />本机有三个网卡（WMware Network Adapter VMnet1、WMware Network Adapter VMnet8和以太网）<br />其中安装虚拟机软件WMware后，安装了前两块网卡，其中WMware Network Adapter VMnet8网段是192.168.110.1<br />也就是说，软件默认的用的是WMware Network Adapter VMnet8网卡而不是本机的以太网网卡</p><blockquote><p>【解决方案】通过跃点数（Metric）设置优先级</p></blockquote><h4 id="1打开网络连接设置"><a class="markdownIt-Anchor" href="#1打开网络连接设置"></a> 1.打开网络连接设置：</h4><ul><li>按 Win + R 输入 ncpa.cpl 回车。</li><li>或依次点击：控制面板 → 网络和Internet → 网络连接。</li></ul><h4 id="2调整网卡跃点数"><a class="markdownIt-Anchor" href="#2调整网卡跃点数"></a> 2.调整网卡跃点数：</h4><ul><li>右键点击要设为“主网卡”的适配器 → 属性 → 双击 “Internet协议版本4（TCP/IPv4）”。</li><li>点击 “高级” → 切换到 “自动跃点” 标签。</li><li>取消勾选 “自动跃点”，输入一个较小的数值（如 10），跃点数越低优先级越高。</li><li>对其他网卡设置更高的跃点数（如 20、30）。</li></ul><h4 id="3重启网络服务或重启电脑"><a class="markdownIt-Anchor" href="#3重启网络服务或重启电脑"></a> 3.重启网络服务或重启电脑：</h4><ul><li>按 Win + R 输入 cmd，右键选择“以管理员身份运行”。</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br><span class="line">netsh int ip reset</span><br><span class="line">netsh winsock reset</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">软件为UDP服务却收不到数据问题解析</summary>
-    
-    
-    
-    <category term="网络通讯" scheme="http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>UE4&amp;5 C++类创建后重启项目C++类不显示并且其蓝图子类丢失父类等问题原因及解决方法</title>
-    <link href="http://www.formeasy.cc/2025/03/19/UE4&amp;5%20C++%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%90%8E%E9%87%8D%E5%90%AF%E9%A1%B9%E7%9B%AEC++%E7%B1%BB%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%B9%B6%E4%B8%94%E5%85%B6%E8%93%9D%E5%9B%BE%E5%AD%90%E7%B1%BB%E4%B8%A2%E5%A4%B1%E7%88%B6%E7%B1%BB%E7%AD%89%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>http://www.formeasy.cc/2025/03/19/UE4&amp;5%20C++%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%90%8E%E9%87%8D%E5%90%AF%E9%A1%B9%E7%9B%AEC++%E7%B1%BB%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%B9%B6%E4%B8%94%E5%85%B6%E8%93%9D%E5%9B%BE%E5%AD%90%E7%B1%BB%E4%B8%A2%E5%A4%B1%E7%88%B6%E7%B1%BB%E7%AD%89%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
-    <published>2025-03-19T03:21:13.000Z</published>
-    <updated>2025-03-19T04:48:51.307Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="问题一ue45-c类创建后编辑器不显示"><a class="markdownIt-Anchor" href="#问题一ue45-c类创建后编辑器不显示"></a> 问题一：UE4&amp;5 C++类创建后编辑器不显示</h3><p>【问题描述】：C<ins>类创建后，在电脑资源管理器中显示存在.h和.cpp文件，VS正常打开其.h和.cpp文件，实时编译也不报错，但是在UE编辑器中C</ins>类文件夹下不见踪影。</p><p>【原因】C<ins>类文件路径错误，属于C1083错误的变种。C</ins>类只能存放在源文件夹下项目同名文件夹下的Private和Public文件夹内，C<ins>类创建时需要勾选是公共或私有，公共的C</ins>类的.h文件会放在Public文件夹内，.cpp文件会放在Private文件夹内；私有的C++类的.h和.cpp都会被放在Private文件夹内。</p><p>【解决方案】创建C++类的时候点选上面的公共或私有，查看.h和.cpp文件保存路径是否在源文件夹下的项目同名文件夹内的Private和Public文件夹内。</p><p>【特别注意】选择创建C++空类的时候无论是否点选公共与私有都不会被UE编辑器识别显示。这是因为需要在空类中定义受UE支持的类的类型才可以被识别。简单来说就是空类不是类。</p><h3 id="问题二ue45-c类创建后重启项目c类也不显示并且其蓝图子类丢失父类"><a class="markdownIt-Anchor" href="#问题二ue45-c类创建后重启项目c类也不显示并且其蓝图子类丢失父类"></a> 问题二：UE4&amp;5 C<ins>类创建后重启项目C</ins>类也不显示并且其蓝图子类丢失父类</h3><p>【问题描述】通过正常方式创建C++类会正常显示在UE编辑器中，但关闭项目重启之后</p><p>，C<ins>类依然不显示，而且基于C</ins>类的蓝图子类也会提示丢失父类。</p><p>C++不显示Private和Public文件夹内，其蓝图子类也显示不正常</p><p>【原因】这是因为实时编译的保护。</p><p>【解决方案】<br />方案一：关闭实时编译，启用热重载与VS生成。（不建议）<br />方案二：打开项目用Ctrl+alt+F11运行一次实时编译。这样c<ins>类就出来了，然后蓝图子类也就会显示c</ins>父类了。（注意打开项目后不可以先打开蓝图子类，不然运行一次实时编译之后蓝图还是会提示无父类）（不建议）<br />开启项目后运行实时编译</p><p>方案三：去编辑器偏好设置里左侧加载和保存中勾选上启动时强制编译。</p>]]></content>
-    
-    
-    <summary type="html">UE4&amp;5 C++类创建后重启项目C++类不显示并且其蓝图子类丢失父类等问题原因及解决方法</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
     
   </entry>
   

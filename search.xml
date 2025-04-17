@@ -4,6 +4,82 @@
   
     
     <entry>
+      <title>测试工具使用心得：Testbed与Klocwork</title>
+      <link href="/2025/04/17/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97%EF%BC%9ATestbed%E4%B8%8EKlocwork/"/>
+      <url>/2025/04/17/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97%EF%BC%9ATestbed%E4%B8%8EKlocwork/</url>
+      
+        <content type="html"><![CDATA[<p>在测评工作中，一般静态分析和逻辑测试使用Testbed工具帮助测试，代码扫描使用Klocwork工具辅助分析，本文是在测试过程中的总结。</p><p><strong>一、测试类型的思考</strong></p><p>逻辑测试：选取核心代码进行插桩，将插桩后代码替代原代码进行编译，执行用例，使相关功能全部执行完成，通过testbed测试工具对软件的语句/分支覆盖情况进行检查，并对未覆盖的语句进行原因分析：</p><p>1） 逻辑测试选定的代码要有针对性的选择关键模块代码，这样会更有说服力；</p><p>2） 插装后的程序应按照步骤进行修改，要不会分析不出覆盖率数据；</p><p>3） 如果分析的覆盖率数据达不到指标要求，应仔细分析覆盖率报告中那些程序未执行到，针对这些未执行到的代码，有针对性的执行动态测试用例，根据输出的覆盖数据再进行覆盖率分析；</p><p>4） 对于确有执行不到、看不明白的代码要和开发人及时沟通，分析原因，针对为执行到的代码进行叠加分析。</p><p>代码扫描：使用Klocwork对编程规范性进行检查，包括编程缺陷和安全漏洞等，提交至开发人员确认，使用源码统计专家统计代码注释率不低于20%。</p><p>静态分析：用Testbed进行静态分析，分析控制流，检测有无不能运行的单元，有无无效的函数参数，扇入扇出不大于10，圈复杂度小于等于7。</p><p><strong>二、工具的测试步骤</strong></p><p>逻辑测试</p><p>1、选取核心代码进行插桩。（一般为代码总量20%）</p><p>2、将插桩后代码更名，替代原代码进行编译，执行功能、接口测试用例，插桩代码的功能全部执行完成。</p><p>3、对生成的exh文件进行分析。</p><p>进入Set-Select/Create/Delete Set窗口，输入项目名称ceshi0823，点击Create弹出的窗口中选择Group进入Set-List/Add/Remove Files in Set窗口，点击Add，添加需要插桩的代码（插桩代码最好不存在中文路径），点击OK，添加成功。</p><p><img src="15326880_2023112414594016uqt.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Main Static Analysis（基本静态分析）和Generate Instrumented Program(s)（生成插桩程序），点击Generate Instrumented Program(s)后面的configure。</p><p><img src="15326880_202311241459431c4IN.png" alt="" /></p><p>勾选下图中红框框起来的选项进行插桩配置，点击OK，保存配置信息。</p><p><img src="15326880_202311241459471MfFs.png" alt="" /></p><p>点击Start Analysis ，进行插桩，插桩后生成以inszt_为前缀的文件。此文件夹下的文件不要进行删除、移动、修改操作（对结果进行分析时testbed识别此路径下的文件及时间）将inszt_为前缀的文件复制出来，去掉前缀，原名替换代码中相应的.c文件。进行编译后，打开软件，动态执行功能、接口等测试用例，覆盖插桩的功能。</p><p>执行完测试用例后，退出软件。在程序路径下搜索.exh，搜索到的文件为插桩程序生成的文件，格式如下所示：打开后每一行有一个数字（0-255之间，数字越大，说明覆盖率越高），前面空5个格。（当exh文件不符合此格式时，需手动调整为此格式）</p><p><img src="15326880_202311241459501pr3z.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Dynamic coverage Analysis，点击后面的configure，选择生成的.exh文件存放路径（最好不要用中文路径），点击确定按钮，点击Start Analysis ，进行分析查看分析结果，分支覆盖、语句覆盖率。</p><p><img src="15326880_202311241459541Okah.png" alt="" /></p><p><strong>代码扫描</strong></p><p>K8安装成功后，首先以管理员身份Start Klocwork Severs。</p><p>点击file-New Project，输入项目名称、选择需要分析的语言，点击Next。</p><p><img src="15326880_202311241459571F66H.png" alt="" /></p><p>选择Bulid from Source Root Directories，点击Add，添加源码所在文件夹（不要有中文），点击Finish。</p><p><img src="15326880_202311241500011Sys0.png" alt="" /></p><p>右键点击项目名称，选择Build，在弹出的窗口中选择存放分析结果的路径（路径不要有中文），点击Build，软件开始进行分析，在存放结果路径下查看测试结果，测试结果保存。</p><p><img src="15326880_202311241500051qcW7.png" alt="" /></p><p>对需要扫描的规则进行勾选，点击OK，保存后进行扫描。</p><p><img src="15326880_20231124150008170jc.png" alt="" /></p><p><strong>静态分析</strong></p><p>进入Set-Select/Create/Delete Set窗口，输入项目名称ceshi0803-jt，点击Create，弹出的窗口中选择System。</p><p>进入Set-List/Add/Remove Files in Set窗口，点击Add，添加需要分析的代码。</p><p><img src="15326880_202311241500121x1d2.png" alt="" /></p><p>进入Analysis-Select Analysis窗口，勾选Main Static Analysis（基本静态分析）、Complexity Analysis（复杂度分析）和Static Data Flow Analysis（静态数据流分析），点击Start Analysis ，开始进行分析。</p><p><img src="15326880_202311241500151XsNA.png" alt="" /></p><p>分析完后，选择Group Results-Text Results-Quality Review Report，查看质量度量结果。</p><p><img src="15326880_202311241500191D3t6.png" alt="" /></p><p><img src="15326880_202311241500241iS2r.png" alt="" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>白盒测试工具Testbed 白盒测试 工具</title>
+      <link href="/2025/04/17/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7Testbed%20%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%20%E5%B7%A5%E5%85%B7/"/>
+      <url>/2025/04/17/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7Testbed%20%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%20%E5%B7%A5%E5%85%B7/</url>
+      
+        <content type="html"><![CDATA[<p>白盒测试又称结构测试、透明盒测试、逻辑驱动测试或基于代码的测试。白盒测试是一种测试用例设计，白盒指的是盒子是可视的，你清楚盒子内部的东西以及里面是如何运作的。&quot;白盒&quot;法全面了解程序内部逻辑结构、对所有逻辑路径进行测试。&quot;白盒&quot;法是穷举路径测试。在使用这一方案时，测试者必须检查程序的内部结构，从检查程序的逻辑着手，得出测试数据。贯穿程序的独立路径数是天文数字。</p><p>白盒测试是一种典型的测试方法<br />• 它是一种按照程序内部逻辑结构和编码结构设计测试数据并完成测试的一种测试方法<br />• 测试覆盖全部代码、分支、路径和条件<br />• 它利用查看代码功能和实现方式得到的信息来确定哪些需要测试、哪些不需要、如何展开测试<br />• 又称为结构测试或逻辑驱动测试</p><p>白盒测试特点主要有<br />•1. 可以构成测试数据使特定程序部分得到测试<br />•2. 有一定的充分性度量手段<br />•3. 可获得较多工具支持<br />•4. 通常只用于单元测试和集成测试(主要是单元测试)</p><p>白盒测试的基本测试内容<br />基本测试内容<br />•对程序模块的所有独立执行路径至少测试一次<br />•对所有的逻辑判定，取“真”与取“假”的两种情况都至少测试一次<br />•在循环的边界和运行的边界限内执行循环体<br />•测试内部数据结构的有效性<br />白盒测试所采用的测试方法是<br />•逻辑覆盖（包括语句覆盖、分支覆盖、条件覆盖、分支-条件覆盖、条件组合覆盖以及路径覆盖）</p><p>六种逻辑覆盖标准：语句覆盖、判定覆盖、条件覆盖、判定/条件覆盖、条件组合覆盖和路径覆盖发现错误的能力呈由弱至强的变化。</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.webp" alt="白盒测试工具Testbed 白盒测试 工具_结构" /></p><h6 id="语句覆盖要求独立执行路径至少一次-每条语句至少执行一次"><a class="markdownIt-Anchor" href="#语句覆盖要求独立执行路径至少一次-每条语句至少执行一次"></a> 语句覆盖要求：独立执行路径至少一次。每条语句至少执行一次。</h6><p>·它对程序的逻辑覆盖很少，是很弱的逻辑覆盖标准<br />·为了更充分地测试程序，需要采用后边讲述的其他逻辑覆盖方法<br />·为了暴露程序中的错误，语句覆盖是最起码的测试要求，要求设计足够多的测试用例，使得每一条语句至少被执行一次</p><p>·语句覆盖的优点<br />• 检查所有语句<br />• 结构简单的代码的测试效果较好<br />• 容易实现自动测试<br />• 代码覆盖率高<br />• 如果是程序块覆盖，则不用考虑程序块中的源代码<br />语句覆盖不能检查出的错误有<br />• 条件语句错误、逻辑运算错误、循环语句错误</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.1.webp" alt="白盒测试工具Testbed 白盒测试 工具_软件_02" /></p><h6 id="判定覆盖要求逻辑判断至少一次-每个判定的每个分支至少执行一次"><a class="markdownIt-Anchor" href="#判定覆盖要求逻辑判断至少一次-每个判定的每个分支至少执行一次"></a> 判定覆盖要求：逻辑判断至少一次。每个判定的每个分支至少执行一次。</h6><p>要求设计做够多的测试用例，使得程序中的每一个分支至少通过一次<br />• 即每一条分支语句的“真”值和“假”值都至少执行一次<br />• while语句、switch语句、异常处理、跳转语句和三目运算符(a？b：c)等等同样可以使用分支覆盖来测试<br />• 对多分支语句，如C语言中的case语句，分支覆盖必须对每一个分支的每一种可能的结果都进行测试<br />判定覆盖要比语句覆盖查错能力强一些：<br />• 执行了分支覆盖，实际也就执行了语句覆盖<br />判定覆盖与语句覆盖存在同样的缺点<br />• 不能查出条件语句错误，不能查出逻辑运算错误，不能查出循环次数错误，不能查出循环条件错误</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.2.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_03" /></p><h6 id="条件覆盖要求每个判定的每个条件应取到各种可能的值"><a class="markdownIt-Anchor" href="#条件覆盖要求每个判定的每个条件应取到各种可能的值"></a> 条件覆盖要求：每个判定的每个条件应取到各种可能的值。</h6><p>不仅每一个语句至少执行一次，使得判定中的每个条件获得各种可能结果<br />判定覆盖只关心整个判定表达式的结果，条件覆盖关心的则是每个条件各种取值的结果<br />条件覆盖的利弊<br />•− 能够检查所有的条件错误<br />•− 不能实现对每个分支的检查<br />•− 用例数增加</p><h6 id="判定条件覆盖要求同时满足判定覆盖条件覆盖"><a class="markdownIt-Anchor" href="#判定条件覆盖要求同时满足判定覆盖条件覆盖"></a> 判定/条件覆盖要求：同时满足判定覆盖条件覆盖。</h6><p>设计足够多的测试用例，使得判定中每个条件的所有可能取值至少能够获取一次，同时每个判断的所有可能的判定结果至少执行一次<br />•− 用于解决条件覆盖不一定包括判定覆盖，判定覆盖也不一定包括条件覆盖的问题<br />分支-条件覆盖的利弊：<br />•− 既考虑了每一个条件，又考虑了每一个分支，发现错误能力强于分支覆盖和条件覆盖<br />•− 并不能全面覆盖所有路径<br />•− 用例数量的增加</p><h6 id="条件组合覆盖要求每个判定中各条件的每一种组合至少出现一次"><a class="markdownIt-Anchor" href="#条件组合覆盖要求每个判定中各条件的每一种组合至少出现一次"></a> 条件组合覆盖要求：每个判定中各条件的每一种组合至少出现一次。</h6><p>要求设计足够多的测试用例，使得每个判定中条件的各种组合至少出现一次<br />满足条件组合覆盖标准的测试用例，也一定满足判定覆盖、条件覆盖和判定/条件覆盖标准<br />• 条件组合覆盖是前面几种覆盖标准中最强的<br />• 但是，满足条件组合覆盖要求的测试用例并不一定能使程序中的每条路径都执行到</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.3.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_04" /></p><p>路径覆盖要求：使程序中每一条可能的路径至少执行一次。 所有出入口测试。(全覆盖)</p><p>覆盖率：逻辑与功能覆盖 = 至少一次items/总item数。</p><p>程序流程图的各个符号：</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.4.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试工具Testbed_05" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.5.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_06" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.6.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_07" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.7.webp" alt="白盒测试工具Testbed 白盒测试 工具_软件_08" /></p><h6 id="程序图"><a class="markdownIt-Anchor" href="#程序图"></a> 程序图</h6><p>定义：给定一个采用命令式程序设计语言编写的程序，其程序图是一种有向图，其中：<br />•传统定义：<br />• 节点是程序语句，边表示控制流（从节点i到节点j有一条边，当且仅当对应节点j的语句可以立即在节点i对应的语句之后执行）。<br />•改进后的定义：<br />• 节点要么是整个语句，要么是语句的一部分，边表示控制流（从节点i到节点j有一条边,当且仅当对应节点j的语句或语句的一部分，可以立即在节点i对应的语句或语句的一部分之后执行）</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.8.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试工具Testbed_09" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.9.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_10" /></p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.10.webp" alt="白盒测试工具Testbed 白盒测试 工具_结构_11" /></p><p>环形复杂度(McCabe度量法)是一种为程序逻辑复杂性提供定量测度的 <a href="http://baike.baidu.com/view/1659931.htm">软件度量</a>，将该度量用于计算程序的基本的独立路径数目，为确保所有语句至少执行一次的测度数量的上界。</p><p>范例：</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.11.webp" alt="白盒测试工具Testbed 白盒测试 工具_白盒测试_12" /></p><p>复杂度:6</p><p><img src="x-oss-process=imagewatermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=format,webp.12.webp" alt="白盒测试工具Testbed 白盒测试 工具_设计_13" /></p><p>复杂度:3</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用testbed进行代码静态分析的步骤详解</title>
+      <link href="/2025/04/17/%E4%BD%BF%E7%94%A8testbed%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/"/>
+      <url>/2025/04/17/%E4%BD%BF%E7%94%A8testbed%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<p>使用testbed进行代码的静态分析主要有四个步骤：</p><p>选择分析对象</p><p>分析前的设置</p><p>分析项的选择与分析过程</p><p>查看分析结果</p><p>1、选择分析对象</p><p>可通过两种方式选择被分析对象：单个文件分析、以集（set）的形式分析，其中以set形式可一次分析多个文件</p><p>进行单个文件分析时，点击testbed菜单file-select file打开要分析的文件点击select即可,可在工具快捷按钮栏下方看见所选择的文件</p><p><img src="707774df45c1cea8deee664b287d9a62.png" alt="" /></p><p><img src="c98ffbe7f4db64f4965ac991be1b9ffc.png" alt="" /></p><p>以set形式进行分析时，点击testbed菜单Set-select/create/delete sets创建一个set</p><p><img src="d0493ac11c36763687a727d7a4ed6ce8.png" alt="" /></p><p>输入set名点击create后会弹出set的属性设置对话框，有两种属性：group和system</p><p><img src="93cbb95d3898f7b8d780b34a7bc32f20.png" alt="" /></p><p><img src="3b4debd0c205525e25d1ca3a77cd57c0.png" alt="" /></p><p>创建好set后可看见set名及其属性</p><p><img src="28efbbc37b393fd5b0b7c72f1478cb25.png" alt="" /></p><p>接下来向集合中添加文件，点击testbed菜单set-list/add/remove files in sets，在弹出的对话框中点击add添加多个文件到set中</p><p><img src="9b570d2c5cd9b18598cea8d208fc0c92.png" alt="" /></p><p>2、分析前的设置</p><p><strong>基本静态设置</strong></p><p>点击testbed菜单configure-static option，弹出static analysis option对话框</p><p><img src="59016575700f89275ca6845a9e70548e.png" alt="" /></p><p>选项卡include files中的内容是对头文件的设置，其中：</p><p>analysis include files区域设定是否分析头文件，一般选择第二种analysis the first instance of each found include</p><p>interactive include file analysis 区域设定代码中出现头文件包含语句时，testbed与用户的交互方式，一般选择第三种display dialog only when include file not found</p><p>include search directories区域设置头文件的查找目录和系统头文件的处理方式，其中search options设置头文件的查找目录，分析前须添加头文件目录，system include search设置系统头文件的展开方式，建议设为don’t expand</p><p><img src="fc9f2fdea695ed6f5fc8b11e9f22caa1.png" alt="" /></p><p>选项卡macros设定用户代码编译宏的处理方式</p><p><img src="e55dedfc3fe5a97d12bf336a3694d4fe.png" alt="" /></p><p>sysppvar区域设置编译宏的定义，对于在编译命令中定义的宏，而在代码中使用此宏影响代码的编译的情况，需要用户把该宏添加到testbed的设置文件中，可点击edit default打开文件sysppvar.dat，在此文件中添加相应的宏定义</p><p>interactive conditional preprocessing options区域设置针对代码中未识别的宏的处理及交互方式，选中interactive preprocessing时，出现未识别的宏时会弹出对话框让用户定义此宏，AutoMacro设定宏的自动定义处理方式：</p><p>Enable-promt for macro vaule弹窗提示并让用户指定宏值</p><p>Enable-no promt , use default 不弹窗提示，使用默认值</p><p>Disable-stop static analysis 弹窗，并停止分析</p><p><strong>代码评审报告设定</strong></p><p>点击testbed 菜单configure-quality report options，弹出对话框quality report，在选项卡report based congiguration 中的programming standards model区域选择进行编码规则检查所使用的规则集，在additional detail  for each standards violation区域设定分析结果报告是否包含源代码行号和格式化后的代码行号</p><p><img src="538f44da9c16adead673c854bb39e2ef.png" alt="" /></p><p>在选项卡data files中的standards models editor区域点击launch editor可以打开编码规则图形化定制页面实现规则集的定制</p><p><strong>质量评审报告设定</strong></p><p>点击testbed菜单configure-metrics report options，弹出metrics report对话框，在metpen configuration区域可以设定质量评审报告中每个度量元的上下限阈值，定制质量模型，点击C:\LDRA_Toolsuite\metpen.dat后的edit，打开质量模型配置文件，修改此文件中度量元的上下限阈值即可修改质量模型</p><p><strong>数据对象分析报告设定</strong></p><p>点击configure-data object analysis report options，弹出data object analysis configuration 对话框，设定数据对象分析报告中显示的对象范围</p><p>3、分析项的选择与分析过程</p><p>点击菜单analysis-select analysis，在弹出的对话框中选择要执行的静态分析项，接着点击start analysis开始分析</p><p>4、查看分析结果</p><p><strong>单个文件结果查看</strong></p><p>点击菜单individual results 可看到下拉项source code 、text results、graphical results分别显示了分析结果，这三个下拉项分别展开可查看详细的分类结果</p><p><strong>set的结果查看</strong></p><p>点击菜单set results 可看到下拉项text results、graphical results分别显示了分析结果，这两个下拉项分别展开可查看详细的分类结果</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>软件开发的四大悖论</title>
+      <link href="/2025/04/17/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%9B%E5%A4%A7%E6%82%96%E8%AE%BA/"/>
+      <url>/2025/04/17/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%9B%E5%A4%A7%E6%82%96%E8%AE%BA/</url>
+      
+        <content type="html"><![CDATA[<p>Infoworld 特约撰稿人 Nick Hodges 发布了一篇名为 “Four paradoxes of software development” 的文章，阐述了他眼中的软件开发领域的四大悖论。</p><p>全文内容如下：</p><blockquote><h3 id="桥梁建设-vs-软件开发四个令人困惑的悖论"><a class="markdownIt-Anchor" href="#桥梁建设-vs-软件开发四个令人困惑的悖论"></a> <strong>桥梁建设 vs 软件开发：四个令人困惑的悖论</strong></h3><p>土木工程师可以理直气壮地说，世界上没有两座完全相同的桥梁。然而，桥梁共享许多已知特性，其建筑材料也有明确参数。桥梁建设涉及大量已知的已知项，未知的未知项远比人们想象的少得多。</p><p>我并非土木工程师，对设计和建造桥梁的杰出人士充满敬意。但我想通过这种对比说明：<strong>编写优秀、可运行的软件极其困难</strong>。软件开发团队承接的每个项目都是独一无二的。尽管项目之间存在相似性，但每个软件项目都有其独特的细微差别、需求，以及大量的未知未知项。</p><p>或者说，软件开发充满了难以处理的悖论。以下是四个典型案例：</p><h4 id="悖论一无人知晓工期但客户坚持要交付日期"><a class="markdownIt-Anchor" href="#悖论一无人知晓工期但客户坚持要交付日期"></a> <strong>悖论一：无人知晓工期，但客户坚持要交付日期</strong></h4><p>坦率地说，这可能是软件开发组织面临的最大挑战。我们根本无法确定任何项目需要多长时间。当然，我们可以估算，但结果几乎总是大错特错 —— 有时严重高估，但更多时候是严重低估。</p><p>对客户而言，这既神秘又痛苦。由于不理解悖论的第一部分，他们不明白为何无法确定新软件的交付时间。当软件未能如期交付时，挫败感自然产生。</p><p>我们尝试使用 story points、planning poker 和其他敏捷方法来预测进度，但始终无法摆脱霍夫施塔特定律（Hofstadter’s Law）的魔咒：即使考虑了霍夫施塔特定律，事情总会比你预期的更久。</p><h4 id="悖论二向延期项目加派人手只会让项目更晚"><a class="markdownIt-Anchor" href="#悖论二向延期项目加派人手只会让项目更晚"></a> <strong>悖论二：向延期项目加派人手，只会让项目更晚</strong></h4><p>这条被称为布鲁克斯定律（Brooks’s Law）的规则，对旁观者而言可能是最诡异的悖论。</p><p>通常，如果你发现无法按时完成牙膏管灌装任务，可以通过增加人手来赶上截止日期。如果你想在一年内建造双倍数量的房屋，通常只需双倍投入劳动力和材料即可实现（误差很小）。</p><p>然而，正如弗雷德・布鲁克斯（Fred Brooks）在其著作《人月神话》中所揭示的：“向延期的软件项目增加人力，只会让它更晚。” 这是一个悖论，却是软件开发领域最接近定律的真理。布鲁克斯指出，新成员需要时间理解复杂系统的上下文，并增加沟通成本，因此无法立即贡献生产力 —— 这反而会延长项目周期并推高成本。</p><h4 id="悖论三编码能力越强编码量反而越少"><a class="markdownIt-Anchor" href="#悖论三编码能力越强编码量反而越少"></a> <strong>悖论三：编码能力越强，编码量反而越少</strong></h4><p>成为一名经验丰富的软件开发者需要多年积累。学习正确的编码方式、设计方法，以及编写整洁可维护代码的规则与技巧，绝非一日之功。</p><p>但讽刺的是，随着经验增长，你往往会被推向领导岗位，实际编码量反而减少。你不再写代码，而是参加设计会议、审查他人代码、管理团队。有时，你甚至因晋升而彻底告别编码。</p><p>这并不意味着资深开发者的贡献减少。通过规划项目、指导新人、维护编码标准，并确保团队产出优质代码，资深开发者对团队和公司的成功至关重要。</p><p>但你的确会写更少的代码。</p><h4 id="悖论四开发工具日益强大但开发效率并未提升"><a class="markdownIt-Anchor" href="#悖论四开发工具日益强大但开发效率并未提升"></a> <strong>悖论四：开发工具日益强大，但开发效率并未提升</strong></h4><p>对比当今使用 React、Astro、Next.js 等强大工具构建的 Web 应用，与 30 年前通过通用网关接口（CGI）处理数据和 HTML 的网站，你会发现我们已经比早期进步了数光年。</p><p>然而，尽管工具日益先进、处理器速度飙升，软件开发效率似乎从未真正提高。工作量不仅总是超出时间预算，甚至超出了每个 CPU 周期的负荷。</p><p>我们的网站更美观了，但开发效率真的提升了吗？网站运行更快、数据处理更高效了吗？诚然，新框架和库抽象了许多复杂性（还有人想写 jQuery 代码吗？），但它们也带来了构建流程冗长、配置复杂、依赖膨胀等新问题。</p><h3 id="与桥梁的终极差异软件永无-完工-之日"><a class="markdownIt-Anchor" href="#与桥梁的终极差异软件永无-完工-之日"></a> <strong>与桥梁的终极差异：软件永无 “完工” 之日</strong></h3><p>这些悖论的存在并不意味着绝望。我指出它们，是为了让我们意识到其存在，学会接受并应对，从而避开潜在的陷阱。我们无法消除软件开发的陌生感和混乱，但可以预见并驾驭它们。我们的使命是：<strong>在悖论中交付</strong>。</p><p>最后一个悖论或许是：<strong>软件开发永远没有真正完成之日</strong>。总有新功能可以添加。而桥梁工程至少有一个明确的终点 —— 当桥梁建成并按设计运行时，工作便宣告结束。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件工程 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PyPy、Numba 与 Cython，哪个是最佳 Python运算解决方案？</title>
       <link href="/2025/04/16/PyPy%E3%80%81Numba%20%E4%B8%8E%20Cython%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%98%AF%E6%9C%80%E4%BD%B3%20Python%E8%BF%90%E7%AE%97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F/"/>
       <url>/2025/04/16/PyPy%E3%80%81Numba%20%E4%B8%8E%20Cython%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%98%AF%E6%9C%80%E4%BD%B3%20Python%E8%BF%90%E7%AE%97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F/</url>
@@ -1357,9 +1433,9 @@
       
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> NVIDIA </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-04-24T09:33:28.300Z</updated>
+  <updated>2025-04-25T02:08:21.460Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.formeasy.cc/2025/04/24/VS/%E5%9C%A8Win7%E4%B8%8A%E5%AE%89%E8%A3%85VS2017%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://www.formeasy.cc/2025/04/24/VS/%E5%9C%A8Win7%E4%B8%8A%E5%AE%89%E8%A3%85VS2017%E7%9A%84%E9%97%AE%E9%A2%98/</id>
     <published>2025-04-24T09:32:43.000Z</published>
-    <updated>2025-04-24T09:33:28.300Z</updated>
+    <updated>2025-04-25T02:08:21.460Z</updated>
     
     <content type="html"><![CDATA[<h3 id="在win7上安装vs2017的问题"><a class="markdownIt-Anchor" href="#在win7上安装vs2017的问题"></a> 在Win7上安装VS2017的问题</h3><p>win7安装2017需要授信任证书</p><p>certificates，找到这个目录，里面应该有三个文件需要双击操作一下，具体如下：</p><p>需要安装certifiates目录下的3个证书<br />选择【将所有证书放入下列存储】<br />证书存储：【受信任的根证书颁发机构】</p>]]></content>
     

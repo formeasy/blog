@@ -751,6 +751,10 @@
       
         <tags>
             
+            <tag> C </tag>
+            
+            <tag> Qt </tag>
+            
             <tag> vosk </tag>
             
         </tags>
@@ -776,6 +780,8 @@
       
         <tags>
             
+            <tag> C </tag>
+            
             <tag> vosk </tag>
             
         </tags>
@@ -800,6 +806,10 @@
       
       
         <tags>
+            
+            <tag> C </tag>
+            
+            <tag> Qt </tag>
             
             <tag> vosk </tag>
             

@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-05-07T03:04:53.583Z</updated>
+  <updated>2025-05-07T03:14:00.842Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>远程过程调用（RPC）入门</title>
+    <link href="http://www.formeasy.cc/2025/05/07/RPC/%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%88RPC%EF%BC%89%E5%85%A5%E9%97%A8/"/>
+    <id>http://www.formeasy.cc/2025/05/07/RPC/%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%88RPC%EF%BC%89%E5%85%A5%E9%97%A8/</id>
+    <published>2025-05-07T03:09:35.000Z</published>
+    <updated>2025-05-07T03:14:00.842Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文简要介绍RPC的相关知识。</p><h2 id="1-概述"><a class="markdownIt-Anchor" href="#1-概述"></a> 1 概述</h2><p>RPC(Remote Procedure Call)，即远程过程调用，是一种通过网络从远程计算机程序上请求服务、而不需要了解底层网络技术的协议。RPC协议假定某些传输协议（如TCP或UDP）的存在，为通信程序之间携带信息数据。在OSI网络通信模型中，RPC跨越了传输层和应用层。RPC使得开发应用程序（包括网络分布式多程序在内）更加容易。</p><p>例如，有两台服务器A和B，一个应用部署在服务器A上，想要调用服务器B上的应用提供的函数/方法。由于服务器A和服务器B的应用程序不在一个内存空间，不能直接调用，就需要通过网络来传达调用的语义和调用的数据，这就是RPC协议。</p><h2 id="2-背景"><a class="markdownIt-Anchor" href="#2-背景"></a> 2 背景</h2><p>在单机时代，一台电脑上运行多个进程，为了实现进程之间的通信，就出现了IPC（Inter-process communication，单机中运行的进程之间的相互通信）。</p><p>而到了网络时代，大家的电脑都互相连起来了，以前程序只能调用自己电脑上的进程，能不能调用其他机器上的进程呢？为了实现这个目的，把IPC扩展到网络上，就是RPC（远程过程调用）了。</p><h2 id="3-原理"><a class="markdownIt-Anchor" href="#3-原理"></a> 3 原理</h2><p>本节通过本地过程调用和远程过程调用来介绍RPC的原理。</p><h3 id="31-本地过程调用"><a class="markdownIt-Anchor" href="#31-本地过程调用"></a> 3.1 本地过程调用</h3><p>在研究RPC前，我们先看看本地调用是怎么调的。</p><p>假设我们要调用函数Multiply来计算“lvalue * rvalue”的结果，代码如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Multiply</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">   <span class="type">int</span> y = l * r;</span><br><span class="line">   <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> lvalue = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> rvalue = <span class="number">20</span>;</span><br><span class="line"><span class="type">int</span> l_times_r = <span class="built_in">Multiply</span>(lvalue, rvalue);</span><br></pre></td></tr></table></figure><p>在程序执行到第8行时，实际上执行了以下操作：</p><ol><li>将lvalue和rvalue的值压栈；</li><li>进入Multiply函数，取出栈中的值10和20，将其赋予l和r；</li><li>执行第2行代码，计算“l * r”，并将结果存在y；</li><li>将y的值压栈，然后从Multiply返回；</li><li>回到第8行，从栈中取出返回值200，并赋值给l_times_r。</li></ol><p>上述5步就是执行本地调用的过程。</p><h3 id="32-远程过程调用rpc"><a class="markdownIt-Anchor" href="#32-远程过程调用rpc"></a> 3.2 远程过程调用（RPC）</h3><p>实际上RPC就是要像调用本地的函数一样去调远程函数。</p><p>在进行远程过程调用时，我们需要执行的函数体是在远程的机器上的，也就是说，3.1节中提到的Multiply函数是在另一个机器上的进程中执行的。这就带来了下面几个问题。</p><p>1. 我们怎么告诉远程机器我们要调用Multiply，而不是Add或者其他函数呢？</p><p><strong>解决方法：Call ID映射。</strong></p><p>在本地调用中，函数体是直接通过函数指针来指定的。我们调用Multiply，编译器就自动帮我们调用它对应的函数指针。但是在远程调用中，调用函数指针的方法是行不通的，因为两个机器的两个进程的地址空间是完全不一样的。所以，在RPC中，**所有的函数都必须有自己的一个ID，**这个ID在所有进程中都是唯一确定的。客户端在做远程过程调用时，必须附上这个ID。同时，我们还需要在客户端和服务端分别维护一个“函数与Call ID”的对应表，客户端和服务端上的对应表不一定需要完全相同，但相同的函数对应的Call ID必须相同。当客户端需要进行远程过程调用时，它就查一下这个表，找出想要调用的函数相应的Call ID，然后把它（Call ID）传给服务端，服务端也通过查表，来确定客户端需要调用的函数，然后执行相应函数的代码。</p><p>2. 客户端怎么把参数值传给远程的函数呢？</p><p><strong>解决方法：序列化和反序列化。</strong></p><p>在本地调用中，我们只需要把参数压到栈里，然后让函数自己去栈里读就行。但是在远程过程调用时，客户端跟服务端是不同的（机器的）进程，不能通过内存来传递参数，甚至有时候客户端和服务端使用的都不是同一种语言（比如服务端用C++，客户端用Java或者Python），这时候就需要客户端把参数先转成一个<strong>字节流</strong>，传给服务端后，服务端再把这个<strong>字节流</strong>转成自己能读取的格式，这个过程叫<strong>序列化和反序列化</strong>。同理，从服务端返回的值也需要序列化反序列化的过程。</p><p>3. 网络传输问题</p><p>远程过程调用往往用在网络上，客户端和服务端是通过网络连接的。所有的数据都需要通过网络传输，因此就需要有一个网络传输层。网络传输层需要把“Call ID”和“序列化后的参数字节流”传给服务端，然后再把“序列化后的调用结果”传回客户端，只要能完成这两个功能的，都可以作为传输层使用。因此，RPC所使用的协议其实是不限的，只要能完成传输就行。尽管大部分RPC框架都使用TCP协议，但其实UDP也可以，而gRPC干脆就用了HTTP2。</p><p>综上所述，要实现一个RPC框架，其实只需要把以上三点实现了就基本完成了。Call ID映射可以直接使用函数字符串，也可以使用整数ID，映射表一般就是一个哈希表；序列化反序列化可以自己写，也可以使用Protobuf或者FlatBuffers之类的；网络传输库可以自己写Socket，或者用Asio，ZeroMQ，Netty之类。</p><h2 id="4-简要流程"><a class="markdownIt-Anchor" href="#4-简要流程"></a> 4 简要流程</h2><p>一次远程过程调用的简要流程如下（对照流程图理解下列的具体流程）：</p><p><img src="d5d8c2b5dd7fd46763983af069a02f55.jpeg" alt="" /></p><p>1. 首先，要解决通信的问题。主要是通过在客户端和服务器之间建立连接（如TCP连接），远程过程调用的所有数据都在这个连接中传输。此连接可以是按需连接，调用结束后就断掉，即短连接；也可以是长连接，多个远程过程共享同一个连接。</p><p>2. 其次，要解决寻址问题。也就是说，服务器上的应用怎么告诉底层的RPC框架，如何连接到B服务器（如主机或IP地址）以及特定的端口、方法名称（IP+端口+方法名），这样才能完成调用。</p><p>3. 然后，client上的应用发起远程过程调用时，方法的参数需要通过底层的网络协议（如TCP）传递到server上。由于网络协议是基于二进制的，内存中的参数也要序列化成二进制的形式，这就是序列化过程（Serizlize），通过连接寻址，将序列化的二进制发送给server。</p><p>4. 再然后，server收到请求后，需要对参数进行反序列化，恢复为内存中的表达形式，然后找到对应的方法（根据CALL ID与函数的对应表），进行本地调用，然后得到函数的返回值。</p><p>5. 最后，server需要将函数返回值发送给client上的应用。该返回值也需要经过序列化后发送，client接到server发送的消息后，再对该消息进行反序列化，恢复为内存中的表达形式，交给client上的应用。</p>]]></content>
+    
+    
+    <summary type="html">远程过程调用（RPC）入门</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="RPC" scheme="http://www.formeasy.cc/tags/RPC/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows配置grpc</title>
@@ -417,27 +438,6 @@
     
     
     <summary type="html">UE C++实现第三人称角色基本功能</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE 文件目录结构</title>
-    <link href="http://www.formeasy.cc/2025/04/25/UE/UE%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"/>
-    <id>http://www.formeasy.cc/2025/04/25/UE/UE%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</id>
-    <published>2025-04-25T06:14:16.000Z</published>
-    <updated>2025-04-25T06:16:55.036Z</updated>
-    
-    <content type="html"><![CDATA[<p>在最高一级目录中，是你的引擎（Engine）目录以及你的所有游戏项目目录。Engine目录包含引擎自身及其随附工具。每个游戏目录都包含与该游戏有关的所有文件。与先前的引擎版本相比，UE4中的引擎和游戏在目录结构上有了更明显的区分。</p><h2 id="根目录"><a class="markdownIt-Anchor" href="#根目录"></a> 根目录</h2><ul><li><p><strong>Engine</strong> - 包含构成引擎的所有源代码、内容等。</p></li><li><p><strong>Templates</strong> -</p><p>[创建新项目](Basics/Projects/Browser)</p><p>时可用的项目模板集合。</p></li><li><p><strong>GenerateProjectFiles.bat</strong> - 用于创建在Visual Studio中使用引擎和游戏所需的UE4解决方案和项目文件。请参阅</p><p>[](ProductionPipelines/BuildTools/UnrealBuildTool/ProjectFilesForIDEs)</p><p>以了解详细信息。</p></li><li><p><strong>UE4Games.uprojectdirs</strong> - 辅助文件，帮助引擎找到子目录中的项目。</p></li></ul><h2 id="通用目录"><a class="markdownIt-Anchor" href="#通用目录"></a> 通用目录</h2><p>某些子目录在引擎目录和游戏项目目录中都能找到：</p><ul><li><p><strong>Binaries</strong> - 包含可执行文件或编译期间创建的其他文件。</p></li><li><p><strong>Build</strong> - 包含编译引擎或游戏所需的文件，包括为某些特定平台创建项目版本时所需的文件。</p></li><li><p><strong>Config</strong> - 配置文件，包含的参数可用于控制引擎的行为。你在游戏项目Config文件中设置的值会覆盖 <code>Engine\Config</code> 目录中设置的值。</p></li><li><p><strong>Content</strong> - 保存引擎或游戏中的内容，例如资产包、贴图。</p></li><li><p><strong>DerivedDataCache</strong> - 包含派生数据文件。这类数据专为被引用内容生成，并且在加载时生成。假如被引用内容未生成过缓存文件，则加载时间会显著增加。</p></li><li><p><strong>Intermediate</strong> - 包含编译引擎或游戏时生成的临时文件。在游戏目录中，着色器也保存在Intermediate目录中。</p></li><li><p><strong>Saved</strong> - 包含自动保存文件、配置（<code>.ini</code>）文件和日志文件。此外，<strong>Engine &gt; Saved</strong> 目录还包含崩溃日志、硬件信息和Swarm选项与数据。</p></li><li><p><strong>Source</strong> - 包含引擎或游戏的所有源文件，包括引擎源代码、工具和游戏类等。</p><ul><li><p><strong>Engine</strong> - Engine目录中的源文件组织结构如下：</p><ul><li><p><strong>Developer</strong> - 编辑器和引擎共同使用的文件。</p></li><li><p><strong>Editor</strong> - 仅供编辑器使用的文件。</p></li><li><p><strong>Programs</strong> - 引擎或编辑器使用的外部工具。</p></li><li><p><strong>Runtime</strong> - 仅供引擎使用的文件。</p></li></ul></li><li><p><strong>Game</strong> - 游戏项目目录中的源文件按模块分组，一个模块一个目录。每个模块包含以下内容：</p><ul><li><p><strong>Classes</strong> - 包含所有的头文件（<code>.h</code>）。</p></li><li><p><strong>Private</strong> - 包含所有 <code>.cpp</code> 文件，包括游戏逻辑类以及各种模块的实现文件。</p></li><li><p><strong>Public</strong> - 包含模块的头文件。</p></li></ul></li></ul></li></ul><h2 id="引擎专有目录"><a class="markdownIt-Anchor" href="#引擎专有目录"></a> 引擎专有目录</h2><p>部分子目录只存在于Engine目录中。</p><ul><li><p><strong>Documentation</strong> - 包含引擎文档，包括源文件和发布的文件。</p><ul><li><p><strong>HTML</strong> - 发布的HTML文档文件。</p></li><li><p><strong>Source</strong> - 源markdown文档文件。</p></li></ul></li><li><p><strong>Extras</strong> - 其他辅助和工具文件。</p></li><li><p><strong>Plugins</strong> - 包含引擎中使用的插件。</p></li><li><p><strong>Programs</strong> - 包含UE4根目录中各个项目及其他虚幻程序（如UnrealFrontend和UnrealHeaderTool）的配置文件和日志文件。</p></li><li><p><strong>Shaders</strong> - 保存引擎的着色器源文件（<code>.usf</code>）。</p></li></ul><h2 id="游戏项目目录"><a class="markdownIt-Anchor" href="#游戏项目目录"></a> 游戏项目目录</h2><p></p><table><thead><tr><th>目录</th><th>说明</th></tr></thead><tbody><tr><td><strong>Binaries</strong></td><td>包含可执行文件或编译期间创建的其他文件。</td></tr><tr><td><strong>Config</strong></td><td>游戏的默认项目设置。</td></tr><tr><td><strong>Content</strong></td><td>包含引擎或游戏的内容，包括资产包和贴图。</td></tr><tr><td><strong>External dependencies</strong></td><td>显示公有的引擎头文件（仅在Visual Studio中可见）。</td></tr><tr><td><strong>Intermediate</strong></td><td>包含UnrealBuildTool生成的文件，如Visual Studio项目文件。这些文件可以删除并重新构建。</td></tr><tr><td><strong>Saved</strong></td><td>包含引擎生成的文件，如配置文件和日志。这些文件可以删除并重新构建。</td></tr><tr><td><strong>Source</strong></td><td>包含游戏模块对象类文件。</td></tr></tbody></table><h2 id="解决方案目录"><a class="markdownIt-Anchor" href="#解决方案目录"></a> 解决方案目录</h2><table><thead><tr><th>目录</th><th>说明</th></tr></thead><tbody><tr><td><strong>Classes</strong></td><td>包含游戏对象的类定义（<code>.h</code> 文件）。</td></tr><tr><td><strong>Config</strong></td><td>游戏的默认项目设置。</td></tr><tr><td><strong>External dependencies</strong></td><td>显示公有引擎头文件（仅在Visual Studio中可见）。</td></tr><tr><td><strong>Private</strong></td><td>包含私有游戏对象类的实现文件（<code>.cpp</code> 文件）。</td></tr><tr><td><strong>Public</strong></td><td>包含公有游戏对象类的实现文件（<code>.cpp</code> 文件）。</td></tr></tbody></table>]]></content>
-    
-    
-    <summary type="html">UE 文件目录结构</summary>
     
     
     

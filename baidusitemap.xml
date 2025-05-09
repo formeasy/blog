@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.formeasy.cc/2025/03/18/Docker/Windows%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%EF%BC%88%E4%BB%A5Win10%E4%B8%BA%E4%BE%8B%EF%BC%89/</loc>
+    <lastmod>2025-05-09</lastmod>
+  </url>
+  <url>
+    <loc>http://www.formeasy.cc/2025/04/30/RPC/%E5%9F%BA%E4%BA%8EVS2022%E5%9C%A8Windows%E4%B8%8A%E9%A6%96%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%BC%80%E5%8F%91C++%20gRPC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</loc>
+    <lastmod>2025-05-09</lastmod>
+  </url>
+  <url>
     <loc>http://www.formeasy.cc/2025/05/08/RPC/windows+vs2017%20C++%E7%BC%96%E8%AF%91gRPC/</loc>
     <lastmod>2025-05-08</lastmod>
   </url>
@@ -27,10 +35,6 @@
   <url>
     <loc>http://www.formeasy.cc/2025/04/30/RPC/GRPC%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2025-05-07</lastmod>
-  </url>
-  <url>
-    <loc>http://www.formeasy.cc/2025/04/30/VS/%E5%9F%BA%E4%BA%8EVS2022%E5%9C%A8Windows%E4%B8%8A%E9%A6%96%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%BC%80%E5%8F%91C++%20gRPC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</loc>
-    <lastmod>2025-05-06</lastmod>
   </url>
   <url>
     <loc>http://www.formeasy.cc/2025/04/23/vosk/Vosk%20%E8%BF%9B%E8%A1%8C%E4%B8%AD%E6%96%87%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%AE%9E%E4%BE%8B_vosk/</loc>
@@ -431,10 +435,6 @@
   <url>
     <loc>http://www.formeasy.cc/2025/03/25/ollama/ollama%E6%A8%A1%E5%9E%8B%E7%A6%BB%E7%BA%BF%E8%BF%81%E7%A7%BB%E5%A4%8D%E5%88%B6/</loc>
     <lastmod>2025-03-25</lastmod>
-  </url>
-  <url>
-    <loc>http://www.formeasy.cc/2025/03/18/Docker/Windows%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%EF%BC%88%E4%BB%A5Win10%E4%B8%BA%E4%BE%8B%EF%BC%89/</loc>
-    <lastmod>2025-03-24</lastmod>
   </url>
   <url>
     <loc>http://www.formeasy.cc/2025/03/19/UE/UE4&5%20C++%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%90%8E%E9%87%8D%E5%90%AF%E9%A1%B9%E7%9B%AEC++%E7%B1%BB%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%B9%B6%E4%B8%94%E5%85%B6%E8%93%9D%E5%9B%BE%E5%AD%90%E7%B1%BB%E4%B8%A2%E5%A4%B1%E7%88%B6%E7%B1%BB%E7%AD%89%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>

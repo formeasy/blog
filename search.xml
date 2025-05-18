@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>UE5入门教程：蓝图变量_ue5全局变量</title>
+      <link href="/2025/05/18/UE/UE5%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F_ue5%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/"/>
+      <url>/2025/05/18/UE/UE5%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F_ue5%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一-变量介绍"><a class="markdownIt-Anchor" href="#一-变量介绍"></a> 一、变量介绍</h3><ul><li><strong>定义</strong>：变量是保存一个值、或引用一个对象或Actor的属性。这些属性可被蓝图内部访问，也可被设置为外部访问（在关卡中的蓝图实例内，以便用户修改其值）。</li><li><strong>显示形式</strong>：变量以圆形框的形式显示，在蓝图内Variables下拉列表中，会显示所有已存在的变量，包括组件实例变量及自定义变量。</li></ul><h3 id="二-变量类型"><a class="markdownIt-Anchor" href="#二-变量类型"></a> 二、变量类型</h3><p>蓝图变量有多种类型，用于保存不同类型的数据。以下是一些常见的变量类型：</p><ul><li><strong>布尔值（Boolean）</strong>：只能保存真或假。</li><li><strong>整数（Integer）</strong>：可以存储整数值。</li><li><strong>浮点（Float）</strong>：可以存储带小数部分的数值。</li><li><strong>字符串（String）</strong>：可以存储一组字母数字字符。</li><li><strong>向量（Vector）</strong>：包含代表3D向量的X、Y和Z浮点值。</li><li><strong>旋转体（Rotator）</strong>：包含X（滚动）、Y（俯仰）和Z（偏航）浮点值，表示3D空间中的旋转。</li><li><strong>转变（Transform）</strong>：可以存储位置、旋转和缩放。</li></ul><h3 id="三-创建变量"><a class="markdownIt-Anchor" href="#三-创建变量"></a> 三、创建变量</h3><p>在UE5中，创建变量的方法有多种：</p><ul><li><strong>直接创建</strong>：在蓝图编辑器的Variables面板中，点击“+”按钮，然后输入变量名称和选择变量类型。</li><li><strong>提升为变量</strong>：在蓝图编辑器的图表中，选择一个节点（如常量节点或属性节点），然后右键选择“Promote to Variable”，将其提升为变量。</li></ul><h3 id="四-访问变量"><a class="markdownIt-Anchor" href="#四-访问变量"></a> 四、访问变量</h3><p>在蓝图编辑器中，可以通过Get和Set操作来访问和修改变量的值：</p><ul><li><strong>获取变量值（Get）</strong>：将变量从Variables面板中拖入图表中，会自动生成一个Get节点，用于获取变量的当前值。</li><li><strong>设置变量值（Set）</strong>：将变量从Variables面板中拖入图表中，并按住Alt键再拖一次，会自动生成一个Set节点，用于设置变量的新值。</li></ul><h3 id="五-变量细节设置"><a class="markdownIt-Anchor" href="#五-变量细节设置"></a> 五、变量细节设置</h3><p>在变量的细节面板中，可以设置变量的各种属性和访问权限：</p><ul><li><strong>默认值</strong>：设置变量的初始值。注意，在设置默认值之前，需要先编译蓝图。</li><li><strong>访问权限</strong>：可以设置变量为公开（Public）或私有（Private）。公开变量可以在蓝图外部访问和修改，而私有变量只能在蓝图内部访问。</li><li><strong>可编辑实例</strong>：如果勾选此选项，则可以在关卡编辑器中编辑放置在关卡中的此蓝图的每个副本的变量值。</li><li><strong>生成时公开</strong>：如果勾选此选项，则可以在生成蓝图时设置变量的值。</li></ul><h3 id="六-应用示例"><a class="markdownIt-Anchor" href="#六-应用示例"></a> 六、应用示例</h3><p>以下是一个简单的应用示例，演示如何在UE5中使用蓝图变量来控制一个物体的移动速度：</p><ol><li>在蓝图中创建两个浮点型变量，分别命名为“MoveSpeedX”和“MoveSpeedY”，用于控制物体在X轴和Y轴上的移动速度。</li><li>在事件图表中，创建一个“Event Tick”事件，该事件每帧都会执行。</li><li>在“Event Tick”事件中，使用“Set Actor Location”节点来设置物体的位置。将物体的当前位置加上“MoveSpeedX”和“MoveSpeedY”的值（乘以时间步长Delta Time），以实现平滑移动。</li><li>在关卡编辑器中，将物体放置在场景中，并选中该物体的蓝图实例。在细节面板中，找到“MoveSpeedX”和“MoveSpeedY”变量，并设置它们的值以控制物体的移动速度。</li></ol><p>通过以上步骤，就可以使用蓝图变量来控制物体在UE5场景中的移动速度了。这只是蓝图变量应用的一个简单示例，实际上蓝图变量可以在各种复杂的游戏逻辑和交互中发挥重要作用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>UE4_UE5 如何显示/调整游戏运行帧率</title>
+      <link href="/2025/05/18/UE/UE4_UE5%20%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E8%B0%83%E6%95%B4%E6%B8%B8%E6%88%8F%E8%BF%90%E8%A1%8C%E5%B8%A7%E7%8E%87_ue5%E6%98%BE%E7%A4%BA%E5%B8%A7%E7%8E%87/"/>
+      <url>/2025/05/18/UE/UE4_UE5%20%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E8%B0%83%E6%95%B4%E6%B8%B8%E6%88%8F%E8%BF%90%E8%A1%8C%E5%B8%A7%E7%8E%87_ue5%E6%98%BE%E7%A4%BA%E5%B8%A7%E7%8E%87/</url>
+      
+        <content type="html"><![CDATA[<p>在创作中，我们往往需要查看游戏运行的帧率，用于判断程序运行的流畅度。那么如何调取帧率呢，接下来我就简单介绍几种方法：</p><h3 id="1在控制台命令中输入stat-fps"><a class="markdownIt-Anchor" href="#1在控制台命令中输入stat-fps"></a> 1.在控制台命令中输入stat fps</h3><p><img src="258692133f98758b9704c9d676ef9ecf.png" alt="" /></p><p>可以看到，游戏帧率已经显示在屏幕右上角。</p><p><img src="5d2b227fc9d7c47e33d9b2260fd954f1.png" alt="" /></p><h3 id="2在控制台命令中输入tmaxfps-帧数以修改最大帧率"><a class="markdownIt-Anchor" href="#2在控制台命令中输入tmaxfps-帧数以修改最大帧率"></a> 2.在控制台命令中输入“t.maxfps 帧数”以修改最大帧率</h3><p><img src="6f1504ab1c722a16894c2810daf3cf88.png" alt="" /></p><h3 id="3通过get-world-delta-seconds来获取帧率并打印到屏幕上"><a class="markdownIt-Anchor" href="#3通过get-world-delta-seconds来获取帧率并打印到屏幕上"></a> 3.通过Get World Delta Seconds来获取帧率并打印到屏幕上</h3><p>Delta Seconds其实就是游戏中每帧刷新所用的时间，用1除以Delta Seconds,得到的就是每秒中刷新的帧数。<br />下图的节点逻辑中，我通过按下数字键3，来向屏幕打印计算所得的FPS。（Appen节点是字符串组合节点，类似C++中对字符串的“+”重载）<br /><img src="192d01f723ac535e337ae770b615892e.png" alt="" /></p><p>可以看到，当我按下数字键3，我的帧数被打印到屏幕上。</p><p><img src="20d1767d7313e42d85369f9c1ac700d2.png" alt="" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>windows+vs2017 C++编译gRPC</title>
       <link href="/2025/05/08/RPC/windows+vs2017%20C++%E7%BC%96%E8%AF%91gRPC/"/>
       <url>/2025/05/08/RPC/windows+vs2017%20C++%E7%BC%96%E8%AF%91gRPC/</url>
@@ -1715,9 +1765,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> Editor </tag>
+            
+            <tag> python </tag>
             
         </tags>
       

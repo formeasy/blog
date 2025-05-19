@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>UE中通过游戏实例(Game Instance) 实现UI与关卡蓝图变量交互的详细步骤</title>
+      <link href="/2025/05/19/UE/UE%E4%B8%AD%E9%80%9A%E8%BF%87%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B(Game%20Instance)%20%E5%AE%9E%E7%8E%B0UI%E4%B8%8E%E5%85%B3%E5%8D%A1%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F%E4%BA%A4%E4%BA%92%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/"/>
+      <url>/2025/05/19/UE/UE%E4%B8%AD%E9%80%9A%E8%BF%87%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B(Game%20Instance)%20%E5%AE%9E%E7%8E%B0UI%E4%B8%8E%E5%85%B3%E5%8D%A1%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F%E4%BA%A4%E4%BA%92%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</url>
+      
+        <content type="html"><![CDATA[<p>游戏实例（Game Instance）是UE5中跨关卡持久化的全局对象，适合存储需要在多个UI或关卡间共享的变量（如玩家分数、设置参数等）。通过将变量存储在游戏实例中，UI蓝图和关卡蓝图均可直接访问和修改。</p><h3 id="步骤1-在游戏实例中定义变量"><a class="markdownIt-Anchor" href="#步骤1-在游戏实例中定义变量"></a> 步骤1、在游戏实例中定义变量</h3><h4 id="1创建自定义游戏实例类若未创建"><a class="markdownIt-Anchor" href="#1创建自定义游戏实例类若未创建"></a> 1.创建自定义游戏实例类（若未创建）</h4><ul><li>在内容浏览器中右键 → Blueprint Class → 选择 Game Instance。</li><li>命名为BP_MyGameInstance（示例）。</li></ul><h4 id="2添加变量"><a class="markdownIt-Anchor" href="#2添加变量"></a> 2.添加变量</h4><ul><li>打开BP_MyGameInstance蓝图。</li><li>在我的蓝图(My Blueprint)面板中，点击变量(Variables) → 添加变量。</li><li>命名变量（如PlayerScore），设置类型（如Integer），并勾选可编辑实例(Editable Instance)（可选，便于调试）。</li></ul><h3 id="步骤2-在关卡蓝图中更新游戏实例变量"><a class="markdownIt-Anchor" href="#步骤2-在关卡蓝图中更新游戏实例变量"></a> 步骤2、在关卡蓝图中更新游戏实例变量</h3><h4 id="1获取游戏实例引用"><a class="markdownIt-Anchor" href="#1获取游戏实例引用"></a> 1.获取游戏实例引用</h4><ul><li>在关卡蓝图中，右键添加节点 → Get Game Instance。</li><li>将返回的Game Instance引用转换为自定义类BP_MyGameInstance（通过Cast To BP_MyGameInstance节点）。</li></ul><h4 id="2设置变量值"><a class="markdownIt-Anchor" href="#2设置变量值"></a> 2.设置变量值</h4><ul><li>从转换后的引用拖出，选择变量（如PlayerScore）并添加Set节点。</li><li>输入要设置的值（例如通过关卡逻辑触发）。</li></ul><h3 id="步骤3-在ui蓝图中读取游戏实例变量"><a class="markdownIt-Anchor" href="#步骤3-在ui蓝图中读取游戏实例变量"></a> 步骤3、在UI蓝图中读取游戏实例变量</h3><h4 id="1获取游戏实例引用-2"><a class="markdownIt-Anchor" href="#1获取游戏实例引用-2"></a> 1.获取游戏实例引用</h4><ul><li>在UI蓝图中，右键添加Get Game Instance节点。</li><li>将返回的Game Instance引用转换为BP_MyGameInstance。</li></ul><h4 id="2获取变量值"><a class="markdownIt-Anchor" href="#2获取变量值"></a> 2.获取变量值</h4><ul><li>从转换后的引用拖出，选择变量（如PlayerScore）并添加Get节点。</li><li>将获取的值连接到UI控件（如文本框）的显示节点。</li></ul><h3 id="步骤4-在ui蓝图中修改游戏实例变量"><a class="markdownIt-Anchor" href="#步骤4-在ui蓝图中修改游戏实例变量"></a> 步骤4、在UI蓝图中修改游戏实例变量</h3><h4 id="1通过ui事件触发修改"><a class="markdownIt-Anchor" href="#1通过ui事件触发修改"></a> 1.通过UI事件触发修改</h4><ul><li>例如，在按钮点击事件中，获取游戏实例引用并调用Set节点更新变量。</li></ul><h4 id="2实时更新ui"><a class="markdownIt-Anchor" href="#2实时更新ui"></a> 2.实时更新UI</h4><ul><li>在变量值改变后，重新调用Get节点并更新UI显示。</li></ul><h3 id="关键注意事项"><a class="markdownIt-Anchor" href="#关键注意事项"></a> 关键注意事项</h3><h4 id="1变量作用域"><a class="markdownIt-Anchor" href="#1变量作用域"></a> 1.变量作用域</h4><ul><li>游戏实例变量是全局的，适合存储跨关卡数据（如玩家状态、设置参数）。</li><li>局部变量应存储在关卡蓝图或Actor中。</li></ul><h4 id="2类型一致性"><a class="markdownIt-Anchor" href="#2类型一致性"></a> 2.类型一致性</h4><ul><li>确保UI和关卡蓝图中使用的变量类型一致（如Integer、Float等）。</li></ul><h4 id="3空引用检查"><a class="markdownIt-Anchor" href="#3空引用检查"></a> 3.空引用检查</h4><ul><li>在转换游戏实例引用时，使用Branch节点检查是否转换成功，避免空引用错误。</li></ul><h4 id="4性能优化"><a class="markdownIt-Anchor" href="#4性能优化"></a> 4.性能优化</h4><ul><li>避免频繁读取/写入游戏实例变量，必要时可使用事件分发器或绑定机制。</li></ul><p>通过以上步骤，你可以高效地利用游戏实例实现UI与关卡蓝图之间的变量共享，确保数据的一致性和可维护性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UE5入门教程：蓝图变量_ue5全局变量</title>
       <link href="/2025/05/18/UE/UE5%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F_ue5%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/"/>
       <url>/2025/05/18/UE/UE5%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E8%93%9D%E5%9B%BE%E5%8F%98%E9%87%8F_ue5%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/</url>

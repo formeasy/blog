@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-05-19T03:36:30.855Z</updated>
+  <updated>2025-05-22T07:30:18.431Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE设置分辨率以及全屏模式</title>
+    <link href="http://www.formeasy.cc/2025/05/22/UE/UE%E8%AE%BE%E7%BD%AE%E5%88%86%E8%BE%A8%E7%8E%87%E4%BB%A5%E5%8F%8A%E5%85%A8%E5%B1%8F%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.formeasy.cc/2025/05/22/UE/UE%E8%AE%BE%E7%BD%AE%E5%88%86%E8%BE%A8%E7%8E%87%E4%BB%A5%E5%8F%8A%E5%85%A8%E5%B1%8F%E6%A8%A1%E5%BC%8F/</id>
+    <published>2025-05-22T07:03:22.000Z</published>
+    <updated>2025-05-22T07:30:18.431Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="方法一-通过蓝图设置"><a class="markdownIt-Anchor" href="#方法一-通过蓝图设置"></a> 方法一、通过蓝图设置</h3><p><img src="8f554f4c8189214ef95f6ec47359a38a.png" alt="" /></p><h3 id="方法二-通过打包项目的配置文件进行修改"><a class="markdownIt-Anchor" href="#方法二-通过打包项目的配置文件进行修改"></a> 方法二、通过打包项目的配置文件进行修改</h3><p><img src="e5572d5a0e5bf9ade884aecaca7d0b24.png" alt="" /><img src="77e11fb0668f28d1db0c65edd1156193.png" alt="" /></p><p>注：图中的FullscreenMode  其中：0=窗口化，1=无边框窗口，2=独占全屏</p><h3 id="方法三-通过控制台命令修改"><a class="markdownIt-Anchor" href="#方法三-通过控制台命令修改"></a> 方法三、通过控制台命令修改</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.SetRes 1920x720w  ：&quot;x&quot;是英文字母x，w:窗口</span><br><span class="line">r.SetRes 1920x720f   ：&quot;x&quot;是英文字母x， f:全屏</span><br></pre></td></tr></table></figure><h3 id="方法四-通过打包后执行命令"><a class="markdownIt-Anchor" href="#方法四-通过打包后执行命令"></a> 方法四、通过打包后执行命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YourGame.exe -ResX=1920 -ResY=720 -fullscreen</span><br></pre></td></tr></table></figure><h3 id="关于屏幕左右或上下有多余黑边问题"><a class="markdownIt-Anchor" href="#关于屏幕左右或上下有多余黑边问题"></a> 关于屏幕左右或上下有多余黑边问题</h3><p>主要问题是当前摄像头约束了比例，需要将需要设置的“摄像头选项”去除“约束高宽比”，如果项目是第一人称视角的，再选中“重载高宽比轴约束”，并将高宽比轴约束选为“维持Y轴视野”。</p><p><img src="e5572d5a0e5bf9ade884aecaca7d0b25.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE设置分辨率以及全屏模式</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE中通过游戏实例(Game Instance) 实现UI与关卡蓝图变量交互的详细步骤</title>
@@ -417,27 +438,6 @@
     
     
     <summary type="html">UE/虚幻 蓄力攻击思路</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE/虚幻 组合键攻击思路</title>
-    <link href="http://www.formeasy.cc/2025/04/25/UE/UE%E8%99%9A%E5%B9%BB%20%E7%BB%84%E5%90%88%E9%94%AE%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF/"/>
-    <id>http://www.formeasy.cc/2025/04/25/UE/UE%E8%99%9A%E5%B9%BB%20%E7%BB%84%E5%90%88%E9%94%AE%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF/</id>
-    <published>2025-04-25T06:42:45.000Z</published>
-    <updated>2025-04-25T06:44:12.048Z</updated>
-    
-    <content type="html"><![CDATA[<p>通过第一次按键改变一个布尔值当松开或按下一段时间后重置该值，在短时间内值重置之前按下第二个按钮，达到组合键的效果</p><p>这是只有两个键的组合键，如果需要增加组合键的数量，只需要重复增加判断值，和1键按下的操作即可</p><p><img src="2238312-20221115152210510-1630880101.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE/虚幻 组合键攻击思路</summary>
     
     
     

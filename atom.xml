@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-05-22T07:30:18.431Z</updated>
+  <updated>2025-05-28T05:39:36.263Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>靠这九款国产AI大模型，就实现了6亿人的AI梦</title>
+    <link href="http://www.formeasy.cc/2025/05/28/LLM/%E9%9D%A0%E8%BF%99%E4%B9%9D%E6%AC%BE%E5%9B%BD%E4%BA%A7AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B0%B1%E5%AE%9E%E7%8E%B0%E4%BA%866%E4%BA%BF%E4%BA%BA%E7%9A%84AI%E6%A2%A6/"/>
+    <id>http://www.formeasy.cc/2025/05/28/LLM/%E9%9D%A0%E8%BF%99%E4%B9%9D%E6%AC%BE%E5%9B%BD%E4%BA%A7AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B0%B1%E5%AE%9E%E7%8E%B0%E4%BA%866%E4%BA%BF%E4%BA%BA%E7%9A%84AI%E6%A2%A6/</id>
+    <published>2025-05-28T05:30:14.000Z</published>
+    <updated>2025-05-28T05:39:36.263Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>2024年 10 月 13 日</strong>，工业和信息化部总工程师，赵立国发表讲话：“我国人工智能核心产业的规模在不断提升，<strong>企业数量超过了 4500 家</strong>，完成注册并提供服务的<strong>生成式人工智能服务大模型数量已经超过200个</strong>，<strong>注册用户数超过了 6 亿</strong>。”</p><p>这些大模型在各个领域中发挥着重要作用，推动了技术创新和产业变革。</p><p><img src="14b4cc0530003f26b009ab8bb22bd279.png" alt="" /></p><p>可以看出 2024 年，中国的人工智能技术发展速度真可谓是日新月异，国产AI大模型如雨后春笋般涌现，从 1 月份的 80 多个到 10 月份已经突破超过 200 个，<strong>不到十个月时间就激增了 100 多个大模型</strong>。</p><p>这些大模型中主要以通用大模型 Kimi、智谱清言、通义千问、文心一言、豆包、天工AI、讯飞星火、秘塔和腾讯元宝这九大模型格外引人注目。</p><p>在科技大国走向科技强国的号召下，AI 大模型的重要性尤其凸显，这九款国产大模型发展相当出色，它们铸就了中国人我们中国人的 AI 梦。</p><p>下面，让我们一起探索这些大模型的特点和面临的挑战，普及和了解它们在AI领域的地位和潜力。</p><h3 id="一-原理概述"><a class="markdownIt-Anchor" href="#一-原理概述"></a> 一、原理概述</h3><p>AI大模型都建立在深度学习技术之上，主要利用神经网络架构。它们通过分析海量数据来学习语言模式、知识表示和任务执行策略。</p><p>每个模型的独特之处体现在其网络结构、训练数据的选择和优化方法上，这些因素决定了它们在不同任务中的表现。</p><h3 id="二-九大智能模型详解"><a class="markdownIt-Anchor" href="#二-九大智能模型详解"></a> 二、九大智能模型详解</h3><h4 id="1-kimi模型"><a class="markdownIt-Anchor" href="#1-kimi模型"></a> 1. Kimi模型</h4><p>地址：<a href="https://kimi.moonshot.cn/">https://kimi.moonshot.cn/</a></p><p>Kimi在自然语言处理领域表现出色，擅长情感分析和文本分类任务。</p><p>它准确捕捉文本中的细微情感和主题，这得益于其模型中的特殊注意力机制。</p><p>Kimi在处理长文本时性能可能会下降，它更适合处理<strong>简短、精炼的信息</strong>。</p><p><img src="241508d8139b6bad5aeacb6a6958b765.png" alt="" /></p><h4 id="2-智谱清言"><a class="markdownIt-Anchor" href="#2-智谱清言"></a> 2. 智谱清言</h4><p>地址：<a href="https://chatglm.cn/main/alltoolsdetail?lang=zh">https://chatglm.cn/main/alltoolsdetail?lang=zh</a></p><p>智谱清言以强大的语言生成能力著称。</p><p>智谱清言采用多层次编码器-解码器框架，better理解和生成复杂的语言结构。</p><p>它生成流畅、自然的文本，在<strong>对话系统和内容创作方面</strong>表现优异。</p><p>在处理需要深入专业知识的问题时，智谱清言可能会遇到挑战。</p><p><img src="b1f18f338aeb203538e61f85c2a92099.png" alt="" /></p><h4 id="3-通义千问"><a class="markdownIt-Anchor" href="#3-通义千问"></a> 3. 通义千问</h4><p>地址：<a href="https://tongyi.aliyun.com/qianwen/">https://tongyi.aliyun.com/qianwen/</a></p><p>通义千问<strong>专注于问答系统</strong>，通过预训练和微调，在广泛的主题上提供准确答案。</p><p>它强大的知识检索能力使其能快速从海量数据中找到相关信息。</p><p>涉及复杂推理或解释抽象概念时，通义千问的表现可能不尽如人意。</p><p><img src="e7d608503d0fdf22676d812f60c8d187.png" alt="" /></p><h4 id="4-文心一言"><a class="markdownIt-Anchor" href="#4-文心一言"></a> 4. 文心一言</h4><p>地址：<a href="https://yiyan.baidu.com/?utm%5C_source=ai-bot.cn">https://yiyan.baidu.com/?utm\_source=ai-bot.cn</a></p><p>文心一言是多功能AI模型，在文本生成、摘要和翻译等多个任务上表现出色。</p><p>它的优势在于模型的<strong>多任务学习能力</strong>，同时处理多种语言任务。</p><p>处理特定领域的专业问题时，文心一言可能需要更多的领域特定数据来提高准确性。</p><p><img src="a5b03e3a19e5a7d3e892909fc15f54ec.png" alt="" /></p><h4 id="5-豆包"><a class="markdownIt-Anchor" href="#5-豆包"></a> 5. 豆包</h4><p>地址：<a href="https://www.doubao.com/chat/">https://www.doubao.com/chat/</a></p><p>豆包面向特定领域，通过大量领域数据预训练，为该领域提供专业服务和支持。</p><p>它在<strong>专精领域</strong>内表现卓越，提供深入、准确的知识。</p><p>这种专注也使它在处理跨领域问题时可能遇到困难。</p><p><img src="b8bf331256ed0714b1f8666c94b74b1a.png" alt="" /></p><h4 id="6-腾讯元宝"><a class="markdownIt-Anchor" href="#6-腾讯元宝"></a> 6. 腾讯元宝</h4><p>地址：<a href="https://yuanbao.tencent.com/chat/naQivTmsDa">https://yuanbao.tencent.com/chat/naQivTmsDa</a></p><p>腾讯元宝在游戏AI领域独具特色，设计出吸引人的游戏玩法，在虚拟世界和增强现实方面有独到之处。</p><p>它在<strong>游戏开发和互动娱乐方面优势明显</strong>，但在严肃的商业应用上还需要进一步优化和调整。</p><p><img src="4beed8b42688f520429000215a0e9a7b.png" alt="" /></p><h4 id="7-讯飞星火"><a class="markdownIt-Anchor" href="#7-讯飞星火"></a> 7. 讯飞星火</h4><p>地址：<a href="https://xinghuo.xfyun.cn/desk">https://xinghuo.xfyun.cn/desk</a></p><p>讯飞星火在语音识别和语音合成领域表现突出，提供准确且自然的语音交互体验。</p><p>它在<strong>语音处理方面</strong>的优势使其成为语音助手和语音交互系统的理想选择。</p><p>在纯文本处理和理解复杂文字语境方面，讯飞星火还有提升空间。</p><p><img src="85db652ce33008da41fa264985d60690.png" alt="" /></p><h4 id="8-秘塔"><a class="markdownIt-Anchor" href="#8-秘塔"></a> 8. 秘塔</h4><p>地址：<a href="https://metaso.cn/">https://metaso.cn/</a></p><p>秘塔在保护用户隐私方面表现出色，完成任务的同时确保用户信息安全。</p><p>它<strong>擅长处理敏感数据</strong>，保证数据安全的同时保持高效率。</p><p>这种高度安全性有时可能影响模型在某些简单任务上的表现效率。</p><p><img src="d8d37aca10de27a66109d85469dc12fd.png" alt="" /></p><h4 id="9-天工ai"><a class="markdownIt-Anchor" href="#9-天工ai"></a> 9. 天工AI</h4><p>地址：<a href="https://www.tiangong.cn/">https://www.tiangong.cn/</a></p><p>天工AI基于强化学习，具有自我学习和优化能力。</p><p>它通过不断自我改进在特定任务上达到出色表现。</p><p>天工AI潜力巨大，但训练过程需要大量计算资源和时间，这可能限制其在某些应用场景中的实用性。</p><p><img src="447c0b29c6ae86197902cc0cdfc17212.png" alt="" /></p><h3 id="三-总结与展望"><a class="markdownIt-Anchor" href="#三-总结与展望"></a> 三、总结与展望</h3><p>这九大AI模型各有所长：</p><ul><li><p>Kimi、智谱清言、通义千问和文心一言在通用AI能力方面表现突出，应对广泛的语言处理任务。</p></li><li><p>豆包、秘塔和腾讯元宝在各自的专业领域（如特定行业知识、隐私保护、游戏AI）有独特优势。</p></li><li><p>天工AI和讯飞星火在自我优化和语音处理等领域展现出巨大潜力。</p></li></ul><p><img src="cf81649eef595c24ae04521a96dc5a0f.png" alt="" /></p><p>这些模型反映了我国AI技术的快速进步，也展示了不同研究方向和应用领域的多样性。未来，这些模型会不断优化，弥补各自的不足，为用户提供更智能、更全面的服务。</p><p>这些AI模型之间的协作将成为重要趋势。通过优势互补，它们有望在更广泛的领域发挥作用，推动AI技术在各行各业的深入应用。</p><p>国产AI大模型的发展正处于激动人心的阶段。它们展示了我国在AI领域的创新能力，也为未来智能技术的发展描绘了充满可能性的蓝图。</p><p>随着这些模型的不断进化和新技术的涌现，AI将为我们的生活和工作方式带来更多令人惊叹的变革。</p><h3 id="如何学习大模型-ai"><a class="markdownIt-Anchor" href="#如何学习大模型-ai"></a> 如何学习大模型 AI ？</h3><p>由于新岗位的生产效率，要优于被取代岗位的生产效率，所以实际上整个社会的生产效率是提升的。</p><p>但是具体到个人，只能说是：</p><p><strong>“最先掌握AI的人，将会比较晚掌握AI的人有竞争优势”。</strong></p><p>这句话，放在计算机、互联网、移动互联网的开局时期，都是一样的道理。</p><p><img src="80dfd54ec491457faa956c46afad1163.png" alt="在这里插入图片描述" /></p>]]></content>
+    
+    
+    <summary type="html">靠这九款国产AI大模型，就实现了6亿人的AI梦</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="LLM" scheme="http://www.formeasy.cc/tags/LLM/"/>
+    
+  </entry>
   
   <entry>
     <title>UE设置分辨率以及全屏模式</title>
@@ -417,27 +438,6 @@
     
     
     <summary type="html">UE/虚幻 简单局域网连接</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE/虚幻 蓄力攻击思路</title>
-    <link href="http://www.formeasy.cc/2025/04/25/UE/UE%E8%99%9A%E5%B9%BB%20%E8%93%84%E5%8A%9B%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF/"/>
-    <id>http://www.formeasy.cc/2025/04/25/UE/UE%E8%99%9A%E5%B9%BB%20%E8%93%84%E5%8A%9B%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF/</id>
-    <published>2025-04-25T06:44:42.000Z</published>
-    <updated>2025-04-25T06:46:21.288Z</updated>
-    
-    <content type="html"><![CDATA[<p>蓄力攻击：按住攻击键一段时间后自动或松开时释放攻击</p><p>这里写的是按住攻击键一段时间后自动攻击。</p><p>通过两个布尔值进行判断，一个判断是否正在攻击（IsAttack），一个判断是否蓄力完成（IsFocoEenrgia），这里当蓄力部分完成时，那么这一次攻击就是蓄力攻击，在松开时就不需要进行普通攻击了。然后在每次按下攻击键时，重置一下蓄力的判断。</p><p>没有蓄力攻击（IsFocoEenrgia）这个布尔值，也能达到蓄力攻击的效果，不过这时如果一直按住攻击键到蓄力攻击结束，再松开攻击键，就会进行一次额外的普通攻击</p><p>但是如果蓄力攻击是在释放攻击键时进行的攻击部分就不需要考虑这个问题</p><p><img src="2238312-20221115155731908-2066915548.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE/虚幻 蓄力攻击思路</summary>
     
     
     

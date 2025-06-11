@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>下载安装Qt6时建议勾选的组件_qt安装组件选哪几个</title>
+      <link href="/2025/06/11/Qt/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Qt6%E6%97%B6%E5%BB%BA%E8%AE%AE%E5%8B%BE%E9%80%89%E7%9A%84%E7%BB%84%E4%BB%B6_qt%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6%E9%80%89%E5%93%AA%E5%87%A0%E4%B8%AA/"/>
+      <url>/2025/06/11/Qt/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Qt6%E6%97%B6%E5%BB%BA%E8%AE%AE%E5%8B%BE%E9%80%89%E7%9A%84%E7%BB%84%E4%BB%B6_qt%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6%E9%80%89%E5%93%AA%E5%87%A0%E4%B8%AA/</url>
+      
+        <content type="html"><![CDATA[<p><img src="256b9719afbc41bb8b39ec3933f9caa1.png" alt="" /></p><p><img src="c936c0d8c602481e8d080f162c0cd7ec.png" alt="" /></p><p>如果你是一个大学生并且只是想做个带有界面的课设（如xx管理系统、xx专家系统），并且你下载了vs2022，建议勾选组件如图一所示，其他保持默认（如图二所示）。</p><p>首先说明：如果你以后要用到某个组件但是下载时没有勾选，还是有方法下载的，具体方法大家可以查看其他博客等。</p><p>首先选一个Qt版本，就是图中Qt选项下你可以看到有很多版本，如图一所示，我选的是Qt6.7.3。选这个版本的原因是里面的MSVC 2022 64-bit组件可以让我在VS2022中使用Qt。</p><p><strong>WebAssembly(single-threaded) / WebAssembly(multi-threaded)（用不到不勾选）</strong>：</p><p>这些组件提供了将Qt应用程序编译成WebAssembly格式的支持，允许在Web浏览器中运行Qt应用程序。</p><p><strong>LLVM-MinGW 64-bit（用不到不勾选）</strong>：</p><p>LLVM-MinGW是一个基于LLVM的GNU编译器集合，这个组件允许开发者在Windows上使用MinGW编译器来编译Qt应用程序。</p><p><strong>MSVC2019 64-bit / MSVC2022 64-bit（勾选）</strong>：</p><p>这些组件是指为Microsoft Visual Studio编译器提供的Qt版本，它们允许开发者在Visual Studio环境中使用Qt库来构建64位应用程序。2019对应VS2019, 2022对应VS2022。</p><p><strong>MinGW 11.2.0 64-bit（勾选）</strong>：</p><p>这是GNU编译器集合（GCC）的一个版本，用于在Windows上编译Qt应用程序。</p><p><strong>Qt Quick 3D（用不到不勾选）</strong>：</p><p>Qt Quick 3D是一个用于3D图形渲染的模块，它提供了一套易于使用的API来创建3D场景和动画。</p><p><strong>Qt 5 Compatibility Module（勾选）</strong>：</p><p>这个模块提供了从Qt 5到Qt 6的兼容性支持，帮助开发者平滑迁移旧的Qt 5应用程序到Qt 6。</p><p><strong>Qt Shader Tools（用不到不勾选）</strong>：</p><p>这些工具用于开发和调试着色器，它们是用于3D图形编程的一部分。</p><p>**Additional Libraries（看自己需求，里面的可选可不选）：**除了Qt核心库之外的其他库，可能包括第三方库和插件，用于扩展Qt的功能。这里面有部分不常用到可以不勾选，我只勾选了Qt Charts、Qt HTTP Server、Qt WebEngine、Qt WebSockets。</p><p><strong>Android（用不到不勾选）</strong>：</p><p>这个组件提供了在Android平台上开发和部署Qt应用程序的支持。</p><p><strong>Sources（勾选）</strong>：</p><p>Qt库的源代码，允许开发者查看和修改Qt的底层代码。</p><p><strong>Qt Debug Information Files（用不到不勾选）</strong>：</p><p>Qt6调试信息文件。</p><p><strong>Qt Quick Timeline（用不到不勾选）：</strong></p><p>Qt Quick Timeline 模块支持基于关键帧的动画和参数化。 它采用工具友好的方法，因此受到 Qt Design Studio 和 Qt Quick Designer 的直接支持，其中包含用于创建基于关键帧的动画的时间线编辑器。</p><p>其他的组件如图所示，保持默认即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>qt for webassembly环境搭建图文教程</title>
       <link href="/2025/06/11/Qt/qt%20for%20webassembly%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B/"/>
       <url>/2025/06/11/Qt/qt%20for%20webassembly%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B/</url>

@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.formeasy.cc/2025/07/11/kubernetes/k8s%20%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</loc>
+    
+    <lastmod>2025-07-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/2025/07/11/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2025-07-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/2025/07/11/C/C++11%20%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3%EF%BC%9Astdcopy_if%20%E4%B8%8E%20stdcopy_n/</loc>
     
     <lastmod>2025-07-11</lastmod>
@@ -1494,13 +1512,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/C/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/1553B/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1509,6 +1520,20 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/DDS/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/C/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/EA/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1536,21 +1561,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/EA/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/LLM/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/Editor/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/python/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1564,7 +1582,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/python/</loc>
+    <loc>http://www.formeasy.cc/tags/LLM/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1613,13 +1631,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Other/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/Navicat/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1627,7 +1638,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Python/</loc>
+    <loc>http://www.formeasy.cc/tags/OpenDroneMap/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Other/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1648,20 +1666,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/OpenDroneMap/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/TEST/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/ROS/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1669,7 +1673,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
+    <loc>http://www.formeasy.cc/tags/Python/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1683,7 +1687,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/VUE/</loc>
+    <loc>http://www.formeasy.cc/tags/TEST/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1697,14 +1708,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/algo/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/kubernetes/</loc>
+    <loc>http://www.formeasy.cc/tags/VUE/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1718,7 +1722,21 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/algo/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/proxmox/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/kubernetes/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1741,14 +1759,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/</loc>
+    <loc>http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

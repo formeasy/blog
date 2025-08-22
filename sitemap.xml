@@ -1809,13 +1809,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/1553B/</loc>
-    <lastmod>2025-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/C/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1823,28 +1816,14 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/1553B/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/DDS/</loc>
-    <lastmod>2025-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/Editor/</loc>
-    <lastmod>2025-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/python/</loc>
-    <lastmod>2025-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/Ollama/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1872,14 +1851,35 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/LLM/</loc>
+    <loc>http://www.formeasy.cc/tags/EA/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/EA/</loc>
+    <loc>http://www.formeasy.cc/tags/Editor/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/python/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Ollama/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/LLM/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1935,6 +1935,13 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/OpenDroneMap/</loc>
+    <lastmod>2025-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/Neo4j/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1943,13 +1950,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/Other/</loc>
-    <lastmod>2025-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/OpenDroneMap/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2005,14 +2005,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
+    <loc>http://www.formeasy.cc/tags/TEST/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/TEST/</loc>
+    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2033,14 +2033,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/kafka/</loc>
+    <loc>http://www.formeasy.cc/tags/algo/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/algo/</loc>
+    <loc>http://www.formeasy.cc/tags/kafka/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2054,14 +2054,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/proxmox/</loc>
+    <loc>http://www.formeasy.cc/tags/vosk/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/vosk/</loc>
+    <loc>http://www.formeasy.cc/tags/proxmox/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2077,14 +2077,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E4%B8%B2%E8%A1%8C%E9%80%9A%E8%AE%AF/</loc>
+    <loc>http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>http://www.formeasy.cc/categories/%E4%B8%B2%E8%A1%8C%E9%80%9A%E8%AE%AF/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2098,14 +2098,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E6%99%BA%E8%83%BD/</loc>
+    <loc>http://www.formeasy.cc/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/</loc>
+    <loc>http://www.formeasy.cc/categories/%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2025-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

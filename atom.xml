@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2025-12-21T13:52:55.091Z</updated>
+  <updated>2026-01-03T04:08:06.869Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5 - 实现画中画</title>
+    <link href="http://www.formeasy.cc/2026/01/03/UE/UE5%20-%20%E5%AE%9E%E7%8E%B0%E7%94%BB%E4%B8%AD%E7%94%BB/"/>
+    <id>http://www.formeasy.cc/2026/01/03/UE/UE5%20-%20%E5%AE%9E%E7%8E%B0%E7%94%BB%E4%B8%AD%E7%94%BB/</id>
+    <published>2026-01-03T03:52:42.000Z</published>
+    <updated>2026-01-03T04:08:06.869Z</updated>
+    
+    <content type="html"><![CDATA[<p>在UE5中实现画中画有多个方法，以下为使用最为常见的Render Target方法：</p><h3 id="1新建一个render-target"><a class="markdownIt-Anchor" href="#1新建一个render-target"></a> （1）新建一个Render Target</h3><p>在内容浏览器中右键 → Textures → Render Target，命名如RT_PiP。<br />设置分辨率（如512x512），并确认Format为RTF_RGBA8。</p><p><img src="2026-01-03_115346_131.png" alt="" /></p><h3 id="2设置scene-capture-2d"><a class="markdownIt-Anchor" href="#2设置scene-capture-2d"></a> （2）设置Scene Capture 2D</h3><p>在场景中放置一个Scene Capture 2D Actor。<br />Target Texture：绑定创建的RT_PiP；<br />Capture Source：选择Final Color (LDR)（适合UI）或Scene Color (HDR)（适合后处理）；<br />Primitive Render Mode：根据需求选择（如Use ShowOnly List以只渲染特定物体）；<br />调整相机位置、FOV和旋转，以匹配你想要的画中画视角。</p><p><img src="2026-01-03_115346_132.png" alt="" /></p><h3 id="3创建umg并显示"><a class="markdownIt-Anchor" href="#3创建umg并显示"></a> （3）创建UMG，并显示</h3><p>创建一个Widget Blueprint（UI控件）<br />在画布面板中添加Image控件，在Image的Brush属性中，将Texture设置为RT_PiP。<br />调整Image的大小、位置和边框，实现画中画布局。</p><p><img src="2026-01-03_115346_133.png" alt="" /><br /><img src="2026-01-03_115346_134.png" alt="" /></p><p>在蓝图中使用Create UMG Widget 和Add to Viewport 将UMG显示即可看到效果。</p><p><img src="2026-01-03_115346_135.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE5 - 实现画中画</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE5 - 附加节点使用详解（将组件或者Actor附加到另一个组件上）</title>
@@ -408,27 +429,6 @@
     
     
     <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL5.6-5.7-8.0版本授权用户远程连接</title>
-    <link href="http://www.formeasy.cc/2025/10/24/MySQL/MySQL5.6-5.7-8.0%E7%89%88%E6%9C%AC%E6%8E%88%E6%9D%83%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/"/>
-    <id>http://www.formeasy.cc/2025/10/24/MySQL/MySQL5.6-5.7-8.0%E7%89%88%E6%9C%AC%E6%8E%88%E6%9D%83%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</id>
-    <published>2025-10-24T13:42:07.000Z</published>
-    <updated>2025-10-24T13:51:35.032Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>修改配置文件</strong><br />找到 MySQL 的配置文件 my.cnf(或 my.ini),通常位于 /etc/mysql/ 或者 /etc/my.cnf，使用文本编辑器打开文件，找到 [mysqld] 部分，添加如下内容：</p><p>bind-address = 0.0.0.0<br />这将允许所有 IP 地址的连接，如果你想限制只允许特定 IP 地址连接，可以将 0.0.0.0 替换为特定的 IP 地址。</p><p><strong>MySQL5.6版本</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span>IDENTIFIED BY <span class="string">&#x27;123456&#x27;</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure><p><strong>MySQL5.7版本</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span>IDENTIFIED BY <span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure><p><strong>MySQL8.0版本</strong></p><p>因默认认证插件和权限限制，需多一步 “调整认证方式” 或 “分步骤授权”。<br />MySQL 8 不允许 “创建用户” 和 “授权” 在一条 SQL 中完成，需分开执行：</p><p>1）创建用户</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;CREATE USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure><p>2）授权示例</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure><p>3）修改远程连接用户的加密规则<br />由于 MySQL 8 默认的 caching_sha2_password 插件，部分旧客户端（如 Navicat 11 及以下）不支持，需改为传统插件兼容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;ALTER USER &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;</span><br></pre></td></tr></table></figure><p>4）刷新权限</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;flush privileges;</span><br></pre></td></tr></table></figure><p><strong>开放服务器端口</strong><br />所有版本需开放 3306 端口。</p>]]></content>
-    
-    
-    <summary type="html">MySQL5.6-5.7-8.0版本授权用户远程连接</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="MySQL" scheme="http://www.formeasy.cc/tags/MySQL/"/>
     
   </entry>
   

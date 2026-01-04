@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-01-03T04:08:06.869Z</updated>
+  <updated>2026-01-04T07:48:26.280Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5快捷键和控制台</title>
+    <link href="http://www.formeasy.cc/2026/01/04/UE/UE5%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%92%8C%E6%8E%A7%E5%88%B6%E5%8F%B0/"/>
+    <id>http://www.formeasy.cc/2026/01/04/UE/UE5%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%92%8C%E6%8E%A7%E5%88%B6%E5%8F%B0/</id>
+    <published>2026-01-04T07:43:11.000Z</published>
+    <updated>2026-01-04T07:48:26.280Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="快捷键"><a class="markdownIt-Anchor" href="#快捷键"></a> 快捷键</h2><h3 id="一-基础操作"><a class="markdownIt-Anchor" href="#一-基础操作"></a> 一、基础操作</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>Ctrl+S</strong></td><td>保存当前关卡</td><td></td></tr><tr><td><strong>Ctrl+Z</strong></td><td>撤销操作</td><td></td></tr><tr><td><strong>Ctrl+Y</strong></td><td>重做操作</td><td></td></tr><tr><td><strong>Ctrl+A</strong></td><td>全选场景物体</td><td></td></tr><tr><td><strong>F8</strong></td><td>切换游戏/编辑器视图</td><td></td></tr><tr><td><strong>F11</strong></td><td>全屏视口（保留菜单栏）</td><td></td></tr><tr><td><strong>Ctrl+Space</strong></td><td>快速打开内容浏览器</td><td></td></tr></tbody></table><hr /><h3 id="二-物体操作"><a class="markdownIt-Anchor" href="#二-物体操作"></a> 二、物体操作</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>W</strong></td><td>切换移动工具</td><td></td></tr><tr><td><strong>E</strong></td><td>切换旋转工具</td><td></td></tr><tr><td><strong>R</strong></td><td>切换缩放工具</td><td></td></tr><tr><td><strong>Alt+拖动物体轴</strong></td><td>复制物体</td><td></td></tr><tr><td><strong>Ctrl+D</strong></td><td>快速克隆物体</td><td></td></tr><tr><td><strong>End</strong></td><td>将物体贴合地面</td><td></td></tr><tr><td><strong>G</strong></td><td>隐藏选中物体</td><td></td></tr><tr><td><strong>Alt+C</strong></td><td>显示碰撞体</td><td></td></tr></tbody></table><hr /><h3 id="三-视角控制"><a class="markdownIt-Anchor" href="#三-视角控制"></a> 三、视角控制</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>鼠标右键拖动</strong></td><td>自由移动视角</td><td></td></tr><tr><td><strong>鼠标中键拖动</strong></td><td>平移视角</td><td></td></tr><tr><td><strong>鼠标滚轮</strong></td><td>缩放视角</td><td></td></tr><tr><td><strong>F</strong></td><td>聚焦到选中物体</td><td></td></tr><tr><td><strong>Alt+鼠标左键拖动</strong></td><td>旋转视图（以物体为中心）</td><td></td></tr><tr><td><strong>数字键1-3</strong></td><td>切换前/顶/右视图</td><td></td></tr></tbody></table><hr /><h3 id="四-蓝图编辑"><a class="markdownIt-Anchor" href="#四-蓝图编辑"></a> 四、蓝图编辑</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>Alt+拖动变量</strong></td><td>设置变量</td><td></td></tr><tr><td><strong>Ctrl+拖动变量</strong></td><td>获取变量</td><td></td></tr><tr><td><strong>C键</strong></td><td>注释选中节点</td><td></td></tr><tr><td><strong>Q键</strong></td><td>拉直节点排列</td><td></td></tr><tr><td><strong>Shift+左键点击连线</strong></td><td>高亮关联节点</td><td></td></tr><tr><td><strong>Ctrl+B</strong></td><td>跳转到资产所在目录</td><td></td></tr></tbody></table><hr /><h3 id="五-材质与粒子"><a class="markdownIt-Anchor" href="#五-材质与粒子"></a> 五、材质与粒子</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>1/2/3键</strong></td><td>创建常量/向量/贴图节点</td><td></td></tr><tr><td><strong>L键</strong></td><td>创建Lerp节点</td><td></td></tr><tr><td><strong>Alt+左键点击连线</strong></td><td>断开节点连接</td><td></td></tr><tr><td><strong>Ctrl+左键拖动连线</strong></td><td>复制连线</td><td></td></tr></tbody></table><hr /><h3 id="六-动画与sequencer"><a class="markdownIt-Anchor" href="#六-动画与sequencer"></a> 六、动画与Sequencer</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>空格键</strong></td><td>播放/暂停时间轴</td><td></td></tr><tr><td><strong>Alt+滚轮</strong></td><td>纵向缩放时间轴</td><td></td></tr><tr><td><strong>F键</strong></td><td>对齐摄像机到选中物体</td><td></td></tr><tr><td><strong>Ctrl+拖动关键帧</strong></td><td>复制关键帧</td><td></td></tr></tbody></table><hr /><h3 id="七-性能与调试"><a class="markdownIt-Anchor" href="#七-性能与调试"></a> 七、性能与调试</h3><table><thead><tr><th>快捷键</th><th>功能说明</th><th></th></tr></thead><tbody><tr><td><strong>~</strong></td><td>打开控制台</td><td></td></tr><tr><td><strong>Stat FPS</strong></td><td>显示帧率</td><td></td></tr><tr><td><strong>Ctrl+Shift+H</strong></td><td>显示性能分析</td><td></td></tr><tr><td><strong>Alt+P</strong></td><td>运行游戏</td><td></td></tr></tbody></table><hr /><h3 id="八-高级技巧"><a class="markdownIt-Anchor" href="#八-高级技巧"></a> 八、高级技巧</h3><ol><li><strong>批量操作</strong><ul><li><strong>Alt+G</strong>：快速对齐物体到地面</li><li><strong>Shift+多选</strong>：批量移动/旋转物体</li></ul></li><li><strong>资源管理</strong><ul><li><strong>Ctrl+P</strong>：打开资源选取器快速定位资产</li><li><strong>Ctrl+B</strong>：跳转到资产所在文件夹</li></ul></li><li><strong>界面优化</strong><ul><li><strong>Ctrl+Shift+W</strong>：打开控件反射器调整UI缩放</li><li><strong>T键</strong>：切换半透明物体选择模式</li></ul></li></ol><hr /><p>通过以上快捷键，可显著提升UE5操作流畅度。</p><h2 id="控制台"><a class="markdownIt-Anchor" href="#控制台"></a> 控制台</h2><p>~键                     打开控制台<br />注：1.使用键盘的 ↑ 键可以查看之前输入过的指令<br />2.控制台指令并 不需要打全名，输入空格后跟随指令的部分字符可以进行模糊搜索<br />3.按下 Ctrl + Shift + , 打开 GPUProfile 面板</p><p>ToggleDebugCamera ： 进入自由视角</p><p>调试类：<br />stat fps：显示帧率。<br />stat unit：显示包括 Draw Call、游戏逻辑等各种项的消耗。<br />stat UnitGraph：显示各个参数的实时曲线图。<br />stat rhi：显示各种 GPU 上的消耗细则。<br />stat game：显示当前帧的时间信息。<br />stat Engine：显示帧数时间、三角面数等。<br />stat scenerendering：显示 Draw Call。<br />stat memory：查看内存使用率，有助于进行内存优化。<br />profile gpu：捕获GPU渲染时间，可以通过快捷键Ctrl + Shift + 逗号打开GPUProfile面板进行更详细的GPU性能分析。<br />t.MaxFPS：设置最大帧率限制，有助于控制游戏的性能消耗。<br />r.DebugViewMode：开启场景渲染Debug模式，可以设置为不同的值来查看不同的调试信息，如光照、阴影<br />DisableAllScreenMessages / EnableAllScreenMessages：关闭/打开屏幕打印信息。</p><p>调试并输出：<br />ke * rendertextures：高分辨率截图。<br />HighResShot：以当前 viewport 分辨率的倍数进行截图（倍数）。<br />HighResShot 1920x1080：指定分辨率截图（分辨率），图片存储位置：\Saved\Screenshots\。<br />stat Hitches 或 stat DumpHitches：记录 log 文件。<br />stat startfile / stat stopfile：开始/结束统计性能分析，用于记录某段时间内的性能分析数据，会在路径 Saved/Profiling/UnrealStats 下生成数据文件。<br />log.LogBlueprintUserMessages 1：控制台打印Debug信息，有助于调试蓝图脚本。</p><p>图像与渲染类<br />mat_showwireframe 1：显示网格线（1 打开，0 关闭）。<br />r.vsync 0：关闭垂直同步（0 关闭，1 打开）。<br />r.visualizeOccludedPrimitives：查看遮挡剔除（0 关闭，1 打开）。<br />r.Streaming.PoolSize 4096：设置显存分配给纹理流送池的大小（显存大小，0 表示无上限）。<br />r.ScreenPercentage 50：设置渲染分辨率为默认大小的 50%。<br />r.SkinCache.CompileShaders 1：开启点云采样，有助于优化渲染性能。<br />r.MultithreadedRendering 1：打开多线程渲染，可以提高渲染效率。</p><p>效果类</p><p>r.Tonemapper.Sharpen 3：设置锐化强度。<br />r.TonemapperFilm：开关后处理效果。<br />ShowFlag.PostProcessing：开关后期处理效果。<br />r.AOSpecularOcclusionMode：让 skylight 产生的 DFAO 产生更准确的高光（0 关闭，1 打开）。<br />r.Tonemapper.Quality：设置色调映射质量，影响画面的整体色调和亮度。<br />r.SSGI.Enabled 0：关闭屏幕空间全局光照（SSGI），可以提高画质清晰度（在某些情况下）。<br />r.Highlight 1：突出特定区域，使画质更加清晰。<br />r.AntialiasingQuality：设置抗锯齿质量（例如，r.AntialiasingQuality 4 表示最高质量）。<br />r.Shadow.Quality：设置阴影质量（0 表示最低质量，2 表示最高质量）。<br />r.AmbientOcclusionLevels：设置环境光遮蔽的级别（数值越高，效果越精细）。<br />r.DepthOfFieldQuality：设置景深质量（0 表示关闭，1 表示低质量，2 表示高质量）。<br />r.MotionBlur.Quality：设置动态模糊质量（0 表示关闭，1 表示低质量，2 表示高质量）。</p><p>游戏交互与控制<br />slomo：调整游戏运行速度（例如，slomo 0.5 将游戏速度设置为正常速度的一半）。<br />reload：重启当前关卡，有助于快速测试关卡变化。<br />ShowFlag.Bounds：显示包围盒（0 关闭，1 打开）。<br />ShowFlag.Collision：显示碰撞盒（0 关闭，1 打开）。<br />se rwidget 100 100：模拟在(100,100)位置进行点击操作，可以实现脚本自动化功能。<br />sensitivity 3.0f：设置鼠标灵敏度，可以根据需要进行调整。<br />se simkeyboard 1：开启模拟软件鼠标指针，有助于在无法使用实体鼠标的情况下进行游戏控制。</p><p>LOD与模型优化类<br />r.lodbias：调整 LOD（Level of Detail）偏差，数值越高，加载的模型细节越低。<br />t.LODDistanceScale 0.1：进入LOD0模式，有助于调试模型的LOD等级。LOD（Level of Detail）是指不同距离下呈现同一个物体时，忽略不必要的细节，降低模型复杂度的技术。</p><p>其他命令<br />help：打印命令帮助，可以列出所有可用的控制台命令及其简短描述。<br />start：开启单机游戏模式，有助于在没有编辑器的情况下运行游戏。<br />r.compresslightmaps：开启纹理压缩，有助于减少纹理占用的内存空间。<br />show material：显示所有材质，而不是只显示错误的材质，有助于材质调试。</p>]]></content>
+    
+    
+    <summary type="html">UE5快捷键和控制台</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE5 - 实现画中画</title>
@@ -401,27 +422,6 @@
     
     
     <summary type="html">UE5 局域网联机，寻找会话失败</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE Gameplay 框架总结</title>
-    <link href="http://www.formeasy.cc/2025/10/27/UE/UE%20Gameplay%20%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.formeasy.cc/2025/10/27/UE/UE%20Gameplay%20%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/</id>
-    <published>2025-10-27T00:37:47.000Z</published>
-    <updated>2025-10-27T00:48:19.039Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文介绍了游戏开发中几个重要的概念：GameInstance用于保存临时全局数据，GameMode管理游戏规则和类信息，DefaultPawn提供基础操作，PlayerController连接客户端与服务器，以及GameState和PlayerState负责全局数据管理和玩家状态同步。</p><h2 id="各个模块"><a class="markdownIt-Anchor" href="#各个模块"></a> 各个模块</h2><h3 id="gameinstance游戏实例"><a class="markdownIt-Anchor" href="#gameinstance游戏实例"></a> <strong>GameInstance（<strong>游戏实例</strong>）</strong></h3><blockquote><ul><li>实例里的数据不会随着关卡的切换而消失。</li><li>作用是为游戏保存临时的全局数据（并不是所有的全局变量都存在<strong>GameInstance</strong>中，如玩家的信息应该存在<strong>PlayerState</strong>，游戏的一些信息存在<strong>GameState</strong>），或者自定义需要在全局使用的逻辑（慎重，<strong>GameInstance</strong> 的臃肿会导致卡顿）。</li><li>通常情况下一个Game中应该只有一个<strong>GameInstance</strong>(UE也是提供了多个GameInstance协同的扩展的，但是一次Game只能有一个GameInstance生效)</li><li>GameInstance的生命周期就是从游戏进程启动到游戏进程结束</li></ul></blockquote><h4 id="gameinstance主要处理"><a class="markdownIt-Anchor" href="#gameinstance主要处理"></a> <strong>GameInstance主要处理：</strong></h4><blockquote><ul><li>UWorld、ULevel之间的切换</li><li>全局配置</li><li>GameMode的切换</li></ul></blockquote><h3 id="gamemode-游戏规则"><a class="markdownIt-Anchor" href="#gamemode-游戏规则"></a> <strong>GameMode</strong> （游戏规则）</h3><blockquote><ul><li>仅在当前Level生效，一个Level一次只能对应一个GameMode，但是一个GameMode可以用在多个Level中</li><li>仅存在服务器中，客户端没有</li></ul></blockquote><h4 id="gamemode主要处理"><a class="markdownIt-Anchor" href="#gamemode主要处理"></a> <strong>GameMode</strong>主要处理：</h4><blockquote><ul><li>Class登记：记录GameMode中各种类的信息</li><li>Spawn：创建Pawn和PlayerController等</li><li>游戏进度：游戏暂停重启的逻辑</li><li>过场动画逻辑</li><li>多人游戏的步调同步</li></ul></blockquote><h2 id="defaultpawn-默认pawn"><a class="markdownIt-Anchor" href="#defaultpawn-默认pawn"></a> <strong>DefaultPawn</strong> （默认Pawn）</h2><blockquote><ul><li>自带DefualtPawnMovement、CollisionComponent、StaticMeshCompnent三件套（Pawn没有这些，Pawn提供了接口没有具体实现）</li><li>服务端和客户端都存在一份，同时保持同步。</li><li>在 GameMode 中修改。</li></ul></blockquote><h4 id="defaultpawn主要处理"><a class="markdownIt-Anchor" href="#defaultpawn主要处理"></a> <strong>DefaultPawn主要处理：</strong></h4><blockquote><ul><li>提供基础的操作，保证Game运行</li></ul></blockquote><h3 id="hud"><a class="markdownIt-Anchor" href="#hud"></a> <strong>HUD</strong></h3><blockquote><ul><li>实现一些简单的界面元素（文本，点），复杂的要使用UMG，但是HUD开销更小</li><li>只存在于客户端</li></ul></blockquote><h3 id="playercontroller"><a class="markdownIt-Anchor" href="#playercontroller"></a> <strong>PlayerController</strong></h3><blockquote><ul><li>拥有 Pawn 并设置其行为规则</li><li>服务器上拥有所有玩家的PlayerController，而本地客户端则只有当前玩家的 PlayerController 。</li><li>关联了客户端和服务端，通过该类，客户端可以向服务端发送请求</li></ul></blockquote><h4 id="playercontroller-主要处理"><a class="markdownIt-Anchor" href="#playercontroller-主要处理"></a> <strong>PlayerController</strong> 主要处理：</h4><blockquote><ul><li>Camera管理</li><li>Input输入响应</li><li>UPlayer关联</li><li>HUD显示</li><li>Level切换</li><li>Voice音源监听</li></ul></blockquote><h3 id="gamestate"><a class="markdownIt-Anchor" href="#gamestate"></a> <strong>GameState</strong></h3><blockquote><ul><li>数据的全局管理（用于存储游戏相关数据）</li><li>服务端和客户端都存在一份，它包含要复制到游戏中的每个客户端的信息</li><li>通常用来保持数据的同步，也可将其中的部分数据设置为不同步。</li></ul></blockquote><h4 id="gamestate主要处理"><a class="markdownIt-Anchor" href="#gamestate主要处理"></a> <strong>GameState主要处理：</strong></h4><blockquote><ul><li>保存游戏数据，如任务进度，游戏活动等。</li></ul></blockquote><h3 id="playerstate"><a class="markdownIt-Anchor" href="#playerstate"></a> <strong>PlayerState</strong></h3><blockquote><ul><li>数据的全局管理（用于存储角色相关数据）</li><li>该类需要通过 PlayerController 来访问</li><li>所有玩家的 PlayerState存在于所有机器上（与 PlayerController 不同），并且可以将数据从服务器复制到客户端以保持同步</li><li>PlayerState的生命周期为一整个Level的生命周期</li></ul></blockquote><h4 id="playerstate-主要处理"><a class="markdownIt-Anchor" href="#playerstate-主要处理"></a> <strong>PlayerState</strong> 主要处理：</h4><blockquote><ul><li>保存玩家数据，客户端可以存在多个PlayerState对象，不同的PlayerState保存不同玩家的状态</li></ul></blockquote>]]></content>
-    
-    
-    <summary type="html">UE Gameplay 框架总结</summary>
     
     
     

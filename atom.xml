@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-01-19T01:14:44.369Z</updated>
+  <updated>2026-01-22T02:20:06.870Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于飞机的翼和舵</title>
+    <link href="http://www.formeasy.cc/2026/01/22/UE/%E5%85%B3%E4%BA%8E%E9%A3%9E%E6%9C%BA%E7%9A%84%E7%BF%BC%E5%92%8C%E8%88%B5/"/>
+    <id>http://www.formeasy.cc/2026/01/22/UE/%E5%85%B3%E4%BA%8E%E9%A3%9E%E6%9C%BA%E7%9A%84%E7%BF%BC%E5%92%8C%E8%88%B5/</id>
+    <published>2026-01-22T01:20:11.000Z</published>
+    <updated>2026-01-22T02:20:06.870Z</updated>
+    
+    <content type="html"><![CDATA[<p>近期在开发基于UE的飞行游戏，虽专业不是航空，但也需对其基础的理解，本文章简单总结飞机上的翼和舵的作用。</p><p>先上两张图，分别为普通小型机和客机示意图：</p><p><img src="1c502f5433cdb915d54d957f374436c1.jpg" alt="" /></p><p><img src="1c502f5433cdb915d54d957f374436c2.png" alt="" /></p><h3 id="升降舵"><a class="markdownIt-Anchor" href="#升降舵"></a> 升降舵</h3><p>升降舵，顾名思义就是控制飞机升降的“舵面”，当我们需要操纵飞机抬头或低头时（一般来说，抬头即意味着飞机爬升，低头同理），水平尾翼中的升降舵就会发生作用。</p><p>升降舵是水平尾翼中可操纵的翼面部分，其作用是对飞机进行俯仰操纵。</p><p>作用：改变飞机俯仰姿态</p><p><img src="1c502f5433cdb915d54d957f374436c3.webp" alt="" /></p><h3 id="方向舵"><a class="markdownIt-Anchor" href="#方向舵"></a> 方向舵</h3><p>方向舵，顾名思义就是控制飞机方向的，具体是指在垂直尾翼上为实现飞机航向操纵的可活动的翼面部分。<br />驾驶员可通过脚蹬操纵它左右偏转，从而控制飞机航向。方向舵左转，气流作用其上产生一个使尾部向右的力矩，使机头向左，改变了飞机航向。方向舵右转则机头向右。方向舵向两侧偏转的角度最大为20°至30°</p><p>作用：飞机航向操纵</p><h3 id="副翼"><a class="markdownIt-Anchor" href="#副翼"></a> 副翼</h3><p>副翼在机翼末端后缘，左右各一个。<br />通过左右副翼向不同方向偏转，形成滚转力矩让飞机横滚。副翼长度不大，通常占整个机翼的1/5左右。</p><p><img src="1c502f5433cdb915d54d957f374436c4.webp" alt="" /></p><p>飞行员将驾驶盘向左移动，左边副翼向上偏转升力减小，右边副翼向下压升力增加，飞机向左横滚，反之亦然。左右副翼与方向舵配合，飞机就能在空中自由转向了。</p><p><img src="1c502f5433cdb915d54d957f374436c5.gif" alt="" /></p><h3 id="一般飞机通过以上升降舵-方向舵和副翼一起控制飞机的俯仰和横侧操纵"><a class="markdownIt-Anchor" href="#一般飞机通过以上升降舵-方向舵和副翼一起控制飞机的俯仰和横侧操纵"></a> 一般飞机通过以上升降舵、方向舵和副翼一起控制飞机的俯仰和横侧操纵。</h3><p>再说说其它</p><h3 id="襟翼"><a class="markdownIt-Anchor" href="#襟翼"></a> 襟翼</h3><p>这种翼面平时隐藏在机翼里，需要时伸出，像衣襟一样摆动，所以叫“襟翼”。分前缘襟翼、后缘襟翼。</p><p>后缘襟翼安装在机翼后缘，能向下偏转或向后伸出，可以增大机翼弯度和面积，提高升力系数增大升力，同时也增大阻力。</p><p><img src="1c502f5433cdb915d54d957f374436c6.webp" alt="" /></p><p>后缘襟翼通常在飞机降落时放下，一方面提高升力，一方面增大阻力，降低飞机进场速度，提高安全性。<br />起飞时也会放出一部分，以增大升力让飞机在更短距离内起飞，降低对机场的要求。</p><h3 id="后缘襟翼在起飞降落时使用"><a class="markdownIt-Anchor" href="#后缘襟翼在起飞降落时使用"></a> 后缘襟翼在起飞降落时使用</h3><p>前缘襟翼与后缘襟翼相反，安装在机翼前缘，也在飞行中起重要作用。</p><p>比如超音速飞机的机翼前缘很尖，整体厚度也薄。放下后缘襟翼后翼型弯度增加，机翼前缘与空气来流相对迎角变大，产生局部气流分离，导致飞行不稳。</p><p><img src="1c502f5433cdb915d54d957f374436c7.webp" alt="" /></p><p>前缘襟翼可以改变相对角度，使气流更平滑地流过机翼，减少失速发生。同时前缘襟翼也能增大机翼弯度，进一步提高升力和临界迎角。</p><h3 id="前缘缝翼"><a class="markdownIt-Anchor" href="#前缘缝翼"></a> 前缘缝翼</h3><p>前缘缝翼也安装在前缘，离前缘襟翼很近。它打开时与基本机翼前缘表面形成缝隙，将下表面压强较高的气流导向上表面，延缓上表面气流分离，提高飞机临界迎角，减小失速可能。同时也提高升力系数，增加升力。</p><p><img src="1c502f5433cdb915d54d957f374436c8.webp" alt="" /></p><p>尤其在飞机起飞时，机头仰角较大有可能突然失速坠机。前缘缝翼提高临界迎角，可以有效地缓解这种情况。它还能降低进场速度，提高降落性能。</p><h3 id="扰流板减速板"><a class="markdownIt-Anchor" href="#扰流板减速板"></a> 扰流板（减速板）</h3><p>扰流板通过液压系统升起，能减小升力、增大阻力，使飞机速度高度都降低。扰流板分飞行扰流板、地面扰流板。</p><p><img src="1c502f5433cdb915d54d957f374436c9.webp" alt="" /></p><p>飞行扰流板能在空中使用，单独使用一侧时，可以产生与副翼相当的作用。地面扰流板只能在地面使用。飞机降落时，飞行扰流板、地面扰流板全部打开，使飞机在更短的距离内停下来。</p>]]></content>
+    
+    
+    <summary type="html">关于飞机的翼和舵</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Other" scheme="http://www.formeasy.cc/tags/Other/"/>
+    
+  </entry>
   
   <entry>
     <title>UML类图详解</title>
@@ -412,27 +433,6 @@
     
     
     <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【UE5 C++】C++代码调用蓝图方法或事件</title>
-    <link href="http://www.formeasy.cc/2025/10/30/UE/%E3%80%90UE5%20C++%E3%80%91C++%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E8%93%9D%E5%9B%BE%E6%96%B9%E6%B3%95%E6%88%96%E4%BA%8B%E4%BB%B6/"/>
-    <id>http://www.formeasy.cc/2025/10/30/UE/%E3%80%90UE5%20C++%E3%80%91C++%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E8%93%9D%E5%9B%BE%E6%96%B9%E6%B3%95%E6%88%96%E4%BA%8B%E4%BB%B6/</id>
-    <published>2025-10-30T02:04:30.000Z</published>
-    <updated>2025-10-30T02:08:51.630Z</updated>
-    
-    <content type="html"><![CDATA[<p>此方法为：先创建C++类MyTest，再以MyTest类为父类创建蓝图；在其他类中，可以通过MyTest调用蓝图对应方法。</p><h3 id="1创建c代码"><a class="markdownIt-Anchor" href="#1创建c代码"></a> 1.创建c++代码</h3><p>通过UE创建继承自Actor的C++代码<br /><img src="842ec38aa1ab8e1241a3f3efa326a638.png" alt="" /><br /><img src="e1e55aac2ae7facd8cf7e6be598afe08.png" alt="" /></p><h3 id="2添加可以在ue中重写方法的说明"><a class="markdownIt-Anchor" href="#2添加可以在ue中重写方法的说明"></a> 2.添加可以在UE中重写方法的说明</h3><p>需使用声明：UFUNCTION(BlueprintNativeEvent, BlueprintCallable)</p><p>BlueprintNativeEvent表示在 c++ 中定义事件，可以在UE中实现，c++ 中必须实现。<br />如果UE中实现了，则覆盖c++中逻辑。</p><p>BlueprintCallable 表示可以在蓝图中调用。</p><p>完整代码 .h文件：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">//添加可以在UE中重写方法</span></span><br><span class="line"><span class="built_in">UFUNCTION</span>(BlueprintNativeEvent, BlueprintCallable)</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Play</span><span class="params">(<span class="type">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Play_Implementation</span><span class="params">(<span class="type">int</span> num)</span></span>;</span><br></pre></td></tr></table></figure><p>.cpp文件增加方法：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyTest::Play_Implementation</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>其中.h文件的 virtual void Play_Implementation();可以不写，写是为了方便实用快捷键创建.cpp中的实现。</p><p>.cpp文件中必须实现Play_Implementation。<br />后缀为官方定义的不可更改。不然.h中的Play()会报错。</p><p><strong>注：可以填参数int32，<sub>但我测试FString类型无法添加</sub> 。 传递FString类型 要使用：const FString&amp; str</strong></p><p><strong>注：增加了此代码后，需要重写通过编辑器编译进入UE，不然可能不会出现步骤2中的可选事件</strong></p><h3 id="2创建蓝图类"><a class="markdownIt-Anchor" href="#2创建蓝图类"></a> 2.创建蓝图类</h3><p>以MyTest为末班，创建蓝图类。<br /><img src="23756da69ec24a09064e03a32e4c397e.png" alt="" /><br />打开蓝图类，鼠标移动到左侧FUNCTIONS菜单上，可以出现下拉菜单，可以发现刚才出现了刚才定义的Play。<br /><img src="61a50015e339b8dfff83af7e3f09f0d7.png" alt="" /><br />点击Play，可以发现生成了一个事件。<br />可以对其进行连线，以便进一步在C++中调用。<br /><img src="c8a1f2f6699008c28efd718fa868f67c.png" alt="" /></p><h3 id="3调用测试"><a class="markdownIt-Anchor" href="#3调用测试"></a> 3.调用测试</h3><p>到此，只要获取到该蓝图的Actor，Cast获取MyTest，即可调用声明的Play方法。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AMyTest* myTestActor = <span class="built_in">Cast</span>&lt;AMyTest&gt;(Actor);</span><br><span class="line"><span class="keyword">if</span>(myTestActor)</span><br><span class="line">&#123;</span><br><span class="line">myTestActor-&gt;<span class="built_in">Play</span>(<span class="number">99</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>注：Actor为创建出来的蓝图对象，自行获取</strong></p>]]></content>
-    
-    
-    <summary type="html">【UE5 C++】C++代码调用蓝图方法或事件</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
     
   </entry>
   

@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-01-22T02:20:06.870Z</updated>
+  <updated>2026-01-29T03:33:01.495Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE Async Load Asset通过资源路径动态加载资源</title>
+    <link href="http://www.formeasy.cc/2026/01/29/UE/UE%20Async%20Load%20Asset%E9%80%9A%E8%BF%87%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/"/>
+    <id>http://www.formeasy.cc/2026/01/29/UE/UE%20Async%20Load%20Asset%E9%80%9A%E8%BF%87%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/</id>
+    <published>2026-01-29T03:23:13.000Z</published>
+    <updated>2026-01-29T03:33:01.495Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1复制路径"><a class="markdownIt-Anchor" href="#1复制路径"></a> 1.复制路径</h3><p>右键资源复制资源引用<br /><img src="111636_991.png" alt="" /></p><h3 id="2蓝图操作"><a class="markdownIt-Anchor" href="#2蓝图操作"></a> 2.蓝图操作</h3><p>拖出路径转Async Load Asset节点，将Assset拖出到To Soft Object Reference和Make Soft Object 将Path粘贴资源路径中</p><p>将Async Load Asset节点拖出的Object，转成想要转换的类型，比如Texture2D，并进行设置，具体如下图：<br /><img src="111909_282.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE Async Load Asset通过资源路径动态加载资源</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>关于飞机的翼和舵</title>
@@ -412,27 +433,6 @@
     
     
     <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>window下的qt5.14.2配置vs2022</title>
-    <link href="http://www.formeasy.cc/2025/10/31/Qt/window%E4%B8%8B%E7%9A%84qt5.14.2%E9%85%8D%E7%BD%AEvs2022/"/>
-    <id>http://www.formeasy.cc/2025/10/31/Qt/window%E4%B8%8B%E7%9A%84qt5.14.2%E9%85%8D%E7%BD%AEvs2022/</id>
-    <published>2025-10-31T00:36:45.000Z</published>
-    <updated>2025-10-31T00:46:11.167Z</updated>
-    
-    <content type="html"><![CDATA[<p>已知qt5.14.2和vs202不兼容，无法自动扫描到vs的编译器。但由于团队协作原因，必须使用qt5.14.2，并且第三方库又依赖vs2022。其实qt5.15.2是支持vs2022的，如果能够用qt5.15.2，还是建议使用qt5.15.2及以上。如果换不了，那看下面吧。</p><p>首先可以下载qt5.14.2版本和vs2022，安装包如下：</p><blockquote><p>通过网盘分享的文件：qt-opensource-windows-x86-5.14.2.exe<br />链接: <a href="https://pan.baidu.com/s/1XK0vaVbik5XOPpQ63H0%5C_dg">https://pan.baidu.com/s/1XK0vaVbik5XOPpQ63H0\_dg</a> 提取码: nhxy<br />通过网盘分享的文件：VisualStudioSetup.exe<br />链接: <a href="https://pan.baidu.com/s/1NlhvO8QjMukXGh8qS2W68Q">https://pan.baidu.com/s/1NlhvO8QjMukXGh8qS2W68Q</a> 提取码: dt4y</p></blockquote><p>其中vs安装的工具集和Windows SDK安装选择如下（为了方便后面可能会用到不同版本，我基本都安装了）<br /><img src="52e6ee44f84d495c902e93b36d77bb9c.png" alt="" /><br /><img src="41210ee474e048b6bc767ffad6500ae1.png" alt="" /><br />上面安装完之后就需要在qt creator中配置了，由于5.14.2不支持vs2022,那么编译器和版本都需要手动配置了。</p><p><img src="22d827e781344e4e9a120dc361dffda9.png" alt="" /></p><ul><li>配置kit环境中，还需要选择对应的qt版本，这里也手动添加版本。</li></ul><blockquote><p>通过网盘分享的文件：Qt.zip<br />链接: <a href="https://pan.baidu.com/s/1TcZd2T0cmszSbj7Ko3dpzg">https://pan.baidu.com/s/1TcZd2T0cmszSbj7Ko3dpzg</a> 提取码: gjcv</p></blockquote><p><img src="77d917a886e04e06b949d36a3617c6d7.png" alt="" /></p><ul><li><p>添加完编译器和版本后，来配置kits，如图配置。<br /><img src="66b68adb64e144868d18fc2d0d9bf06d.png" alt="" /></p></li><li><p>到这里，kit就配置好了，选择该kit重新构件运行即可。</p></li><li><p>如果接下来遇到找不到库的类似问题，可尝试在项目中添加环境变量，这一步的变量我是从别人能正常启动的项目拿来的，若有些和读者电脑不一样，跳过即可，具体每一个有什么作用，还没细究，读者自行配置。建议先全部配置看项目是否能运行，若能运行再一个个删除查找原因。</p></li></ul><p>添加LIB变量:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\lib;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\atlmfc\lib\x64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\ucrt\x64</span><br></pre></td></tr></table></figure><p>添加INCLUDE变量:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\atlmfc\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\winrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\cppwinrt</span><br></pre></td></tr></table></figure><p>另外，若出现unable to create a debugging engine错误，可以查看下面链接。</p><blockquote><p><a href="https://b3logfile.com/pdf/article/1592296047699.pdf">https://b3logfile.com/pdf/article/1592296047699.pdf</a></p></blockquote><ul><li>最后贴一个自己的项目配置</li></ul><p><img src="b6836c3b4c7348f5a8fa6b39bba69191.png" alt="" /></p><p><img src="326a1fc4e87949a78980733bc433cc61.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">window下的qt5.14.2配置vs2022</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
     
   </entry>
   

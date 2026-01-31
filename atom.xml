@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-01-29T03:33:01.495Z</updated>
+  <updated>2026-01-31T14:50:24.158Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5增强输入之RawInput插件</title>
+    <link href="http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5%E4%B9%8BRawInput%E6%8F%92%E4%BB%B6/"/>
+    <id>http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5%E4%B9%8BRawInput%E6%8F%92%E4%BB%B6/</id>
+    <published>2026-01-31T14:01:13.000Z</published>
+    <updated>2026-01-31T14:50:24.158Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="rawinput-插件介绍"><a class="markdownIt-Anchor" href="#rawinput-插件介绍"></a> RawInput 插件介绍</h2><p>用户自定义设备，比如操纵杆和方向盘在UE5中使用时，一般有三种方式：</p><ol><li>直接调用 Windows API开发</li><li>外部工具中vJoy + Joystick Gremlin + UE5</li><li>官网RawInput插件</li></ol><p>这篇主要是介绍RawInput插件的使用。</p><p>RawInput插件的使用是基于增强输入，增强输入的使用请参看《UE5增强输入》文章。</p><p>RawInput 插件为Microsoft XInput API（应用程序编程接口）不能正确处理的特定的用户定义设备提供支持，通常是操纵杆和方向盘。<br />这些输入设备的按钮和轴可以自定义映射到游戏输入，包括插件本身创建的新输入。</p><h2 id="启用rawinput"><a class="markdownIt-Anchor" href="#启用rawinput"></a> 启用RawInput</h2><p>默认情况下不启用该插件。在 插件（Plugins） 菜单的 输入设备（Input Devices） 部分中将其启用。</p><p><img src="2026-01-31_221641_144.png" alt="" /></p><p>启用该插件后，Raw Input （原始输入）部分将出现在 项目设置（Project Settings） 菜单中。</p><p><img src="2026-01-31_221915_232.png" alt="" /></p><h2 id="配置设备"><a class="markdownIt-Anchor" href="#配置设备"></a> 配置设备</h2><p>每个设备(比如操纵杆或油门)需要通过供应商ID和产品ID标识，这些ID是十六进制值，位于设备的驱动程序属性中。<br />轴（默认为8个）和按钮（默认为12个）数组将添加到控制器配置中。<br />这样就能够将任何控制器轴或按钮（通过数组索引指示）映射到任何虚幻引擎轴或键。<br />该插件提供8个新轴（“通用USB控制器轴1&quot;到&quot;通用USB控制器轴8”）和12个新按钮（“通用USB控制器按钮1&quot;到&quot;通用USB控制器按钮20”）。<br />每个轴和按钮都可以启用或禁用，轴也可以调转方向和偏移。</p><p>在插入USB的设备后，可以通过Windows控制面板（在设备管理器下面）中看到硬件ID信息，如下图：</p><p><img src="2026-01-31_222418_708.png" alt="" /></p><p>供应商ID是&quot;VID_&quot;后面的四位字符串（044F），产品ID是&quot;PID_&quot;后面的四位字符串（0405），在RawInput中配置设备时需要该信息。</p><blockquote><p>注：图马斯特A10C金属疣猪摇杆的供应商ID是（044F）产品ID是（0402），油门的供应商ID是（044F）产品ID是（0404）。</p></blockquote><h2 id="在rawinput中配置设备"><a class="markdownIt-Anchor" href="#在rawinput中配置设备"></a> 在RawInput中配置设备</h2><p>以下示例是以 Logitech G920 驱动游戏的控制器。</p><p>通过官方驱动程序将方向盘报告为轴1，将制动器报告为轴3，将加速踏板报告为轴4。</p><blockquote><p>可以通过Windows的外设测试程序 或 hardwaretester（<a href="https://hardwaretester.com/gamepad%EF%BC%89">https://hardwaretester.com/gamepad）</a> 测试相关轴或按键位置</p></blockquote><p>在RawInput插件设置中，各个输入必须输入到设备驱动程序的对应轴处的数组中。即，方向盘数据必须在数组元素1中，制动器数据必须在数组元素3中，加速踏板数据必须在数组元素4中。所有其他条目可能会被移除或标记为禁用。</p><blockquote><p>需要注意的是，输入的数组索引无需对应于&quot;通用USB控制器轴&quot;或&quot;通用USB控制器输入&quot;值。例如，虽然制动器位于数组位置3中，但绑定的是&quot;通用USB控制器轴2&quot;。这是为了确保将不同的控制器配置为相同的工作方式，即使它们使用不同的输入轴也没有影响。</p></blockquote><p><img src="2026-01-31_222418_709.png" alt="" /></p><p>属性：<br />Enabled          是否启用<br />Key              对应的键<br />Inverted         是否反向<br />Gamepad Stick（UE5新增）    关闭   0~1   开启   -1~1<br />offset            偏移</p><p>由于设备输出范围与我们预期的标准控制器输出范围不符，因此将重新映射输入范围。<br />方向盘返回0.0（左）到1.0（右）中的值，但我们需要以0.0为输入范围中间值，因此我们给它设置一个偏移值-0.5。<br />制动器和加速踏板也返回0.0到1.0中的值，但设备使用0.0来指示按下踏板，使用1.0指示踏板抬起，而我们的项目需要相反的设置。<br />为了进行这一调整，我们将轴值调转，然后添加偏移值1.0。</p><h2 id="将rawinput轴映射到输入绑定"><a class="markdownIt-Anchor" href="#将rawinput轴映射到输入绑定"></a> 将RawInput轴映射到输入绑定</h2><p><img src="2026-01-31_222418_710.png" alt="" /></p><p>现在可以将新轴映射到游戏输入绑定。<br />方向盘（在&quot;通用USB控制器轴1&quot;上）映射到范围[-0.5, 0.5]，但我们希望它更灵敏一些，因此可以按系数3.0将它上调。<br />同样，制动器（在&quot;通用USB控制器轴2&quot;上）需要沿负方向延伸，并且应该比加速踏板力量更强，因此将其调节-2.0。<br />加速踏板（在&quot;通用USB控制器轴3&quot;上）无需修改，只需要添加到相应的输入绑定。<br />通过使用RawInput和添加这些输入绑定，我们无需任何新输入绑定或对项目代码或蓝图进行任何更改，即可支持。</p>]]></content>
+    
+    
+    <summary type="html">UE5增强输入之RawInput插件</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UE5增强输入</title>
+    <link href="http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5/"/>
+    <id>http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5/</id>
+    <published>2026-01-31T09:53:13.000Z</published>
+    <updated>2026-01-31T13:59:48.209Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1项目设置"><a class="markdownIt-Anchor" href="#1项目设置"></a> 1.项目设置</h2><p>UE5对于输入这块功能做出了更新。在项目设置-&gt;输入的面板可以看到这块已经提示弃用了。<br />图中的操作映射(Action Mappings)和轴映射(Axis Mappings) 会被增强输入操作(Enhanced Input)和 输入映射上下文(Input mapping Context）代替。</p><p><img src="5d948f36d9387dcdc89578f0e49dc50559509622.png" alt="" /></p><p>操作映射针对按下和松开键；轴映射针对拥有连续范围的输入。</p><p>切换到引擎-增强输入界面</p><p>可以看到增强输入的配置针对不同平台也可以调一些预设参数。</p><p>编辑器和触发器也有一些预设参数。</p><p><img src="2098abb3e3dca97d8f54d9d82aafdc372892c8e6.png" alt="" /></p><p><img src="ac7088cbfa1df36c2d4ee17e77887225717002df.png" alt="" /></p><h2 id="2创建文件"><a class="markdownIt-Anchor" href="#2创建文件"></a> 2.创建文件</h2><h3 id="1在内容目录下的合适的文件夹里创建一个input文件夹用来存放增强输入的相关文件"><a class="markdownIt-Anchor" href="#1在内容目录下的合适的文件夹里创建一个input文件夹用来存放增强输入的相关文件"></a> 1).在内容目录下的合适的文件夹里，创建一个Input文件夹，用来存放增强输入的相关文件</h3><h3 id="2右键弹出菜单创建输入操作文件"><a class="markdownIt-Anchor" href="#2右键弹出菜单创建输入操作文件"></a> 2).右键弹出菜单，创建输入操作文件</h3><p><img src="09e3815585723bb7c45a6e9e0de5add050bea42e.png" alt="" /></p><p>英文名是Input Action，所以可以给它起名“IA_”开头来方便分类和查找。</p><h3 id="3双击文件进入文件细节-设置它的参数"><a class="markdownIt-Anchor" href="#3双击文件进入文件细节-设置它的参数"></a> 3).双击文件进入文件细节 设置它的参数。</h3><p>默认勾选“消耗输入”。</p><p>其他参数根据自己需要来修改。</p><p>一般&quot;按下 松开&quot;的操作键使用数字(布尔类型)</p><p><img src="2e9f1db0ea4f1b94abc324a1df911fa1c42368ba.png" alt="" /></p><p>方向和移动相关的，使用Axis1D（浮点) 这个类型是范围-1到1的浮点数。</p><p>也可以根据自己的需要改成Axis2D或Axis3D。</p><p><img src="ad4013d8f43e1d2285b97eb60b29e2de4587db6b.png" alt="" /></p><p>触发器和修改器的内容，可以在这里预设，也可以在蓝图中自定义来代替。</p><h3 id="4在创建好需要的ia文件后继续在空白地方右键菜单创建-输入映射情境input-mapping-context也就是输入映射上下文"><a class="markdownIt-Anchor" href="#4在创建好需要的ia文件后继续在空白地方右键菜单创建-输入映射情境input-mapping-context也就是输入映射上下文"></a> 4).在创建好需要的IA文件后，继续在空白地方右键菜单，创建 输入映射情境(Input Mapping Context)，也就是输入映射上下文。</h3><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c087.png" alt="" /></p><p>可以给它起名为IMC_ 开头的文件。</p><p>打开它，像之前操作映射一样，设置好IA文件和输入按键的关联映射。</p><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c088.png" alt="" /></p><h2 id="3配置蓝图"><a class="markdownIt-Anchor" href="#3配置蓝图"></a> 3.配置蓝图</h2><h3 id="1添加增强输入"><a class="markdownIt-Anchor" href="#1添加增强输入"></a> 1).添加增强输入</h3><p>打开需要添加增强输入的蓝图，按照以下执行：获取玩家控制器，执行引脚和增强输入本地玩家子系统（Enhanced Input Local Player Subsystem），执行引脚并添加映射上下文（Add Mapping Context），在“添加映射上下文”节点，选择之前创建的上下文文件（IMC_ 开头的文件） ，具体如下：</p><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c089.png" alt="" /></p><h3 id="2使用增强输入事件"><a class="markdownIt-Anchor" href="#2使用增强输入事件"></a> 2).使用增强输入事件</h3><p>右键菜单搜索之前创建的IA_文件，选中后自动创建该文件相关的增强输入事件。</p><p><img src="3896b1969a1177c83b69eecfaa351481e9a40e84.png" alt="" /></p><p>创建好以后可以根据每个操作事件进行相应的测试，之后可以来设定输入后执行的内容。</p><p><img src="2cff4ac2b65f477495ff26fb2a2fe1a15e277706.png" alt="" /></p><p>其中，Trigger代表按住 可以用来作方向转向和移动的持续操作；<br />Started代表按下按键 Completed 代表松开按键。</p><p>测试下操作的内容并添加自定义的互动输入内容即可。</p><h2 id="4增强输入如何获取key"><a class="markdownIt-Anchor" href="#4增强输入如何获取key"></a> 4.增强输入如何获取Key</h2><p>创建一个函数Get Action Pressed Keys,函数内创建一个局部变量 PressedKyes 的键数组</p><p><img src="c882cbe85b8449d5965051afe2516b2d63004295.png" alt="" /><br /><img src="4e8bc8f887988c29e23f2135e89b725b76f129ec.png" alt="" /></p><p>调用该函数：</p><p><img src="2fe55a74e759863e9b08bdf8a05e696dd193010c.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE5增强输入</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE Async Load Asset通过资源路径动态加载资源</title>
@@ -384,48 +426,6 @@
     
     
     <summary type="html">UE5编辑器辅助加强_插件搜集</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5摄像机组件使用详解</title>
-    <link href="http://www.formeasy.cc/2025/11/02/UE/UE5%E6%91%84%E5%83%8F%E6%9C%BA%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://www.formeasy.cc/2025/11/02/UE/UE5%E6%91%84%E5%83%8F%E6%9C%BA%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</id>
-    <published>2025-11-02T00:50:41.000Z</published>
-    <updated>2025-11-02T01:09:37.269Z</updated>
-    
-    <content type="html"><![CDATA[<p>摄像机是游戏开发中的重要组件之一，通过摄像机可以观察整个关卡，切换摄像机的视角可以实现不同的功能，如实现第一人称和第三人称视角。本文通过样例演示如何通控制两个摄像机的切换实现视角的变化。</p><h3 id="1添加摄像头"><a class="markdownIt-Anchor" href="#1添加摄像头"></a> 1，添加摄像头</h3><p>（1）新建一个“Actor”类蓝图并命名为“BP_CameraComponent”，并将其添加到关卡中。</p><p><img src="2025060415242665395.png" alt="" /></p><p>（2）双击打开&quot;BP_CameraComponent&quot; 蓝图，在“组件” 面板中单击“添加”按钮添加一个摄像机组件。若视口中出现摄像机模型，则代表加成功。</p><p><img src="2025060415264480815.png" alt="" /></p><p>（3）编译并保存后回到关卡中、从“内容浏览器”面板中拖曳 BP_CameraComponent 蓝图到关卡中，选择蓝图后，视口右下角会出现摄像机的视角。</p><p><img src="2025060415310284912.png" alt="" /></p><p>（4）打开“BP_CameraComponent”蓝图后再次添加一个摄像机组件，让两个摄像机存在于同一张蓝图中。</p><p><img src="2025060415364998638.png" alt="" /></p><p>（5）选择新建的摄像机、按 W 键进入“选择并平移对象”模式并移动摄像机，再按 E 键进入“选择并旋转对象”模式并略微旋转摄像机。从而让两个摄像头看到不同的视角。</p><p><img src="202506041539045426.png" alt="" /></p><p>（6）因为默认只能开启一个摄像机，所以为了防止出现问题，在“细节”面板中取消勾选“Camera1”的“自动启用”选项。</p><p><img src="2025060415411465395.png" alt="" /></p><h3 id="2编写蓝图逻辑"><a class="markdownIt-Anchor" href="#2编写蓝图逻辑"></a> 2，编写蓝图逻辑</h3><p>（1）打开“BP_CameraComponent”蓝图的事件图表，添加如下逻辑，实现按下 F 键时可以交替激活两个摄像机。</p><p><img src="2025060415585629753.png" alt="" /></p><p>（2）打开关卡蓝图，添加如下逻辑。其作用是在游戏开始时，将玩家的视角切换到指定的摄像机组件（BP_CameraComponent）上。</p><p>提示：Blend Time = 0.0 表示立即切换，没有过渡动画。</p><p><img src="2025060416055112646.png" alt="" /></p><h3 id="3运行测试"><a class="markdownIt-Anchor" href="#3运行测试"></a> 3，运行测试</h3><p>（1）运行后默认显示第 1 个摄像机的视角</p><p><img src="2025060416084225656.png" alt="" /></p><p>（2）按 F 键后切换为第 2 个摄像机的视角，再次按 F 键后回到第 1 个摄像机的视角。</p><p><img src="2025060416090791417.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE5摄像机组件使用详解</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VR项目优化设置</title>
-    <link href="http://www.formeasy.cc/2025/10/31/UE/VR%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://www.formeasy.cc/2025/10/31/UE/VR%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E8%AE%BE%E7%BD%AE/</id>
-    <published>2025-10-31T01:04:11.000Z</published>
-    <updated>2025-10-31T01:09:35.589Z</updated>
-    
-    <content type="html"><![CDATA[<p>在创建针对特定VR平台的新项目时，请在 <strong>游戏（Games）</strong> 类别下选择 <strong>虚拟现实应用（VR Template）</strong>。VR模板提供了在虚幻引擎5中开发VR项目所需要的初始内容。</p><p>如果不想使用VR模板，可以用以下设置，新建一个空白C++或蓝图项目。</p><ul><li>质量预设：可缩放</li><li>光线追踪：禁用</li><li>初学者内容：禁用</li></ul><p><img src="projectsettings.png" alt="" /></p><p>这些设置会创建一个虚幻引擎项目，并启用最少的渲染功能。这样可以确保项目一开始就有良好的帧率，你只要添加需要的渲染功能即可。</p><p>在创建项目后，设置以下项目设置，以改善应用的性能：</p><ul><li>进入 <strong>编辑 &gt; 项目设置 &gt; 描述</strong>，并启用 <strong>以VR启动</strong>。</li><li>在 <strong>编辑 &gt; 项目设置 &gt; 渲染 &gt;前向渲染器</strong> 中，启用前向着色。</li><li>在 <strong>编辑 &gt; 项目设置 &gt; 渲染 &gt; 默认设置</strong> 中，将 <strong>抗锯齿方法</strong> 设置为多重采样抗锯齿。</li><li>在 <strong>编辑 &gt; 项目设置 &gt; 渲染（Rendering）&gt; VR</strong> 中，启用实例化立体。<br />*　对于移动设备VR体验，在 <strong>编辑 &gt; 项目设置 &gt; 渲染 &gt; VR（Edit &gt; Project Settings &gt; Rendering &gt; VR）</strong> 中启用移动多视图。<ul><li>将移动HDR（Mobile HDR）设置为False</li></ul></li></ul><h2 id="vr-ini设置"><a class="markdownIt-Anchor" href="#vr-ini设置"></a> VR .ini设置</h2><p>以下表格描述了部分主机变量，以及VR项目的推荐值。</p><table><thead><tr><th><strong>控制台变量</strong></th><th><strong>推荐值</strong></th><th><strong>说明</strong></th></tr></thead><tbody><tr><td><strong>vr.PixelDensity</strong></td><td>1</td><td><strong>1</strong> 是HMD目前使用的理想分辨率。较低的值会导致运行速度更快，但也会造成欠采样（更为模糊）。超过 <strong>1</strong> 时运行速度较慢，同时会超采样（更为清晰）。</td></tr><tr><td><strong>r.SeparateTranslucency</strong></td><td>0</td><td>由于填充帧限制，对移动VR体验来说开销较大。建议禁用该功能。</td></tr><tr><td><strong>r.HZBOcclusion</strong></td><td>0</td><td>层级Z缓冲遮挡部分。</td></tr></tbody></table><p>以下.ini设置摘自虚幻引擎4支持的VR演示<a href="https://www.unrealengine.com/marketplace/en-US/product/showdown-demo">《Showdown》</a>。你可以使用这些设置作为起点，将它们复制到项目的 <strong>Config/DefaultEngine.ini</strong> 文件中的 <strong>SystemSettings</strong> 下。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[SystemSettings]</span><br><span class="line"></span><br><span class="line">vr.PixelDensity=1</span><br><span class="line">r.SeparateTranslucency=0</span><br><span class="line">r.HZBOcclusion=0</span><br><span class="line">r.MotionBlurQuality=0</span><br><span class="line">r.PostProcessAAQuality=3</span><br><span class="line">r.BloomQuality=1</span><br><span class="line">r.EyeAdaptationQuality=0</span><br><span class="line">r.AmbientOcclusionLevels=0</span><br><span class="line">r.SSR.Quality=1</span><br><span class="line">r.DepthOfFieldQuality=0</span><br><span class="line">r.SceneColorFormat=2</span><br><span class="line">r.TranslucencyVolumeBlur=0</span><br><span class="line">r.TranslucencyLightingVolumeDim=4</span><br><span class="line">r.MaxAnisotropy=8</span><br><span class="line">r.LensFlareQuality=0</span><br><span class="line">r.SceneColorFringeQuality=0</span><br><span class="line">r.FastBlurThreshold=0</span><br><span class="line">r.SSR.MaxRoughness=0.1</span><br><span class="line">r.rhicmdbypass=0</span><br><span class="line">sg.EffectsQuality=2</span><br><span class="line">sg.PostProcessQuality=0</span><br></pre></td></tr></table></figure><h2 id="vr帧率优化"><a class="markdownIt-Anchor" href="#vr帧率优化"></a> VR帧率优化</h2><p>大部分VR应用都会执行自己的流程来控制VR帧率。因此，需要在虚幻引擎4中禁用多个会影响VR应用的一般项目设置。</p><p>请跟随以下步骤，禁用虚幻引擎的一般帧率设置：</p><ol><li><p>在编辑器主菜单中，选择 编辑 &gt; 项目设置，打开项目设置窗口。</p></li><li><p>在项目设置窗口中，在引擎部分中选择一般设置。</p></li><li><p>在帧率部分下：</p></li></ol><ul><li><p>禁用平滑帧率。</p></li><li><p>禁用使用固定帧率。</p></li><li><p>将自定义时间步设置为None。</p></li></ul><p><img src="framerate.png" alt="" /></p><h2 id="vr世界场景缩放"><a class="markdownIt-Anchor" href="#vr世界场景缩放"></a> VR世界场景缩放</h2><p>为了在VR平台上保障最佳的用户体验，确保世界场景缩放的正确是最重要的方式之一。错误的缩放可能导致用户遭遇各类感官问题，甚至可能引发晕眩。在VR中，物体距离玩家摄像机0.75米至3.5米时观看效果最佳。在虚幻引擎4中，1个虚幻单位（UU）等于1厘米（CM）。这意味着在虚幻引擎中放置物体时，它们在距离玩家摄像机（使用VR时）75至350虚幻单位时观看效果最佳。</p><table><thead><tr><th><strong>距离</strong></th><th><strong>虚幻单位距离</strong></th></tr></thead><tbody><tr><td>1 厘米</td><td>1 虚幻单位</td></tr><tr><td>1 米</td><td>100 虚幻单位</td></tr><tr><td>1 千米</td><td>100,000 虚幻单位</td></tr></tbody></table><p>可以在 <strong>世界场景设置</strong> 中找到 <strong>世界到米</strong> 变量，用它调整世界的缩放。这个数字的升降会使用户感觉自己在世界场景中相应地变大或缩小。假设你使用1虚幻单位=1厘米来构建内容，将 <strong>世界到米</strong> 设置为 <strong>10</strong> 会使世界看起来非常广阔，将其设置为 <strong>1000</strong> 则会使世界变得非常狭小。</p><p><img src="worldscale.png" alt="" /></p><h2 id="vr与模拟晕眩症"><a class="markdownIt-Anchor" href="#vr与模拟晕眩症"></a> VR与模拟晕眩症</h2><p>晕眩是一种在沉浸式体验中影响用户的晕动症。下表介绍的最佳实践能够限制用户在VR中体验到的不适感。</p><ul><li><strong>保持帧率：</strong> 低帧率可能导致晕眩。尽可能地优化项目，就能改善用户的体验。下表罗列了XR平台的推荐帧率。</li></ul><table><thead><tr><th><strong>HMD设备</strong></th><th><strong>目标帧率</strong></th></tr></thead><tbody><tr><td>Oculus Rift S</td><td>90</td></tr><tr><td>Oculus Quest 1</td><td>72</td></tr><tr><td>Oculus Quest 2</td><td>视情况：72/80/90/120</td></tr><tr><td>HTC Vive</td><td>90</td></tr><tr><td>HTC Vive Pro</td><td>90</td></tr><tr><td>Valve Index</td><td>最低90，最高144</td></tr><tr><td>HP Reverb</td><td>90</td></tr><tr><td>Windows Mixed Reality VR</td><td>90</td></tr><tr><td>PSVR</td><td>视情况：60/120、90/90和120/120</td></tr></tbody></table><p>*</p><ul><li><p><strong>用户测试：</strong> 让不同的用户进行测试，监控他们在VR应用中体验到的不适感，以避免出现晕眩。</p></li><li><p><strong>让用户控制摄像机：</strong> 电影摄像机和其他使玩家无法控制摄像机移动的设计是沉浸式体验不适感的罪魁祸首。应当尽量避免使用头部摇动和摄像机抖动等摄像机效果，如果用户无法控制它们，就可能产生不适感。</p></li><li><p><strong>视野（FOV）必须和设备匹配：</strong> FOV值是通过设备的SDK和内部配置设置的，并且与头显和镜头的物理几何体匹配。因此，FOV无法在虚幻引擎中更改，用户也不得修改。如果FOV值经过了更改，那么在你转动头部时，世界场景就会产生扭曲，并引起不适感。</p></li><li><p><strong>使用较暗的光照和颜色，并避免产生拖尾</strong> 在设计VR元素时，你使用的光照与颜色应当比平常更为暗淡。在VR中，强烈鲜明的光照会导致用户更快出现晕眩。使用偏冷的色调和昏暗的光照，就能避免用户产生不适感，还能避免屏幕中的亮色和暗色区域之间产生拖尾。</p></li><li><p><strong>移动速度不应该变化：</strong> 用户一开始就应当是全速移动，而不是逐渐加快至全速。</p></li><li><p><strong>避免使用会大幅影响用户所见内容的后期处理效果：</strong> 避免使用景深和动态模糊等后期处理效果，以免用户产生不适感。</p></li><li><p>应避免动态模糊和景深等视觉效果。</p></li><li><p>考虑角色高度、宽度、速度和摄像机位置等因素，需要针对VR角色对它们进行轻微修改。</p></li></ul><h2 id="vr摄像机设置"><a class="markdownIt-Anchor" href="#vr摄像机设置"></a> VR摄像机设置</h2><p>虚幻引擎4中的VR摄像机设置完全取决于VR体验是否为坐式或站式：</p><ul><li><strong>坐式体验：</strong> 你需要人工抬高角色站立时的摄像机原点，将 <strong>视线水平</strong> 设置为Pawn碰撞胶囊体 <strong>圆柱体高度</strong> 负值的一半。</li></ul><p><img src="vr_seated_experience.png" alt="" /></p><ul><li><strong>站式体验：</strong> 确保摄像机原点设置为 <strong>0</strong>，相对于通常摆放在地面上的Pawn根部。在Pawn底部的场景组件上附加一个摄像机组件，使其位于地面水平。</li></ul><p><img src="vr_standing_experience.png" alt="" /> <img src="trackingorigin.png" alt="" /></p><h2 id="vr内容注意事项"><a class="markdownIt-Anchor" href="#vr内容注意事项"></a> VR内容注意事项</h2><p>在创建VR内容时，你需要注意的是，用户可以从多个角度观看内容。请注意下列事项：</p><ul><li><p><strong>比例（Scale）：</strong> VR场景中的物体比例应尽可能地模拟真实情况。物体过大或过小可能会导致用户产生困惑，或者产生晕眩。</p></li><li><p><strong>多边形面缺失：</strong> 在非沉浸式体验中，物体上玩家无法看到的多边形面通常会被移除。然而，在VR体验中，玩家可以更自由地环顾四周，如果缺失多边形，可能会导致用户看到不该看到的对象。</p></li><li><p><strong>光照类型：</strong> 在VR项目中始终要使用静态光源和光照贴图，这是渲染开销最低的方案。如果你需要使用动态光照，一定要尽量少用动态光源，并且确保它们不会相互接触。</p></li><li><p><strong>VR和VFX：</strong> 部分VFX效果，例如使用SubUV纹理来模拟火焰或烟雾，在VR中的观看效果不佳。你依然需要使用静态网格体来模拟爆炸和烟迹等效果，不能使用2D粒子。近场效果和距离摄像机很近的效果在VR中表现良好，但必须使用静态网格体粒子组成。</p></li><li><p><strong>VR和透明度：</strong> 在3D图形中，渲染透明度的开销极其昂贵，因为一般来说，透明效果每帧都需要重新计算一下，以检查是否有所变化。由于要重新评估，在VR中渲染透明度的开销变得过于昂贵，得不偿失。不过为了避免这个问题，你可以使用 <strong>DitherTemporalAA</strong> 材质函数。该材质函数可以让材质看似使用了透明效果，还能避免自排序等常见的透明度问题。 <img src="vr_dither_trans_aa.png" alt="" /></p><ul><li><strong>尽可能以假乱真：</strong> 以取巧的方式模拟出动态阴影或动态光照等开销高昂的渲染效果，这样可以尽可能节省性能。在Showdown中，让角色逐帧投射动态阴影的开销过于昂贵，因此项目中取消了动态阴影。然而，这也让角色在移动时如同在漂浮一般。为了解决该问题，我们使用了仿制的模糊阴影，它们能根据角色与场景中物体的距离，动态地调节位置和强度。这样角色在靠近地面（或其他物体）时就仿佛投下了阴影。</li></ul></li><li><p><img src="vr_fake_shadow_material.png" alt="" /></p></li></ul><h2 id="已知局限"><a class="markdownIt-Anchor" href="#已知局限"></a> 已知局限</h2><p>下表列出了可能因HMD设计而无法在VR中获得预期效果的功能，以及可能的解决方案。</p><ul><li><p><strong>屏幕空间反射（SSR）：</strong> 虽然SSR能够在VR中生效，但其产生的反射可能与真实世界中的反射不匹配。除了SSR之外，你还可以使用反射探头，它们的开销较低，也较不容易出现反射匹配的问题。</p></li><li><p><strong>屏幕空间全局光照：</strong> 屏幕空间技术可以在HMD中的两只眼睛之间产生显示差异。这些差异可能会导致用户不适。</p></li><li><p><strong>光线追踪：</strong> 目前使用光线追踪的VR应用程序无法保持所需的分辨率和帧速率来获得舒适的VR体验。</p></li><li><p><strong>用户界面：</strong> 2D UI在立体渲染中不受支持，因为它在立体视图中效果不佳。应改用放置在3D世界中的控件组件来代替2D UI。</p></li></ul><h3 id="法线贴图问题"><a class="markdownIt-Anchor" href="#法线贴图问题"></a> 法线贴图问题</h3><p>在VR中查看对象上的法线贴图时，应该会注意到它们未能达到以前该有的效果。这是因为法线贴图不会考虑双目显示问题或运动视差。因此，使用VR设备查看时，法线贴图通常看起来很扁平。但是，这并不意味着不应该或不需要使用法线贴图；只是意味着需要更加仔细评估是否可以更好地从几何体产生法线贴图中的数据。下面将介绍一种可以用来代替法线贴图的技术。</p><ul><li><strong>视差贴图：</strong> 视差贴图会考虑法线贴图中所没有的深度线索，从而将法线贴图提升到一个新的水平。视差贴图着色器可以更好地显示深度信息，使对象看起来比实际具有更多细节。这是因为无论从哪个角度看，视差贴图都会自行校正，从观察者的视点显示正确的深度信息。视差贴图的最佳用途是用于鹅卵石小径和具有精细细节的表面等。</li></ul>]]></content>
-    
-    
-    <summary type="html">VR项目优化设置</summary>
     
     
     

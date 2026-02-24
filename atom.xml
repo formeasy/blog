@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-02-21T04:17:02.552Z</updated>
+  <updated>2026-02-24T08:19:56.668Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5 样条曲线（规划路径运动）</title>
+    <link href="http://www.formeasy.cc/2026/02/24/UE/UE5%20%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%EF%BC%88%E8%A7%84%E5%88%92%E8%B7%AF%E5%BE%84%E8%BF%90%E5%8A%A8%EF%BC%89/"/>
+    <id>http://www.formeasy.cc/2026/02/24/UE/UE5%20%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%EF%BC%88%E8%A7%84%E5%88%92%E8%B7%AF%E5%BE%84%E8%BF%90%E5%8A%A8%EF%BC%89/</id>
+    <published>2026-02-24T08:02:22.000Z</published>
+    <updated>2026-02-24T08:19:56.668Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="添加样条线第一种"><a class="markdownIt-Anchor" href="#添加样条线第一种"></a> 添加样条线（第一种）</h3><p><img src="2d63962edee20e6bbe9a2139ea3542a1.png" alt="" /></p><h3 id="添加样条线第二种"><a class="markdownIt-Anchor" href="#添加样条线第二种"></a> 添加样条线（第二种）</h3><p><img src="9f2fa2f20e3bbeba7ac3cb8407da2de2.png" alt="" /></p><p><img src="5c8e9d142c2e686b123518fdc2ddd413.png" alt="" /></p><h3 id="添加立方体"><a class="markdownIt-Anchor" href="#添加立方体"></a> 添加立方体</h3><p><img src="3077b41f0bf55a6356d469d8c15134b4.png" alt="" /></p><p><img src="01a5139e48f0b0f49b633ddfeb32c4e5.png" alt="" /></p><p><img src="ee236cf4bf999977991fc8dde99bedf6.png" alt="" /></p><p>替换模型为人物动画模型</p><p><img src="cc25b30b3212cbaea0b7f65eb4270387.png" alt="" /></p><p>人物方向的调整</p><p><img src="6e2678a4980f3f5de7da130e350c1f08.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE5 样条曲线（规划路径运动）</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE5-OnHit和OnOverlap事件触发</title>
@@ -405,27 +426,6 @@
     
     
     <summary type="html">UE5内容浏览器显示不出关卡及启动编译失败的问题</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5中使用HDRI</title>
-    <link href="http://www.formeasy.cc/2025/11/09/UE/UE5%E4%B8%AD%E4%BD%BF%E7%94%A8HDRI/"/>
-    <id>http://www.formeasy.cc/2025/11/09/UE/UE5%E4%B8%AD%E4%BD%BF%E7%94%A8HDRI/</id>
-    <published>2025-11-09T14:36:33.000Z</published>
-    <updated>2025-11-09T14:58:10.762Z</updated>
-    
-    <content type="html"><![CDATA[<p>UE5中默认的场景配置中包含：DirectionalLight直射光、ExponentialHeightFog指数高度雾、SkyAtmosphere天空大气、SkyLight天光、VolumetricCloud体积云。</p><p>上述这些是一套模拟现实环境的组件，但是有些情况可能需要一个天空盒就够了。</p><p>在Unity中默认是使用天空盒，是没有边界的。</p><p>在UE5中，使用HDRI高动态范围图像，也可以使用它当菜单背景，这个功能是在插件中。</p><h2 id="开启hdribackdrop"><a class="markdownIt-Anchor" href="#开启hdribackdrop"></a> 开启HDRIBackdrop</h2><p><img src="v2-61bd879743ddfd5d2ccdc74cea01a0d5_1440w.jpg" alt="" /></p><h2 id="添加hdri"><a class="markdownIt-Anchor" href="#添加hdri"></a> 添加HDRI</h2><p>开启HDRIBackdrop插件之后，就可以在Lights灯光组件中找到它。</p><p><img src="v2-c86a8624662ba62e379558337a8ad9f9_1440w.jpg" alt="" /></p><h2 id="hdri天圆地方"><a class="markdownIt-Anchor" href="#hdri天圆地方"></a> HDRI—天圆地方</h2><p>虚幻中这个HDRI是模拟了一个天圆地方的状态，默认有一个示例4K的图像。</p><p><img src="v2-c6c7e74bde8f416ea8c9f6c08a31daa5_1440w.jpg" alt="" /></p><p>HDRI是有一个十分明确的轮廓的，一个半球+四周高中间低的圆弧面。</p><p><img src="v2-17ff793e1d2e352914ae60ad7813cce8_1440w.jpg" alt="" /><br />cube在原点</p><p><img src="v2-bc7df044fd166b848b4813a2f7f7cc50_1440w.jpg" alt="" /><br />cube在边缘处，高度都是0</p><p>上面可以看出来，使用HDRI，模型不能放在边缘位置，不然就露馅了！</p><h2 id="hdri参数"><a class="markdownIt-Anchor" href="#hdri参数"></a> HDRI参数</h2><p>HDRI主要有三个参数：</p><p>1.Intensity 强度 类似于天空的光照强度；</p><p>2.Size 大小 调正范围的；</p><p>3.Projection Center 投影中心</p><p>关于Projection Center，设置一下数据做个对比，这样容易理解它是干什么的！</p><p>极端状态，设置为（0，0，0），你会发现地面部分被严重拉伸了。</p><p><img src="v2-02a541e58b7d3ec8f0b34f7527ccc72a_1440w.jpg" alt="" /></p><p>默认状态，（0，0，170）</p><p><img src="v2-4b2ad0e547566d63d20ea1a2cdcd3cc0_1440w.jpg" alt="" /></p><p>默认状态，（0，0，170），边缘处还是被拉伸了</p><p><img src="v2-5dfc07c26be7c1ff991dab2b70745c71_1440w.jpg" alt="" /></p><p>参数为（0，0，1000）边缘处</p><p><img src="v2-3ea6f642675da91889c9e7f7e2a553bb_1440w.jpg" alt="" /></p><p>极端大（0，0，10000），地面被拉到天上去了！</p><p><img src="v2-c8e2e9e11cf063e26c34e11a845b2d33_1440w.jpg" alt="" /></p><p>参数根据需求调试就可以。</p>]]></content>
-    
-    
-    <summary type="html">UE5中使用HDRI</summary>
     
     
     

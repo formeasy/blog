@@ -2392,7 +2392,21 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/DDS/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/C/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/EA/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2420,27 +2434,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/DDS/</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/EA/</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/Elasticsearch/</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/Ollama/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -2449,6 +2442,13 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/Editor/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Elasticsearch/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2539,7 +2539,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Python/</loc>
+    <loc>http://www.formeasy.cc/tags/ROS/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2560,7 +2560,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/ROS/</loc>
+    <loc>http://www.formeasy.cc/tags/Python/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2581,7 +2581,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
+    <loc>http://www.formeasy.cc/tags/Springboot/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2595,7 +2595,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Springboot/</loc>
+    <loc>http://www.formeasy.cc/tags/UDPTCP/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2674,6 +2674,13 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/categories/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -2689,13 +2696,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/categories/%E6%99%BA%E8%83%BD/</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-02-24T08:25:56.903Z</updated>
+  <updated>2026-03-08T06:13:32.649Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5使用Geometry Collection实现破碎效果</title>
+    <link href="http://www.formeasy.cc/2026/03/08/UE/UE5%E4%BD%BF%E7%94%A8Geometry%20Collection%E5%AE%9E%E7%8E%B0%E7%A0%B4%E7%A2%8E%E6%95%88%E6%9E%9C/"/>
+    <id>http://www.formeasy.cc/2026/03/08/UE/UE5%E4%BD%BF%E7%94%A8Geometry%20Collection%E5%AE%9E%E7%8E%B0%E7%A0%B4%E7%A2%8E%E6%95%88%E6%9E%9C/</id>
+    <published>2026-03-08T03:53:13.000Z</published>
+    <updated>2026-03-08T06:13:32.649Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Unreal Engine 5 (UE5)中，几何集（Geometry Collection）是一个强大的工具，属于Chaos Physics系统，用于处理 破坏（Destruction）和 碎片化（Fracture）效果。它可以让你创建高度真实的物理模拟，允许对象在碰撞、力的作用下动态地破裂、碎裂并以自然的方式反应。这个组件特别适用于游戏和影视制作中的 物理破坏 和 环境互动。</p><p>Geometry Collection组件属于Chaos Destruction 系统，它可以让你把一个静态网格（例如墙壁、建筑物、家具等）分解成多个碎片（碎块），并通过物理模拟来管理这些碎片的行为。这使得在游戏中实现 物理破坏效果 变得更容易。</p><h2 id="一-创建几何集geometry-collection"><a class="markdownIt-Anchor" href="#一-创建几何集geometry-collection"></a> 一、创建几何集（Geometry Collection）</h2><h3 id="1开启插件"><a class="markdownIt-Anchor" href="#1开启插件"></a> 1.开启插件</h3><p>开启Chaos相关插件，默认系统是开启的 ，如下图：</p><p><img src="2026-03-08_114258_296.png" alt="" /></p><h3 id="2-创建一个静态网格模型static-mesh"><a class="markdownIt-Anchor" href="#2-创建一个静态网格模型static-mesh"></a> 2. 创建一个静态网格模型（Static Mesh）</h3><p>先在 3ds Max、Maya 或 Blender 等建模软件中创建一个模型（如墙壁、建筑、岩石等），然后导入Unreal Engine。</p><h3 id="3-生成几何集geometry-collection"><a class="markdownIt-Anchor" href="#3-生成几何集geometry-collection"></a> 3. 生成几何集（Geometry Collection）</h3><p>UE进入“破裂”模式，显示出破裂相关的窗口，破裂、破裂层级、等级统计数据等窗口。</p><p><img src="2026-03-08_115319_215.png" alt="" /></p><p>并将静态网格模型拖入到当前场景中，之后在大纲中或场景选中它。这时，“破裂”模式工具栏下的新建按钮亮显，点击它。</p><p><img src="2026-03-08_115512_052.png" alt="" /></p><p>在弹出的保存几何体集名对话框中，选择路径并创建几何集。<br />创建后，在场景中，创建出一个GeometryCollectionActor的几何集类型Actor。</p><blockquote><p>注意：创建几保集后，原静态网格模型将被替代。</p></blockquote><p>在“破裂”模式工具栏下，根据业务需求选择和调整破碎效果相关参数，并点击“破裂”按钮。<br />比如：破碎方式为“簇”，最小和最大数字簇等参数。</p><p><img src="2026-03-08_125915_248.png" alt="" /></p><blockquote><p>注意：破碎方式为“统一”，场景中几何集为彩色，可以通过它的细节面板，找到ShowBoneColors参数，并设置false。</p></blockquote><p>破裂后，可以通过拖拽爆炸当量参数观看效果，破裂出的碎块可以通过“破裂”层级进行查看。</p><p><img src="2026-03-08_130353_613.png" alt="" /></p><blockquote><p>注意：如果感觉破裂的块比较大，可以再对某一块进行再次破裂。</p></blockquote><p>保存后，你可以将它拖到空中，开启模拟物理，并加大质量。<br />运行后，它掉落到地面上，就会产生“破裂”效果。<br />但是由于力的不够大，所以需创建外力，实现爆炸破碎效果。</p><h2 id="二-创建外力"><a class="markdownIt-Anchor" href="#二-创建外力"></a> 二、创建外力</h2><h3 id="1力蓝图"><a class="markdownIt-Anchor" href="#1力蓝图"></a> 1.力蓝图</h3><p>在内容菜单中，引擎-&gt;EditorResources-&gt;FieldNodes下，有以下几个预制的力：</p><p><img src="2026-03-08_132120_519.png" alt="" /></p><p>FS_BombField_Prototype: 指定方向的力，比如打枪，推力等。<br />FS_MasterField: 中间向四周的力，比如爆炸力。<br />FS_AnchorField：为防止力使用的区域。</p><p>实现爆炸破碎效果选择FS_MasterField，建议将它拷贝到项目目录中。</p><h3 id="2使用力蓝图"><a class="markdownIt-Anchor" href="#2使用力蓝图"></a> 2.使用力蓝图</h3><p>将FS_MasterField拖拽到场景中，将根据需求设置参数：</p><p><img src="2026-03-08_133106_790.png" alt="" /></p><blockquote><p>其中，重点为DelayAmount参数，为延迟时间，也是力的大小爆发力，默认为1时，有的需场景达不到爆炸破碎效果。</p></blockquote><p>运行后，就能看到爆炸破碎效果。</p><h2 id="三-使用蓝图类控制爆炸破碎效果"><a class="markdownIt-Anchor" href="#三-使用蓝图类控制爆炸破碎效果"></a> 三、使用蓝图类控制爆炸破碎效果</h2><p>在项目中，需要通过事件动态创建和控制爆炸破碎效果，所以需通过蓝图类操作。</p><h3 id="1先创建一个蓝图类将以原静态网络体为根节点"><a class="markdownIt-Anchor" href="#1先创建一个蓝图类将以原静态网络体为根节点"></a> 1.先创建一个蓝图类，将以原静态网络体为根节点:</h3><p><img src="2026-03-08_134020_674.png" alt="" /></p><blockquote><p>根据业务情况，可以将它先显示，后隐藏。</p></blockquote><h3 id="2再它下面创建一个geometrycollection对象并将restcollection选择为刚才生成的生成几何集"><a class="markdownIt-Anchor" href="#2再它下面创建一个geometrycollection对象并将restcollection选择为刚才生成的生成几何集"></a> 2.再它下面创建一个GeometryCollection对象，并将RestCollection选择为刚才生成的生成几何集：</h3><p><img src="2026-03-08_134248_803.png" alt="" /></p><p>并将GeometryCollection对象的Simulate Physics参数为False，防止它启动物理模拟。</p><p>保存蓝图类，并将它拖到场景中。</p><h3 id="3在蓝图关卡中添加一个事件获取蓝图类并将geometrycollection对象启动模拟物理并创建力actor"><a class="markdownIt-Anchor" href="#3在蓝图关卡中添加一个事件获取蓝图类并将geometrycollection对象启动模拟物理并创建力actor"></a> 3.在蓝图关卡中添加一个事件，获取蓝图类，并将GeometryCollection对象启动模拟物理，并创建力Actor。</h3><p><img src="2026-03-08_135217_524.png" alt="" /></p><p>运行程序，便可以查看到爆炸破碎效果：</p><p><img src="2026-03-08_135321_508.png" alt="" /></p><h2 id="四-其它"><a class="markdownIt-Anchor" href="#四-其它"></a> 四、其它</h2><p>根据业务需求，对爆炸破碎效果需要反复测试，可以通过缓存器来进行录制。</p><h3 id="1添加chaos缓存管理器"><a class="markdownIt-Anchor" href="#1添加chaos缓存管理器"></a> 1.添加Chaos缓存管理器</h3><p><img src="2026-03-08_135918_539.png" alt="" /></p><h3 id="2创建缓存集合"><a class="markdownIt-Anchor" href="#2创建缓存集合"></a> 2.创建缓存集合</h3><p><img src="2026-03-08_140037_298.png" alt="" /></p><h3 id="3设置缓存模式-名称和引用创建的爆炸破碎效果文件"><a class="markdownIt-Anchor" href="#3设置缓存模式-名称和引用创建的爆炸破碎效果文件"></a> 3.设置缓存模式、名称和引用（创建的爆炸破碎效果文件）</h3><p><img src="2026-03-08_140321_274.png" alt="" /></p><p>可以多次录制，改成播放模式，可以查看。</p><p>这样，每次点击运行程序，都会播放录制好的爆炸破碎效果。</p><h3 id="4在关卡序列中播放爆炸破碎动画"><a class="markdownIt-Anchor" href="#4在关卡序列中播放爆炸破碎动画"></a> 4.在关卡序列中播放爆炸破碎动画</h3><p>两种方式，缓存器或几何集。</p><p>将它们拖到关卡序列中，点击新增开始时间，添加关键帧后即可实现在关卡序列中播放爆炸破碎动画。</p><p><img src="2026-03-08_141149_989.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">UE5使用Geometry Collection实现破碎效果</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>UE5 样条曲线（规划路径运动）</title>
@@ -405,27 +426,6 @@
     
     
     <summary type="html">【Cesium for Unreal】水效果实现</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5内容浏览器显示不出关卡及启动编译失败的问题</title>
-    <link href="http://www.formeasy.cc/2025/11/12/UE/UE5%E5%86%85%E5%AE%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%87%BA%E5%85%B3%E5%8D%A1%E5%8F%8A%E5%90%AF%E5%8A%A8%E7%BC%96%E8%AF%91%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.formeasy.cc/2025/11/12/UE/UE5%E5%86%85%E5%AE%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%87%BA%E5%85%B3%E5%8D%A1%E5%8F%8A%E5%90%AF%E5%8A%A8%E7%BC%96%E8%AF%91%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</id>
-    <published>2025-11-12T01:04:11.000Z</published>
-    <updated>2025-11-12T01:46:04.283Z</updated>
-    
-    <content type="html"><![CDATA[<p>UE5.4项目开发过程中的问题汇总：</p><h3 id="问题一在打开uportject项目编译提示xxx-could-not-be-compiledtry-rebuilding-from-source-manually"><a class="markdownIt-Anchor" href="#问题一在打开uportject项目编译提示xxx-could-not-be-compiledtry-rebuilding-from-source-manually"></a> 问题一：在打开uportject项目编译提示：“XXX could not be compiled.Try rebuilding from source manually”</h3><p>1.项目中使用了C++代码，代码本身有错误，编译.sln查看是否有错误；<br />2.VS版本问题，项目版本为UE5.4，vs2022的MSVC版本过新(14.44) 会导致编译失败，请降级到MSVC 14.38(VS 2022 17.8)版本；<br />3.检查插件软件市场是否与项目中的插件名相同冲突，比如项目中有plugin中有CesiumForUnreal，UE引擎安装目录下的plugin中也有CesiumForUnreal<br />4.插件的版本兼容性</p><p>具体建议查看查看 ./Saved/logs/ 目录下的日志文件</p><h3 id="问题二关卡不显示问题在项目文件夹有ue5的内容浏览器中"><a class="markdownIt-Anchor" href="#问题二关卡不显示问题在项目文件夹有ue5的内容浏览器中"></a> 问题二：关卡不显示问题在项目文件夹有UE5的内容浏览器中，</h3><p>在项目文件夹存在umap文件，但UE5的内容浏览器中没有显示出来</p><p>原因：这个umap文件一般是通过版本管理(比如SVN)更新出来的，其中使用了相关插件，插件并没有启动。<br />所以更新下载相关插件并启动。</p>]]></content>
-    
-    
-    <summary type="html">UE5内容浏览器显示不出关卡及启动编译失败的问题</summary>
     
     
     

@@ -2524,6 +2524,13 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/Elasticsearch/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/Editor/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -2538,13 +2545,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/python/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/EA/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -2552,7 +2552,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Elasticsearch/</loc>
+    <loc>http://www.formeasy.cc/tags/python/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2580,20 +2580,6 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/NVIDIA/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/Navicat/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.formeasy.cc/tags/PostgreSQL/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -2609,6 +2595,20 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/MongoDB%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/NVIDIA/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Navicat/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2636,6 +2636,20 @@
   </url>
   
   <url>
+    <loc>http://www.formeasy.cc/tags/ROS/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.formeasy.cc/tags/Python/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.formeasy.cc/tags/Qt/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -2644,13 +2658,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/VS/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/Python/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2671,7 +2678,7 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/ROS/</loc>
+    <loc>http://www.formeasy.cc/tags/Springboot/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2692,14 +2699,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/Springboot/</loc>
+    <loc>http://www.formeasy.cc/tags/UML/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/UML/</loc>
+    <loc>http://www.formeasy.cc/tags/UE/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2720,14 +2727,14 @@
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/kubernetes/</loc>
+    <loc>http://www.formeasy.cc/tags/kafka/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.formeasy.cc/tags/kafka/</loc>
+    <loc>http://www.formeasy.cc/tags/kubernetes/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2742,13 +2749,6 @@
   
   <url>
     <loc>http://www.formeasy.cc/tags/vosk/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.formeasy.cc/tags/UE/</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

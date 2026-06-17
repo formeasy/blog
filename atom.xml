@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-06-16T02:34:07.473Z</updated>
+  <updated>2026-06-17T03:12:51.266Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf大模型本地部署指南：从下载到运行全流程（CPU+大内存也能玩转大模型）</title>
+    <link href="http://www.formeasy.cc/2026/06/17/LLM/Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E4%B8%8B%E8%BD%BD%E5%88%B0%E8%BF%90%E8%A1%8C%E5%85%A8%E6%B5%81%E7%A8%8B%EF%BC%88CPU+%E5%A4%A7%E5%86%85%E5%AD%98%E4%B9%9F%E8%83%BD%E7%8E%A9%E8%BD%AC%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%89/"/>
+    <id>http://www.formeasy.cc/2026/06/17/LLM/Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E4%B8%8B%E8%BD%BD%E5%88%B0%E8%BF%90%E8%A1%8C%E5%85%A8%E6%B5%81%E7%A8%8B%EF%BC%88CPU+%E5%A4%A7%E5%86%85%E5%AD%98%E4%B9%9F%E8%83%BD%E7%8E%A9%E8%BD%AC%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%89/</id>
+    <published>2026-06-17T02:41:51.000Z</published>
+    <updated>2026-06-17T03:12:51.266Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-前提提醒"><a class="markdownIt-Anchor" href="#一-前提提醒"></a> 一、前提提醒</h2><p><strong>重点：能纯CPU跑，大概需要26G内存。（我停止运行后，已使用内存从32G降到6G）</strong></p><p><strong>也可以CPU+GPU一起跑    大概需要(26G - 显存 × 2)内存</strong></p><p>本人刷视频刷到llmfit软件，发现它说我32G内存+8G显存的电脑上能部署千问3 30B这种大模型</p><p>我感到非常兴奋，30B啊，这可是30B啊，很久以前我部署过7B大小的模型，那7B真的跟个小学生一样，推理能力差，记忆能力差，输出速度还慢。现在跟我说，我能部署30B的大模型，这我真得尝试尝试了</p><p>后面也是成功部署到本地，且推理能力和记忆能力比7B强好多好多，给你们看看实际用了多少内存显存。<br />下面图片的运行参数是-ngl 16 -c 8192 -t 8（16块专家在显卡上跑，上下文长度8192token，用CPU 8个线程）显存用了7G，内存用了11.5G</p><p><img src="dafeeeb97d7049d2a97ac0604df43f98.png" alt="" /></p><p>(i3 12100 RTX2080) cpu+gpu输出速度在11~15 token/s    纯cpu输出速度大概10 token/s</p><hr /><h2 id="二-准备工作"><a class="markdownIt-Anchor" href="#二-准备工作"></a> 二、准备工作</h2><h3 id="1下载-llamacpp"><a class="markdownIt-Anchor" href="#1下载-llamacpp"></a> <strong>1.下载 <code>llama.cpp</code> ：</strong></h3><ul><li>官方 GitHub 地址：<a href="https://github.com/ggml-org/llama.cpp/releases/" title="https://github.com/ggml-org/llama.cpp/releases/">https://github.com/ggml-org/llama.cpp/releases/</a></li><li>显卡是RTX2080，我下对应版本cuda12.4最好。40系50系选cuda13版本最好。</li><li>下载的是这个：<a href="https://github.com/ggml-org/llama.cpp/releases/download/b8771/llama-b8771-bin-win-cuda-12.4-x64.zip" title="llama 对应cuda12.4 b8771版">llama 对应cuda12.4 b8771版</a></li></ul><h3 id="2下载-千问3-coder-30b-模型文件"><a class="markdownIt-Anchor" href="#2下载-千问3-coder-30b-模型文件"></a> <strong>2.下载 千问3 coder 30B 模型文件：</strong></h3><p>因为是要支持CPU参与运行的，所以我下的模型是GGUF版的IQ4_NL压缩模式</p><ul><li>ModelScope 地址：<a href="https://www.modelscope.cn/models/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF" title="Qwen3 coder 30B A3B instruct GGUF">Qwen3 coder 30B A3B instruct GGUF</a></li><li>下载的IQ4_NL压缩模型链接：<a href="https://modelscope.cn/api/v1/models/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/repo?Revision=master&amp;FilePath=Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf" title="Qwen3 coder 30B A3B instruct IQ4_NL GGUF">Qwen3 coder 30B A3B instruct IQ4_NL GGUF</a></li></ul><p><img src="24de97b2b4064502bf54419c61bf5b8f.png" alt="" /></p><h2 id="三-部署步骤"><a class="markdownIt-Anchor" href="#三-部署步骤"></a> 三、部署步骤</h2><h3 id="1-解压-llamacpp"><a class="markdownIt-Anchor" href="#1-解压-llamacpp"></a> <strong>1. 解压 <code>llama.cpp</code></strong></h3><ul><li>将下载的 <code>llama-b8771-bin-win-cuda-12.4-x64.zip</code> 解压到指定文件夹（例如 D<code>:\llama</code>）。</li><li>在解压后的文件夹内创建 <code>models</code> 子目录。</li></ul><p><img src="56a064253a14416088c7803fadf96f84.png" alt="" /></p><h3 id=""><a class="markdownIt-Anchor" href="#"></a> </h3><p><strong>2. 放置模型文件</strong></p><ul><li>将下载的 <code>Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf</code> 文件放入 <code>models</code> 文件夹。</li></ul><p><img src="cf47ef3eebae4bc8a39948a5c22659cb.png" alt="" /></p><h3 id="3-cuda-下载以及安装gpu参与工作一定要安装cuda"><a class="markdownIt-Anchor" href="#3-cuda-下载以及安装gpu参与工作一定要安装cuda"></a> <strong>3. CUDA 下载以及安装（GPU参与工作一定要安装CUDA）</strong></h3><p>cmd窗口运行 nvidia-smi 查看目前驱动最高支持cuda版本，CUDA Version 必须高于等于12.4。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure><p>低于12.4的自己安装新的显卡驱动吧，我仅个人推荐581版<img src="ccfdc9399bae46d2bdadeb330f028184.png" alt="" /></p><ul><li>下载 CUDA 12.4 地址：<a href="https://developer.nvidia.com/cuda-12-4-0-download-archive" title="https://developer.nvidia.com/cuda-12-4-0-download-archive">https://developer.nvidia.com/cuda-12-4-0-download-archive</a></li><li>下载 CUDA 13.1 地址：<a href="https://developer.nvidia.com/cuda-13-1-0-download-archive" title="https://developer.nvidia.com/cuda-13-1-0-download-archive">https://developer.nvidia.com/cuda-13-1-0-download-archive</a></li><li><strong>安装时一定要选择“自定义安装”，只勾选 <code>CUDA安装</code>。</strong></li></ul><p><img src="8992d29368de4d2688bc5ae493a60fb7.png" alt="" /></p><p>安装后，cmd窗口运行nvcc --version 检测是否安装成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version</span><br></pre></td></tr></table></figure><p>出现Cuda compilation tools, release 12.4就成功了<br /><img src="800c54da29f646bd93520f085209a8aa.png" alt="" /></p><h2 id="四-运行模型服务"><a class="markdownIt-Anchor" href="#四-运行模型服务"></a> <strong>四. 运行模型服务</strong></h2><p>以管理员身份打开 CMD，导航至 <code>llama</code> 目录（例如 <code>cd C:\llama</code>）。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 你的llama目录下</span><br></pre></td></tr></table></figure><p>执行以下命令启动服务：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llama-server.exe -m models\你的模型 -ngl 12 -c 4096 -t 8 --port 8082llama-server.exe -m models\Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf -ngl 12 -c 4096 -t 8 --port 8082</span><br></pre></td></tr></table></figure><ul><li><code>-ngl 12</code>：指定多少个专家模块在 GPU 上运行（根据显存调整，8G 显存建议 12 - 16）。</li><li><code>-c 4096</code>：上下文长度上限（显存不足时可降低）。</li><li><code>-t 8</code>：使用的 CPU 线程数（我的i3-12100 为 4 核 8 线程 直接拉满8线程）。</li><li><code>--port 8082</code>：自定义端口号。</li></ul><table><thead><tr><th>参数</th><th>作用</th><th>建议值（8G 显存）</th></tr></thead><tbody><tr><td><code>-ngl</code></td><td>指定多少块专家模块在 GPU 上运行</td><td>12-16</td></tr><tr><td><code>-c</code></td><td>最大上下文 token 数</td><td>4096-8192</td></tr><tr><td><code>-t</code></td><td>CPU 线程数</td><td>物理核心数 × 2</td></tr><tr><td>--port</td><td>自定义端口号</td><td>8082啥的</td></tr></tbody></table><h4 id="-2"><a class="markdownIt-Anchor" href="#-2"></a> </h4><p>移除 <code>-ngl</code> 参数，则完全依赖 CPU 计算：（<strong>如果没装cuda，llama自动忽略 -ngl参数</strong>）</p><h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3><ul><li>该模型有128块专家。</li><li>显存不足时需降低 <code>-ngl</code> 或 <code>-c</code> 值，让其进入内存。</li><li>首次加载模型时间较长，请耐心等待。</li><li>监控任务管理器确认 GPU 和内存占用情况。</li></ul><p>此图运行的12专家，70000上下文，内存也消耗的更多，非常极限了<br /><img src="77292d55d62d459ebbe22e609a042261.png" alt="" /></p><p><strong>感觉16专家 + 8192上下文适合短对话<br />         12专家 + 几万的上下文适合长文本对话<br />         14专家的我还没试过，感觉会更适合8G显卡，能支持不错的上下文</strong><br />上下文溢出，llama会自动降到只剩256，大家尽管挑战自己的极限</p><h3 id="访问-web-界面"><a class="markdownIt-Anchor" href="#访问-web-界面"></a> <strong>访问 Web 界面</strong></h3><ul><li>浏览器打开：<a href="http://localhost:8082/">http://localhost:8082/</a></li><li>即可在网页端与模型交互</li></ul><p><img src="c740c7f019a741b6beb724d8f06e723d.png" alt="" /></p><p>问下它一些问题，例如：用python写一个冒泡排序<br /><img src="43e25e35d42d47b68b48d5bd9a94e058.png" alt="" /><br />可以看出它这次对话使用了1008 token，花了1分8秒时间输出，速度为14.7 t/s</p><p>下图是继续对话，可以看到输入框上有个Context：1180/8192 (14%)  这是我给他设置的 8192上下文 上限，之前的对话以及正在输出的都会占用这上限，尽量让其别超出！！<br /><img src="e91ab0aa4b064185945cb4edaca635af.png" alt="" /></p><p>左上角还有个 MCP Servers，用了配置模型的参数等等<br /><img src="1f1928216a474d31a0b7141a6e40158a.png" alt="" /><br />配置temperature等等<br /><img src="e9008dfaf35e49f2a46fcd768c604bc4.png" alt="" /></p><p>还能配置system message等等<br /><img src="18cbf779b2684d8c965af4e6a813817f.png" alt="" /></p>]]></content>
+    
+    
+    <summary type="html">Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf大模型本地部署指南：从下载到运行全流程（CPU+大内存也能玩转大模型）</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="LLM" scheme="http://www.formeasy.cc/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git推送大文件解决方案：Git LFS与配置优化</title>
+    <link href="http://www.formeasy.cc/2026/06/17/Other/Git%E6%8E%A8%E9%80%81%E5%A4%A7%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9AGit%20LFS%E4%B8%8E%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/"/>
+    <id>http://www.formeasy.cc/2026/06/17/Other/Git%E6%8E%A8%E9%80%81%E5%A4%A7%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9AGit%20LFS%E4%B8%8E%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/</id>
+    <published>2026-06-17T02:33:17.000Z</published>
+    <updated>2026-06-17T02:40:02.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Git版本控制中，推送大文件（如视频、二进制文件等）常因平台限制或网络问题导致失败。<br />本文系统梳理了Git LFS（推荐方案）和调整Git配置（临时方案）两种核心解决方案，并提供了历史提交清理和平台限制对比等扩展方法。</p><h2 id="一-git-lfs大文件管理的标准化方案"><a class="markdownIt-Anchor" href="#一-git-lfs大文件管理的标准化方案"></a> 一、Git LFS：大文件管理的标准化方案</h2><p>Git LFS（Large File Storage）通过将大文件存储在独立服务器，仅在仓库中保留指针文件，有效解决了Git原生对大文件处理低效的问题。<br />其核心优势包括：</p><ul><li><strong>仓库轻量化</strong>：指针文件仅占KB级空间，显著降低克隆和拉取时间</li><li><strong>版本控制优化</strong>：仅下载当前需要的文件版本，而非全部历史版本</li><li><strong>跨平台支持</strong>：GitHub、GitLab等主流平台均提供原生支持</li></ul><h3 id="安装与配置"><a class="markdownIt-Anchor" href="#安装与配置"></a> 安装与配置</h3><h4 id="安装git-lfs"><a class="markdownIt-Anchor" href="#安装git-lfs"></a> 安装Git LFS</h4><p>不同操作系统的安装命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows</span></span><br><span class="line"><span class="comment"># 下载安装包（需访问GitHub）</span></span><br><span class="line">https://github.com/git-lfs/git-lfs/releases</span><br><span class="line"><span class="comment"># 安装后初始化</span></span><br><span class="line">git lfs install</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac（Homebrew）</span></span><br><span class="line">brew install git-lfs</span><br><span class="line">git lfs install</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu/Debian</span></span><br><span class="line">curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash</span><br><span class="line">sudo apt-get install git-lfs</span><br><span class="line">git lfs install</span><br></pre></td></tr></table></figure><h4 id="追踪大文件类型"><a class="markdownIt-Anchor" href="#追踪大文件类型"></a> 追踪大文件类型</h4><p>通过<code>git lfs track</code>命令指定需要管理的文件扩展名，系统会自动生成<code>.gitattributes</code>文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：追踪PSD和ZIP文件</span></span><br><span class="line">git lfs track <span class="string">&quot;*.psd&quot;</span></span><br><span class="line">git lfs track <span class="string">&quot;*.zip&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交配置文件</span></span><br><span class="line">git add .gitattributes</span><br><span class="line">git commit -m <span class="string">&quot;Track large files with Git LFS&quot;</span></span><br></pre></td></tr></table></figure><h4 id="推送文件"><a class="markdownIt-Anchor" href="#推送文件"></a> 推送文件</h4><p>完成配置后，常规Git操作即可自动处理大文件：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 添加文件并提交</span><br><span class="line">git add large_file.psd</span><br><span class="line">git commit -m &quot;Add large file&quot;</span><br><span class="line"></span><br><span class="line"># 推送至远程仓库</span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure><h2 id="二-调整git配置临时绕过限制"><a class="markdownIt-Anchor" href="#二-调整git配置临时绕过限制"></a> 二、调整Git配置：临时绕过限制</h2><p>当无法使用Git LFS时，可通过修改Git配置临时解决推送问题（<strong>不推荐长期使用</strong>）：</p><h3 id="增大http缓冲区"><a class="markdownIt-Anchor" href="#增大http缓冲区"></a> 增大HTTP缓冲区</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置缓冲区为500MB（根据实际需求调整）</span></span><br><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure><h3 id="分批次推送"><a class="markdownIt-Anchor" href="#分批次推送"></a> 分批次推送</h3><p>通过逐个文件提交降低单次推送数据量：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：分两次推送文件</span></span><br><span class="line">git add file1.txt</span><br><span class="line">git commit -m <span class="string">&quot;Push file1&quot;</span></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">git add file2.txt</span><br><span class="line">git commit -m <span class="string">&quot;Push file2&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure><h2 id="历史提交清理与仓库重建"><a class="markdownIt-Anchor" href="#历史提交清理与仓库重建"></a> 历史提交清理与仓库重建</h2><p>若历史提交已包含大文件，需使用<code>git-filter-repo</code>工具彻底清理：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装（需Python 3.5+）</span></span><br><span class="line">pip install git-filter-repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：删除所有.zip文件的历史记录</span></span><br><span class="line">git filter-repo --path-match <span class="string">&#x27;*.zip&#x27;</span> --invert-paths</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制推送到远程（谨慎操作！）</span></span><br><span class="line">git push origin --force main</span><br></pre></td></tr></table></figure><p><strong>替代方案</strong>：创建新仓库并重新提交代码，避免将大文件加入版本控制。</p><h2 id="平台限制对比"><a class="markdownIt-Anchor" href="#平台限制对比"></a> 平台限制对比</h2><p>不同平台对文件大小的限制如下表所示：</p><table><thead><tr><th>平台</th><th>单文件限制</th><th>单次推送限制</th><th>解决方案</th></tr></thead><tbody><tr><td>GitHub</td><td>100MB（警告）</td><td>2GB（硬限制）</td><td>Git LFS</td></tr><tr><td>GitLab</td><td>100MB（默认）</td><td>无明确限制</td><td>调整Git配置或Git LFS</td></tr><tr><td>阿里云Codeup</td><td>Web上传50MB</td><td>命令行200MB</td><td>Git LFS或拆分提交</td></tr><tr><td>腾讯云开发者社区</td><td>100MB</td><td>未明确提及</td><td>Git LFS</td></tr></tbody></table><h2 id="关键注意事项"><a class="markdownIt-Anchor" href="#关键注意事项"></a> 关键注意事项</h2><ol><li><strong>Git LFS不是万能药</strong>：需团队统一安装配置，且部分平台（如GitHub）对LFS存储额外收费。</li><li><strong>避免频繁修改历史</strong>：强制推送（<code>--force</code>）会覆盖远程记录，需确保团队协作无冲突。</li><li><strong>网络问题排查</strong>：若报错<code>RPC failed; curl 56</code>，可能是网络不稳定，可尝试切换SSH协议或使用代理。</li></ol><h2 id="完整git-lfs流程示例"><a class="markdownIt-Anchor" href="#完整git-lfs流程示例"></a> 完整Git LFS流程示例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化Git LFS</span></span><br><span class="line">git lfs install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 追踪大文件类型</span></span><br><span class="line">git lfs track <span class="string">&quot;*.mp4&quot;</span> <span class="string">&quot;*.iso&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交.gitattributes</span></span><br><span class="line">git add .gitattributes</span><br><span class="line">git commit -m <span class="string">&quot;Configure Git LFS&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加大文件并推送</span></span><br><span class="line">git add video.mp4</span><br><span class="line">git commit -m <span class="string">&quot;Add video file&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure><p>通过上述方法，可有效解决Git推送大文件失败的问题，优先推荐使用Git LFS进行长期管理，临时场景可调整配置或拆分提交。</p>]]></content>
+    
+    
+    <summary type="html">Git推送大文件解决方案：Git LFS与配置优化</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Other" scheme="http://www.formeasy.cc/tags/Other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>局域网内海量文件快速复制方法</title>
+    <link href="http://www.formeasy.cc/2026/06/17/Other/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%B5%B7%E9%87%8F%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E5%A4%8D%E5%88%B6%E6%96%B9%E6%B3%95/"/>
+    <id>http://www.formeasy.cc/2026/06/17/Other/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%B5%B7%E9%87%8F%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E5%A4%8D%E5%88%B6%E6%96%B9%E6%B3%95/</id>
+    <published>2026-06-17T02:23:38.000Z</published>
+    <updated>2026-06-17T02:32:27.453Z</updated>
+    
+    <content type="html"><![CDATA[<p>遇到的问题：最近需要不同磁盘和服务器间的文件（一个文件夹 几十 T，里面有很多小文件）的快速复制，直接通过默认复制卡死。</p><p>解决方法：FastCopy，官网：FastCopy （<a href="https://fastcopy.jp/%EF%BC%89">https://fastcopy.jp/）</a> ，测试速度能能达到 30-70M/s，能支持断点 续传。也可以在局域网内实现快速复制，具体如下：</p><p>比如，A 服务器内网 ip：192.168.0.1  ，要复制到B 服务器内网 ip：192.168.0.2。</p><h3 id="1-在-b-服务器的cmd-中运行net-use-19216801g-pass123-useruser123"><a class="markdownIt-Anchor" href="#1-在-b-服务器的cmd-中运行net-use-19216801g-pass123-useruser123"></a> 1、在 B 服务器的CMD 中运行：net use \192.168.0.1\g$ “Pass123”   /user:“User123”</h3><p>其中，Pass123为 A 服务器登录密码，User123为 A 服务器登录用户名。</p><p><img src="2026-06-17_102156_184.png" alt="" /></p><h3 id="2-在-fastcopy-中原地址输入19216801dxxxx-指的是连接1921680-1-地址的-d-盘下的-xxxx-目录-点击运行即可"><a class="markdownIt-Anchor" href="#2-在-fastcopy-中原地址输入19216801dxxxx-指的是连接1921680-1-地址的-d-盘下的-xxxx-目录-点击运行即可"></a> 2、在 FastCopy 中原地址输入：\192.168.0.1\d$\xxxx ，指的是连接192.168.0. 1 地址的 d 盘下的 xxxx 目录。点击运行即可。</h3><p><img src="2026-06-17_102214_185.png" alt="" /></p><p>另外，横向对比其它几个复制软件:  <a href="https://zhuanlan.zhihu.com/p/364479613">FastCopy、TeraCopy、KillCopy、ExtremeCopy、Supercopier</a></p><p>FastCopy使用介绍：<a href="https://blog.csdn.net/byxdaz/article/details/121148008">Fastcopy介绍</a></p>]]></content>
+    
+    
+    <summary type="html">局域网内海量文件快速复制方法</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Other" scheme="http://www.formeasy.cc/tags/Other/"/>
+    
+  </entry>
   
   <entry>
     <title>windows下CMake如何编译</title>
@@ -372,69 +435,6 @@
     
     
     <category term="Other" scheme="http://www.formeasy.cc/tags/Other/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UML类图详解</title>
-    <link href="http://www.formeasy.cc/2026/01/19/UML/UML%E7%B1%BB%E5%9B%BE%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://www.formeasy.cc/2026/01/19/UML/UML%E7%B1%BB%E5%9B%BE%E8%AF%A6%E8%A7%A3/</id>
-    <published>2026-01-19T00:58:42.000Z</published>
-    <updated>2026-01-19T01:14:44.369Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>这两天工作上用到了UML，顺便总结一下类图的关系：</p></blockquote><h3 id="类的表示"><a class="markdownIt-Anchor" href="#类的表示"></a> 类的表示</h3><p><img src="9c7c3f64477366af39881fbdc38683d7.png" alt="" /></p><p>类图分为三层，第一层是类的名称，如果是抽象类或接口，就用斜体表示，其中接口名称的上部会用&lt;<interface>&gt;修饰；第二层是类的成员变量，通常是字段和属性；第三层是类的成员方法。类的成员变量和成员方法的修饰符分为+、#、－，分别表示public、protected、private。</p><h3 id="类之间的关系"><a class="markdownIt-Anchor" href="#类之间的关系"></a> 类之间的关系</h3><p>类之间的关系有泛化（Generalize），实现（Realize），关联（Associate），聚合（Aggregate），组合(Compose)，依赖(Dependency)。</p><p><strong>1.泛化（Generalize）</strong></p><p><img src="838d9898fbb3fa6506871bd1c8620994.png" alt="" /></p><p>关系：泛化是一种继承关系，用来表示类与类、类与抽象类、抽象类与抽象类、接口与接口之间的关系。</p><p>箭线：用空心三角形+实线表示，箭头指向父类。</p><p><strong>2.实现（Realize）</strong></p><p><img src="4933515d7baa92ad727b45fa8c48ba2d.png" alt="" /></p><p>关系：实现用来表示类与接口、抽象类与接口之间的关系。</p><p>箭线：用空心三角形+虚线表示，箭头指向接口。</p><p><strong>3.关联（Associate）</strong></p><p><img src="ad7ae7aaf87fcd62ae507755cc446139.png" alt="" /></p><p>关系：关联可以是双向的，也可以是单向的；关联关系可以进一步划分为聚合及组合关系。</p><p>箭线：用实线箭头表示，双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。</p><p>比如，荷花受季节影响，箭头指向季节。</p><p><strong>4.聚合（Aggregate）</strong></p><p><img src="4143828d287409cb7a16296b6a143fab.png" alt="" /></p><p>关系：聚合用来表示整体与部分的关系，是一种弱的关联关系，体现为A可以包含B，但B不一定是A的一部分。</p><p>箭线：用空心的菱形+实线箭头表示，菱形指向整体。</p><p><strong>5.组合(Compose)</strong></p><p><img src="a502e2a2b3ff435a65ebb4f863304777.png" alt="" /></p><p>关系：组合用来表示整体与部分的关系，是一种强的关联关系，体现了严格的整体和部分的关系，整体和部分的生命周期一样。</p><p>箭线：用实心的菱形+实线箭头表示，菱形指向整体。</p><p><strong>6.依赖(Dependency)</strong></p><p><img src="3904cd763cba68acae95f2f70c11fd0b.png" alt="" /></p><p>关系：依赖用来表示两者之间的依从关系。</p><p>箭线：用虚线箭头表示，箭头指向被依赖的对象。</p><p>比如，陆生植物依赖土壤，而水生植物依赖水，当然了，陆生植物也依赖水，这里只是为了更直观地体现陆生和水生的本质区别。</p><p><strong>完整的类图</strong></p><p><img src="4527d2b9b414acf3914a47fffc7e68ef.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UML类图详解</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UML" scheme="http://www.formeasy.cc/tags/UML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5数据资产、数据表格和字符表格的使用</title>
-    <link href="http://www.formeasy.cc/2026/01/17/UE/UE5%E6%95%B0%E6%8D%AE%E8%B5%84%E4%BA%A7%E3%80%81%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%E5%92%8C%E5%AD%97%E7%AC%A6%E8%A1%A8%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.formeasy.cc/2026/01/17/UE/UE5%E6%95%B0%E6%8D%AE%E8%B5%84%E4%BA%A7%E3%80%81%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%E5%92%8C%E5%AD%97%E7%AC%A6%E8%A1%A8%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2026-01-17T05:20:11.000Z</published>
-    <updated>2026-01-17T09:15:36.495Z</updated>
-    
-    <content type="html"><![CDATA[<p>在UE开发过程中需要对数据进行定义，常用方法以下：</p><h2 id="数据资产udataasset"><a class="markdownIt-Anchor" href="#数据资产udataasset"></a> 数据资产(UDataAsset)</h2><h3 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h3><p>数据资产(UDataAsset)是把一个对象的全部参数装进一个对象,便于异步加载与热更。它的核心价值是封装单个独立对象的完整、复杂配置，支持灵活引用和运行时动态切换。</p><p>选型：<br />1.单个独立对象的复杂配置<br />2.运行时需要动态切换 / 更新的配置<br />3.嵌套结构、需要引用其他 UE 资产的配置<br />4.与蓝图组件深度绑定、快速读取的组件配置</p><h3 id="创建"><a class="markdownIt-Anchor" href="#创建"></a> 创建</h3><p><img src="2026-01-17_133308_820.png" alt="" /><br />点击数据资产后，会弹出选择数据资产实例的类，系统中定义了一些系统中的数据资产实例类：</p><p><img src="2026-01-17_133525_901.png" alt="" /></p><p>但根据业务情况，我们需要自定义数据资产实例类</p><p>创建数据资产实例类：</p><p>1.新建蓝图<br /><img src="2026-01-17_134256_622.png" alt="" /></p><p>2.选择父类PrimaryDataAsset<br /><img src="2026-01-17_134407_673.png" alt="" /></p><p>3.创建一个名为PDA_Damage的数据资产实例类，并且双击打开，并在变量中添加“Hp”的整数变量（根据业务添加），编译保存。<br /><img src="2026-01-17_135049_804.png" alt="" /></p><p>使用数据资产</p><p>重新创建数据资产后，选择创建的PDA_Damage的数据资产实例类，并起名“DA_Damage1”</p><p><img src="2026-01-17_135423_725.png" alt="" /></p><p>打开“DA_Damage1”，并输入默认值<br /><img src="2026-01-17_135959_416.png" alt="" /></p><p>以上，创建了PDA_Damage（PrimaryDataAsset）和DA_Damage1（DataAssets）</p><p>如何使用呢？需要在你使用变量类型设置为PDA_Damage类型,并将默认值选为DA_Damage1，如下：</p><p><img src="2026-01-17_140528_017.png" alt="" /></p><p>这样，TestDamage变量值用的是数据资产DA_Damage1中的变量值，如果有升级，可以创建出DA_Damage2等数据资产进行加载切换。</p><h2 id="数据表格datatable"><a class="markdownIt-Anchor" href="#数据表格datatable"></a> 数据表格(DataTable)</h2><h3 id="概念-2"><a class="markdownIt-Anchor" href="#概念-2"></a> 概念</h3><p>数据表格(DataTable)是数据容器，对应一批同构对象的批量配置。核心价值是批量管理同构对象的扁平配置，表格化编辑高效，适合策划批量维护，适合数据量较大、结构统一、无需动态修改的静态数据。</p><p>选型：<br />1.批量同构对象的扁平配置。<br />2.策划需要用 Excel/CSV 批量编辑、数值平衡的配置。<br />3.运行时需要批量遍历、查询、随机选取的数据集。<br />4.静态只读、无需动态修改的基础常量配置。</p><h3 id="创建-2"><a class="markdownIt-Anchor" href="#创建-2"></a> 创建</h3><p><img src="2026-01-17_141131_608.png" alt="" /></p><p>点击数据表格后，会弹出选择的表格结构类，系统中定义了一些表格结构：</p><p><img src="2026-01-17_141724_489.png" alt="" /></p><p>但根据业务情况，我们需要自定义表格结构</p><p>创建蓝图数据结构：</p><p>1.新建结构BS_Tip</p><p><img src="2026-01-17_142112_610.png" alt="" /></p><p>2.打开结构，添加变量并保存</p><p><img src="2026-01-17_142422_511.png" alt="" /></p><p>重新创建数据表格后，选择BS_Tip</p><p><img src="2026-01-17_142709_012.png" alt="" /></p><p>创建数据表格DT_Tip</p><p><img src="2026-01-17_143102_613.png" alt="" /></p><h3 id="在蓝图中使用"><a class="markdownIt-Anchor" href="#在蓝图中使用"></a> 在蓝图中使用</h3><p>在蓝图中创建变量，变量类型为Data Table，默认值选为数据表格DT_Tip<br /><img src="2026-01-17_144604_814.png" alt="" /></p><p>通过GetDataTableRowNames和GetDataTableRow方法，遍历所有数据<br /><img src="2026-01-17_144833_715.png" alt="" /></p><h2 id="字符串表格stringtable"><a class="markdownIt-Anchor" href="#字符串表格stringtable"></a> 字符串表格(StringTable)</h2><p>字符串表格使用简单，只有Key和Value两列，并且可以用CSV导入。具体使用：</p><h3 id="创建stringtable名为st_demo并添加一些数据"><a class="markdownIt-Anchor" href="#创建stringtable名为st_demo并添加一些数据"></a> 创建StringTable，名为ST_Demo,并添加一些数据</h3><p><img src="2026-01-17_145412_216.png" alt="" /></p><p><img src="2026-01-17_145619_517.png" alt="" /></p><h3 id="在蓝图中使用-2"><a class="markdownIt-Anchor" href="#在蓝图中使用-2"></a> 在蓝图中使用</h3><p>方法一:Make Literal Text</p><p><img src="2026-01-17_150024_018.png" alt="" /></p><p>方法二:Get String Table ID and Key from text 和 Get Stirng Table Entry Source String</p><p><img src="2026-01-17_150232_019.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE5数据资产、数据表格和字符表格的使用</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5-VR项目HDRIBackdrop无法正常显示问题解决</title>
-    <link href="http://www.formeasy.cc/2026/01/10/UE/UE5-VR%E9%A1%B9%E7%9B%AEHDRIBackdrop%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
-    <id>http://www.formeasy.cc/2026/01/10/UE/UE5-VR%E9%A1%B9%E7%9B%AEHDRIBackdrop%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</id>
-    <published>2026-01-10T07:41:29.000Z</published>
-    <updated>2026-01-10T07:49:22.114Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2><p>UE5在VR项目里使用HDRIBackdrop时进行打包后，在头显里运行显示时发现无法正常显示。</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>需要修改两个地方，修改后再打包就可以正常显示了，具体如下：</p><p>1.修改 项目设置 -&gt; 引擎 -&gt; Rendering -&gt; 移动平台 -&gt; 移动浮点精度模式 -&gt; Use Full-precision for MaterialExpressions only</p><p><img src="c279d21ae76201f770cff811d5bc5b9b48676898.png@1192w.webp" alt="" /></p><p>2.把HDRIBackdrop蓝图构造函数里原来的节点都提成一个函数，断开构造函数里的执行线，改在beginplay后延时一下再执行构造函数里原来那些操作。</p><p><img src="7f19b90ad80fc3f140cecdd35cc8e53c48676898.png@1192w.webp" alt="" /></p><p><img src="3c6988ac1cfb42dc5a20f8fbe224109d48676898.png@1192w.webp" alt="" /></p><p><img src="37a4d8651f4fc7d70ff6c6784de6bc8848676898.png@1192w.webp" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE5-VR项目HDRIBackdrop无法正常显示问题解决</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
     
   </entry>
   

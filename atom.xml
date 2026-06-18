@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-06-17T03:12:51.266Z</updated>
+  <updated>2026-06-18T01:30:23.400Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>llama-server启动参数说明文档</title>
+    <link href="http://www.formeasy.cc/2026/06/18/LLM/llama-server%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/"/>
+    <id>http://www.formeasy.cc/2026/06/18/LLM/llama-server%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/</id>
+    <published>2026-06-18T01:22:48.000Z</published>
+    <updated>2026-06-18T01:30:23.400Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-概述"><a class="markdownIt-Anchor" href="#1-概述"></a> <strong>1. 概述</strong></h2><p>llama-server 是 llama.cpp 项目中的一个核心组件，用于将大语言模型（LLM）以 HTTP 服务器的形式发布。通过简单的命令行参数配置，它可以提供包括文本补全、对话补全（Chat Completions）、文本嵌入（Embeddings）和重排序（Reranking）在内的多种功能，并支持多用户并发、推测解码等高级特性。</p><h2 id="2-核心启动参数"><a class="markdownIt-Anchor" href="#2-核心启动参数"></a> <strong>2. 核心启动参数</strong></h2><p>llama-server 的参数涵盖了模型加载、服务监听、上下文管理、性能调优以及功能开关等多个方面。以下是一些最常用的参数分类说明。</p><h3 id="21-模型与基础配置"><a class="markdownIt-Anchor" href="#21-模型与基础配置"></a> <strong>2.1 模型与基础配置</strong></h3><p>这是启动服务最基本的参数，用于指定要加载的模型和服务监听地址。</p><p><img src="0d97d4f3cc8313428ae2dff7fb369cc212705016.png@1192w.webp" alt="" /></p><p><strong>示例</strong>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llama-server -m models/&lt;模型路径&gt; --host 0.0.0.0 --port 8080</span><br></pre></td></tr></table></figure><h3 id="22-上下文管理与并发"><a class="markdownIt-Anchor" href="#22-上下文管理与并发"></a> <strong>2.2 上下文管理与并发</strong></h3><p>这些参数控制模型运行的上下文窗口大小和并发处理能力，直接影响显存占用和服务吞吐量。</p><p><img src="3cebfca4a1fc0893790382afee45890312705016.png@1192w.webp" alt="" /></p><p><strong>示例</strong>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持4个并发请求，每个请求可用上下文为4096 (总16384/4)</span></span><br><span class="line">llama-server -m model.gguf -c 16384 -np 4</span><br></pre></td></tr></table></figure><h3 id="23-采样与控制参数"><a class="markdownIt-Anchor" href="#23-采样与控制参数"></a> <strong>2.3 采样与控制参数</strong></h3><p>这些参数用于控制文本生成的随机性和多样性，可以在启动时设置全局默认值。</p><p><img src="9ed3d98d3db2fc4e90011415ed617ea712705016.png@1192w.webp" alt="" /></p><h3 id="24-功能模式开关"><a class="markdownIt-Anchor" href="#24-功能模式开关"></a> <strong>2.4 功能模式开关</strong></h3><p>llama-server 支持多种运行模式，通过以下参数开启。</p><p><img src="fe718ac26166b0ed105f855e3b9803d912705016.png@1192w.webp" alt="" /></p><p><strong>示例</strong>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动嵌入模式服务，并使用CLS池化策略</span></span><br><span class="line">llama-server -m embedding-model.gguf --embedding --pooling cls -ub 8192</span><br></pre></td></tr></table></figure><h3 id="25-路由模式与多模型管理"><a class="markdownIt-Anchor" href="#25-路由模式与多模型管理"></a> <strong>2.5 路由模式与多模型管理</strong></h3><p>从较新版本开始，llama-server 引入了路由模式（Router Mode），允许在一个服务实例中动态管理多个模型。</p><p><img src="a03da1b28aec308eb89fc8ea54967d5d12705016.png@1192w.webp" alt="" /></p><p><strong>路由模式配置文件 (<strong>models.ini</strong>) 示例</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[model-a]</span><br><span class="line">ctx-size = 32768</span><br><span class="line">temp = 0.6</span><br><span class="line">hf = unsloth/Qwen3-4B-128K-GGUF:Q8_K_XL</span><br><span class="line"></span><br><span class="line">[model-b]</span><br><span class="line">ctx-size = 256000</span><br><span class="line">temp = 1.0</span><br><span class="line">hf = unsloth/Nemotron-3-Nano-30B-A3B-GGUF:BF16</span><br></pre></td></tr></table></figure><p><strong>示例</strong>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动路由模式，管理./models目录下的模型，最多同时加载2个</span></span><br><span class="line">llama-server --models-dir ./models --models-max 2</span><br></pre></td></tr></table></figure><h3 id="26-硬件优化与高级特性"><a class="markdownIt-Anchor" href="#26-硬件优化与高级特性"></a> <strong>2.6 硬件优化与高级特性</strong></h3><p><img src="b84cf01f1f204636c2be218addef8c7f12705016.png@1192w.webp" alt="" /></p><h3 id="27-安全与认证"><a class="markdownIt-Anchor" href="#27-安全与认证"></a> <strong>2.7 安全与认证</strong></h3><p><img src="5aa5f3e7f6a1f0e2a77f14230ef9098312705016.png@1192w.webp" alt="" /></p><h3 id="28-其他实用参数"><a class="markdownIt-Anchor" href="#28-其他实用参数"></a> <strong>2.8 其他实用参数</strong></h3><p><img src="d0e49113327af043e3218317c233fea312705016.png@1192w.webp" alt="" /></p><h2 id="3-使用示例"><a class="markdownIt-Anchor" href="#3-使用示例"></a> <strong>3. 使用示例</strong></h2><h3 id="31-基础聊天服务"><a class="markdownIt-Anchor" href="#31-基础聊天服务"></a> <strong>3.1 基础聊天服务</strong></h3><p>启动一个最基础的聊天服务，监听在本地的 8080 端口。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llama-server -m ~/models/llama-3-8b-instruct.Q4_K_M.gguf</span><br></pre></td></tr></table></figure><h3 id="32-高性能并发服务"><a class="markdownIt-Anchor" href="#32-高性能并发服务"></a> <strong>3.2 高性能并发服务</strong></h3><p>启动一个支持多用户并发、长上下文，并开启 Flash Attention（30系以上n卡支持） 优化的服务。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">llama-server -m ~/models/qwen2.5-7b-instruct.Q5_K_M.gguf \</span><br><span class="line">             -c 32768 \</span><br><span class="line">             -np 4 \</span><br><span class="line">             --flash-attn on \</span><br><span class="line">             --host 0.0.0.0 \</span><br><span class="line">             --port 8080</span><br></pre></td></tr></table></figure><p>通过灵活组合这些参数，你可以根据实际需求和应用场景，将 llama-server 打造成一个高效、稳定的本地大模型推理服务。要获取最完整和最新的参数列表，可以直接在命令行运行 llama-server --help。</p>]]></content>
+    
+    
+    <summary type="html">llama-server启动参数说明文档</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="LLM" scheme="http://www.formeasy.cc/tags/LLM/"/>
+    
+  </entry>
   
   <entry>
     <title>Qwen3-Coder-30B-A3B-Instruct-IQ4_NL.gguf大模型本地部署指南：从下载到运行全流程（CPU+大内存也能玩转大模型）</title>
@@ -414,27 +435,6 @@
     
     
     <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于飞机的翼和舵</title>
-    <link href="http://www.formeasy.cc/2026/01/22/UE/%E5%85%B3%E4%BA%8E%E9%A3%9E%E6%9C%BA%E7%9A%84%E7%BF%BC%E5%92%8C%E8%88%B5/"/>
-    <id>http://www.formeasy.cc/2026/01/22/UE/%E5%85%B3%E4%BA%8E%E9%A3%9E%E6%9C%BA%E7%9A%84%E7%BF%BC%E5%92%8C%E8%88%B5/</id>
-    <published>2026-01-22T01:20:11.000Z</published>
-    <updated>2026-01-22T02:20:06.870Z</updated>
-    
-    <content type="html"><![CDATA[<p>近期在开发基于UE的飞行游戏，虽专业不是航空，但也需对其基础的理解，本文章简单总结飞机上的翼和舵的作用。</p><p>先上两张图，分别为普通小型机和客机示意图：</p><p><img src="1c502f5433cdb915d54d957f374436c1.jpg" alt="" /></p><p><img src="1c502f5433cdb915d54d957f374436c2.png" alt="" /></p><h3 id="升降舵"><a class="markdownIt-Anchor" href="#升降舵"></a> 升降舵</h3><p>升降舵，顾名思义就是控制飞机升降的“舵面”，当我们需要操纵飞机抬头或低头时（一般来说，抬头即意味着飞机爬升，低头同理），水平尾翼中的升降舵就会发生作用。</p><p>升降舵是水平尾翼中可操纵的翼面部分，其作用是对飞机进行俯仰操纵。</p><p>作用：改变飞机俯仰姿态</p><p><img src="1c502f5433cdb915d54d957f374436c3.webp" alt="" /></p><h3 id="方向舵"><a class="markdownIt-Anchor" href="#方向舵"></a> 方向舵</h3><p>方向舵，顾名思义就是控制飞机方向的，具体是指在垂直尾翼上为实现飞机航向操纵的可活动的翼面部分。<br />驾驶员可通过脚蹬操纵它左右偏转，从而控制飞机航向。方向舵左转，气流作用其上产生一个使尾部向右的力矩，使机头向左，改变了飞机航向。方向舵右转则机头向右。方向舵向两侧偏转的角度最大为20°至30°</p><p>作用：飞机航向操纵</p><h3 id="副翼"><a class="markdownIt-Anchor" href="#副翼"></a> 副翼</h3><p>副翼在机翼末端后缘，左右各一个。<br />通过左右副翼向不同方向偏转，形成滚转力矩让飞机横滚。副翼长度不大，通常占整个机翼的1/5左右。</p><p><img src="1c502f5433cdb915d54d957f374436c4.webp" alt="" /></p><p>飞行员将驾驶盘向左移动，左边副翼向上偏转升力减小，右边副翼向下压升力增加，飞机向左横滚，反之亦然。左右副翼与方向舵配合，飞机就能在空中自由转向了。</p><p><img src="1c502f5433cdb915d54d957f374436c5.gif" alt="" /></p><h3 id="一般飞机通过以上升降舵-方向舵和副翼一起控制飞机的俯仰和横侧操纵"><a class="markdownIt-Anchor" href="#一般飞机通过以上升降舵-方向舵和副翼一起控制飞机的俯仰和横侧操纵"></a> 一般飞机通过以上升降舵、方向舵和副翼一起控制飞机的俯仰和横侧操纵。</h3><p>再说说其它</p><h3 id="襟翼"><a class="markdownIt-Anchor" href="#襟翼"></a> 襟翼</h3><p>这种翼面平时隐藏在机翼里，需要时伸出，像衣襟一样摆动，所以叫“襟翼”。分前缘襟翼、后缘襟翼。</p><p>后缘襟翼安装在机翼后缘，能向下偏转或向后伸出，可以增大机翼弯度和面积，提高升力系数增大升力，同时也增大阻力。</p><p><img src="1c502f5433cdb915d54d957f374436c6.webp" alt="" /></p><p>后缘襟翼通常在飞机降落时放下，一方面提高升力，一方面增大阻力，降低飞机进场速度，提高安全性。<br />起飞时也会放出一部分，以增大升力让飞机在更短距离内起飞，降低对机场的要求。</p><h3 id="后缘襟翼在起飞降落时使用"><a class="markdownIt-Anchor" href="#后缘襟翼在起飞降落时使用"></a> 后缘襟翼在起飞降落时使用</h3><p>前缘襟翼与后缘襟翼相反，安装在机翼前缘，也在飞行中起重要作用。</p><p>比如超音速飞机的机翼前缘很尖，整体厚度也薄。放下后缘襟翼后翼型弯度增加，机翼前缘与空气来流相对迎角变大，产生局部气流分离，导致飞行不稳。</p><p><img src="1c502f5433cdb915d54d957f374436c7.webp" alt="" /></p><p>前缘襟翼可以改变相对角度，使气流更平滑地流过机翼，减少失速发生。同时前缘襟翼也能增大机翼弯度，进一步提高升力和临界迎角。</p><h3 id="前缘缝翼"><a class="markdownIt-Anchor" href="#前缘缝翼"></a> 前缘缝翼</h3><p>前缘缝翼也安装在前缘，离前缘襟翼很近。它打开时与基本机翼前缘表面形成缝隙，将下表面压强较高的气流导向上表面，延缓上表面气流分离，提高飞机临界迎角，减小失速可能。同时也提高升力系数，增加升力。</p><p><img src="1c502f5433cdb915d54d957f374436c8.webp" alt="" /></p><p>尤其在飞机起飞时，机头仰角较大有可能突然失速坠机。前缘缝翼提高临界迎角，可以有效地缓解这种情况。它还能降低进场速度，提高降落性能。</p><h3 id="扰流板减速板"><a class="markdownIt-Anchor" href="#扰流板减速板"></a> 扰流板（减速板）</h3><p>扰流板通过液压系统升起，能减小升力、增大阻力，使飞机速度高度都降低。扰流板分飞行扰流板、地面扰流板。</p><p><img src="1c502f5433cdb915d54d957f374436c9.webp" alt="" /></p><p>飞行扰流板能在空中使用，单独使用一侧时，可以产生与副翼相当的作用。地面扰流板只能在地面使用。飞机降落时，飞行扰流板、地面扰流板全部打开，使飞机在更短的距离内停下来。</p>]]></content>
-    
-    
-    <summary type="html">关于飞机的翼和舵</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="Other" scheme="http://www.formeasy.cc/tags/Other/"/>
     
   </entry>
   

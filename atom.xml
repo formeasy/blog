@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-06-18T01:30:23.400Z</updated>
+  <updated>2026-06-26T08:28:29.345Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TMS XYZ  WMTS的不同</title>
+    <link href="http://www.formeasy.cc/2026/06/26/UE/TMS%20XYZ%20%20WMTS%E7%9A%84%E4%B8%8D%E5%90%8C/"/>
+    <id>http://www.formeasy.cc/2026/06/26/UE/TMS%20XYZ%20%20WMTS%E7%9A%84%E4%B8%8D%E5%90%8C/</id>
+    <published>2026-06-26T06:03:11.000Z</published>
+    <updated>2026-06-26T08:28:29.345Z</updated>
+    
+    <content type="html"><![CDATA[<p>WMS是OGC定义的协议，用于请求任意区域的渲染地图图像。客户可以根据需要以平铺模式对其进行请求。</p><p>WMS-C是OSGeo创建的WMS扩展，它向功能文档中添加了元数据，以使客户端知道在哪里发出请求，从而使它们与服务的图块对齐。 WMS-C服务可能会拒绝未与其图块网格对齐的请求。</p><p>TMS是OSGeo创建的协议，允许使用整数索引请求图块。它还提供用于发现和配置的元数据。可以将其实现为位于静态文件系统中的一组切片图像和元数据文件。 <strong>Y轴从底部向上</strong>。</p><p>WMTS是OGC创建的协议，允许使用整数索引请求图块。它还提供用于发现和配置的元数据。 <strong>Y轴从顶部向下</strong>。</p><p>“ XYZ”是我们通常用于静态文件系统中用于提供切片服务的各种临时方案的术语。没有标准的元数据机制。尽管最常见的是从顶部向下移动，但对于Y轴方向没有固定的标准。 Google为自己的目的做了某件事，其他人则模仿了它。特定的XYZ客户端和服务器可能会或可能无法一起工作。有时也可以使XYZ客户与TMS或WMTS服务一起使用。</p><p>还有一些较少使用的协议，例如Bing“ quadkey”协议或翻转缩放级别顺序的Google Mobile协议。</p><p><strong>我通常推荐WMTS，因为它是唯一得到广泛认可的标准机构支持的整数索引切片协议。</strong></p><p>WMTS: <a href="http://www.opengeospatial.org/standards/wmts">http://www.opengeospatial.org/standards/wmts</a></p><p>TMS: <a href="http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification</a></p><p>XYZ: <a href="https://en.wikipedia.org/wiki/Tiled_web_map">https://en.wikipedia.org/wiki/Tiled_web_map</a></p><p>上面的三个链接详细说明了每种服务。</p><p>TMS：据我了解，TMS是最基本的。 Tiled Web Service提供对资源的访问，尤其是对固定比例的渲染制图图块的访问。通过“ REST”接口提供对这些资源的访问，从描述可用图层的根资源开始，然后使用一组比例尺映射资源，然后使用比例尺来保存图块集。</p><p>WMTS：引入了易于同时使用多个图块服务的标准。此配置文件有两个目标：促进来自不同WMTS服务的层的组合，并通过强加一个通用TileMatrixSet来使tile客户端应用程序更易于实现。</p><p>XYZ：向WMTS标准添加以下标准-X和Y编号方案；瓷砖的PNG图片；图像通过REST API提供，URL为http：//…/Z/X/Y.png，其中Z为缩放级别，X和Y标识图块。</p><p><strong>对比：</strong></p><p>XYZ现在是最受欢迎的一种，并且被Google，Mapbox，OSM等许多服务所使用。</p><p>在XYZ中，Y从顶部开始，而在TMS中，Y从底部开始</p><p><strong>在cesiumforUE中的使用</strong></p><p>cesiumforUE中，使用TMS，可以用CesiumTileMapServiceRasterOverlay对象，<br />URL为：<a href="http://localhost/tms/tilemapservice.xml">http://localhost/tms/tilemapservice.xml</a></p><p>使用XYZ，用CesiumUrlTemplateRasterOverlay对象<br />URL为：<a href="http://localhost/maps/%7Bz%7D/%7Bx%7D/%7BreverseY%7D.png">http://localhost/maps/{z}/{x}/{reverseY}.png</a></p>]]></content>
+    
+    
+    <summary type="html">TMS XYZ  WMTS的不同</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
+    
+  </entry>
   
   <entry>
     <title>llama-server启动参数说明文档</title>
@@ -407,27 +428,6 @@
     
     
     <summary type="html">UE5增强输入</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE Async Load Asset通过资源路径动态加载资源</title>
-    <link href="http://www.formeasy.cc/2026/01/29/UE/UE%20Async%20Load%20Asset%E9%80%9A%E8%BF%87%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/"/>
-    <id>http://www.formeasy.cc/2026/01/29/UE/UE%20Async%20Load%20Asset%E9%80%9A%E8%BF%87%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/</id>
-    <published>2026-01-29T03:23:13.000Z</published>
-    <updated>2026-01-29T03:33:01.495Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1复制路径"><a class="markdownIt-Anchor" href="#1复制路径"></a> 1.复制路径</h3><p>右键资源复制资源引用<br /><img src="111636_991.png" alt="" /></p><h3 id="2蓝图操作"><a class="markdownIt-Anchor" href="#2蓝图操作"></a> 2.蓝图操作</h3><p>拖出路径转Async Load Asset节点，将Assset拖出到To Soft Object Reference和Make Soft Object 将Path粘贴资源路径中</p><p>将Async Load Asset节点拖出的Object，转成想要转换的类型，比如Texture2D，并进行设置，具体如下图：<br /><img src="111909_282.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE Async Load Asset通过资源路径动态加载资源</summary>
     
     
     

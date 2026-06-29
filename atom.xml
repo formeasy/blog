@@ -6,7 +6,7 @@
   <link href="http://www.formeasy.cc/atom.xml" rel="self"/>
   
   <link href="http://www.formeasy.cc/"/>
-  <updated>2026-06-26T08:28:29.345Z</updated>
+  <updated>2026-06-29T03:15:11.013Z</updated>
   <id>http://www.formeasy.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VS Code + CC-Switch + ClaudeCode 使用教程</title>
+    <link href="http://www.formeasy.cc/2026/06/29/LLM/VS%20Code%20+%20CC-Switch%20+%20ClaudeCode%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <id>http://www.formeasy.cc/2026/06/29/LLM/VS%20Code%20+%20CC-Switch%20+%20ClaudeCode%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</id>
+    <published>2026-06-29T02:25:44.000Z</published>
+    <updated>2026-06-29T03:15:11.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>本教程旨在帮助开发者通过 <strong>VS Code</strong> 结合 <strong>CC-Switch</strong> 工具，快速实现 Claude Code 对第三方模型（API）的无缝调用与灵活配置。</p><h2 id="前言先搞清楚几个角色"><a class="markdownIt-Anchor" href="#前言先搞清楚几个角色"></a> 前言：先搞清楚几个角色</h2><h3 id="1-claude-code-是什么"><a class="markdownIt-Anchor" href="#1-claude-code-是什么"></a> 1. Claude Code 是什么</h3><p>Claude Code 是 Anthropic 官方的编程 Agent 工具。</p><p>它可以：</p><blockquote><p>1.读项目代码<br />2.改文件<br />3.执行命令<br />4.分析报错<br />5.帮你重构项目</p></blockquote><p>正常情况下，它默认走 Claude 官方账号或 Anthropic Console API。</p><hr /><h3 id="2-claude-code-for-vscode-是什么"><a class="markdownIt-Anchor" href="#2-claude-code-for-vscode-是什么"></a> 2. Claude Code for VSCode 是什么</h3><p>Claude Code for VSCode 是 VSCode 里的 Claude Code 插件。</p><p>它本质上还是Claude Code，只不过把交互界面嵌入到了VSCode右侧面板里。</p><p>需要注意：</p><blockquote><p>命令行里的 <code>claude</code> 和VSCode里的Claude Code插件，不一定读取同一套环境变量。</p></blockquote><p>这是容易踩坑的原因之一。</p><hr /><h3 id="3-cc-switch-是什么"><a class="markdownIt-Anchor" href="#3-cc-switch-是什么"></a> 3. cc-switch 是什么</h3><p>cc-switch是一个Claude/Codex/Gemini等AI编程工具的供应商切换器。</p><p>它可以把：</p><p>Claude Code发出的Anthropic请求</p><p>转发到：</p><blockquote><p>1.DeepSeek<br />2.SiliconFlow<br />3.OpenAI 兼容接口<br />4.其他第三方平台</p></blockquote><p>它相当于一个中间层：</p><blockquote><p>Claude Code<br />      ↓<br />CC-switch<br />      ↓<br />第三方API</p></blockquote><h2 id="一-安装-vs-code若已安装可跳过此步骤"><a class="markdownIt-Anchor" href="#一-安装-vs-code若已安装可跳过此步骤"></a> 一、安装 VS Code（若已安装，可跳过此步骤）</h2><ul><li>🌐 <strong>官方下载地址</strong>：<a href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a></li><li>📥 请根据您的操作系统选择合适的版本下载并安装，如下图所示：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B1.png" alt="" /></p><hr /><h2 id="二-安装-cc-switch"><a class="markdownIt-Anchor" href="#二-安装-cc-switch"></a> 二、安装 cc-Switch</h2><p><strong>1. 访问 GitHub 开源仓库</strong>：<a href="https://github.com/farion1231/cc-switch">https://github.com/farion1231/cc-switch</a></p><p><strong>2. 下载最新的发行版本（Release）</strong>：</p><ul><li>进入仓库后，点击右侧的 <code>Releases</code> 区域，或直接访问链接：<a href="https://github.com/farion1231/cc-switch/releases">Releases 页面</a></li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B2.png" alt="" /></p><ul><li>在最新版本的 <code>Assets</code> 列表中，选择对应的系统版本进行下载：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B3.png" alt="" /></p><p><strong>3. 执行安装</strong>： 打开刚才下载的 <code>.msi</code> 安装包（Installer 程序包），按照向导提示完成安装即可：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B.png" alt="" /></p><p><strong>4. 启动程序</strong>： 安装完成后，打开 cc-Switch 客户端，准备后续配置：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B7.png" alt="" /></p><hr /><h2 id="三-在-vs-code-中安装-claude-code-扩展"><a class="markdownIt-Anchor" href="#三-在-vs-code-中安装-claude-code-扩展"></a> 三、在 VS Code 中安装 Claude Code 扩展</h2><p><strong>1. 打开扩展商店</strong>：在 VS Code 左侧活动栏中点击“扩展”图标（或使用快捷键 <code>Ctrl+Shift+X</code>）。</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B5.png" alt="" /></p><p><strong>2. 搜索并安装扩展</strong>：在搜索框中输入 <code>Claude Code</code> 并点击安装。</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B6.png" alt="" /></p><p><strong>3. 验证安装</strong>：扩展安装完成后，点击 VS Code 右侧边栏的 Claude Code 图标。若出现红框所示的侧边栏界面，即说明安装成功：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B8.png" alt="" /></p><hr /><h2 id="四-通过-cc-switch-调用第三方模型"><a class="markdownIt-Anchor" href="#四-通过-cc-switch-调用第三方模型"></a> 四、通过 cc-Switch 调用第三方模型</h2><h3 id="1原理解析"><a class="markdownIt-Anchor" href="#1原理解析"></a> （1）原理解析</h3><ul><li><strong>为何使用 cc-Switch</strong>：<ul><li>免去手动编辑复杂 <code>settings.json</code> 配置文件的繁琐。</li><li>支持预存多套 API 方案，实现一键无缝切换。</li><li>轻松接入各路中转站，完美适配各类第三方 API 聚合服务。</li></ul></li><li><strong>核心机制</strong>：<ul><li>cc-Switch 在底层动态覆盖了 <code>ANTHROPIC_BASE_URL</code> 和 <code>ANTHROPIC_API_KEY</code> 这两个关键环境变量。它将 Claude Code 原本发往官方的请求，“拦截”并重定向至您配置的第三方接口，从而在底层实现模型的无缝替换。</li></ul></li></ul><h3 id="2前置准备"><a class="markdownIt-Anchor" href="#2前置准备"></a> （2）前置准备</h3><p><strong>① 获取调用凭证</strong>： 在开始配置前，需要从第三方平台获取以下信息（本文以<strong>硅基流动 (SiliconFlow)</strong> 为例，其他支持的模型或中转平台配置逻辑完全一致）：</p><ul><li><strong>API Key</strong>（密钥）</li><li><strong>Base URL</strong>（接口地址）</li><li><strong>模型名称</strong></li></ul><p><strong>② 创建 API 密钥</strong>： 登录 <a href="https://siliconflow.com/">硅基流动官网</a>，在控制台生成您的 API 密钥：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B9.png" alt="" /></p><p><strong>③ 获取模型名称</strong>： 进入模型广场，选择您需要的模型，点击模型名称即可复制：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B10.png" alt="" /></p><p><strong>④ 确认 Base URL</strong>： 查阅官方 API 接口文档获取 Base URL。硅基流动的地址通常为 <code>https://api.siliconflow.cn/</code>（其他中转平台请参考其官方说明）：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B11.png" alt="" /></p><h3 id="3本地环境配置指南"><a class="markdownIt-Anchor" href="#3本地环境配置指南"></a> （3）本地环境配置指南</h3><p><strong>① 添加供应商</strong>： 回到 cc-Switch 客户端，点击添加新的服务供应商：<br />注意：新的cc-switch版本会有claude cli和claude desktop，使用的是第一个claude cli</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B12.png" alt="" /></p><p><strong>② 填写配置信息</strong>：</p><ul><li>按照下图指示进入配置页面：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B13.png" alt="" /></p><ul><li>向下滚动页面，将刚才获取的凭证填入对应位置：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B14.png" alt="" /></p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B15.png" alt="" /></p><ul><li>其他高级配置可按需修改。最后请核对红框内的核心信息，确认无误后点击添加：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B16.png" alt="" /></p><p><strong>③ 启动 Vibe Coding</strong>： 重新打开 VS Code 中的 Claude Code 扩展。如果无需登录账号，直接跳转至对话窗口，即说明配置大功告成，您可以开始使用啦！</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B17.png" alt="" /></p><h3 id="4远程环境remote-ssh配置指南"><a class="markdownIt-Anchor" href="#4远程环境remote-ssh配置指南"></a> （4）远程环境（Remote - SSH）配置指南</h3><p><strong>① 开启本地代理服务</strong>： 在 cc-Switch 中开启本地代理，并务必记住生成的服务地址与端口：</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B18.png" alt="" /></p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B19.png" alt="" /></p><p><strong>② 验证代理状态</strong>：</p><ul><li>点击上图步骤②中的图标，进入终端：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B20.png" alt="" /></p><ul><li>在终端中执行以下指令。若弹出的文本文件中包含代理信息，说明代理开启成功。请复制红框中的内容备用：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad <span class="string">&quot;%USERPROFILE%\.claude\settings.json&quot;</span></span><br></pre></td></tr></table></figure><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B21.png" alt="" /></p><p><strong>③ 远程配置 Claude Code（需提前安装 VS Code 的 Remote - SSH 插件）</strong>：</p><ul><li>编辑 VS Code 远程连接配置文件，添加 <code>RemoteForward</code> 参数进行端口转发，格式请参考下图：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B22.png" alt="" /></p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B23.png" alt="" /></p><ul><li>在远程服务器上安装 Claude Code 扩展：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B24.png" alt="" /></p><ul><li>对远程扩展进行环境配置：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B25.png" alt="" /></p><ul><li>将之前复制的代理地址与密钥填入空括号 <code>[]</code> 中，完成后的效果参考红框内容：</li></ul><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B26.png" alt="" /></p><p><strong>④ 完成配置并运行</strong>： 操作逻辑与本地运行一致。点击右侧边栏的 Claude Code 图标，若直接进入对话界面，说明远程配置成功。现在，尽情享受您的远程 Vibe Coding 体验吧！</p><p><img src="Claude_20code_E4_BD_BF_E7_94_A8_E6_95_99_E7_A8_8B111.png" alt="" /></p><h2 id="五-claude-code扩展使用"><a class="markdownIt-Anchor" href="#五-claude-code扩展使用"></a> 五、Claude Code扩展使用</h2><h3 id="1权限模式"><a class="markdownIt-Anchor" href="#1权限模式"></a> （1）权限模式</h3><p>单击对话框的右下角</p><p><img src="v2-589be9ca6efdfc296caf7cf943e874b0_1440wg.jpg" alt="" /></p><p>里面一共有5个模式</p><p><img src="v2-550c9c09802723e882fbfd2f4728a8b7_1440w.jpg" alt="" /></p><p>这里如果你想让 ai 自己全程开发，直接选择最后那个选项 — 绕过权限。<br />从 “yes”程序员变成“一键”程序员<br />这个还是慎用。<br />像我们一般的流程是 先单击“规划模式” 然后给出方案后，再执行，这样就能够生成的效果会更好些。</p><p>还有底部有一个“推理预算”<br />如果和我一样走国内 API（硅基流动/百炼等），Effort 档位要 更保守 使用。国内平台按输入+输出 token 计费，而 High/Max 档位的 thinking tokens 会计入输出费用。</p><p>官方数据显示 Max 比 Extra high 多耗近一倍 token 却只提升 3% 质量，在国内按量计费下这个性价比极低。建议日常默认 Medium，简单任务切 Low，遇到棘手 Bug 再临时拉高到 High，Max 档除非极难任务否则不建议开。</p><h3 id="2撤销操作"><a class="markdownIt-Anchor" href="#2撤销操作"></a> （2）撤销操作</h3><p>vs code 如果ai生成的内容不中意，就可以直接来退回</p><p>在这两个选项，单击随机一个即可。</p><p><img src="v2-86a853dfd4ae5aa7f8aa8ffa8c20dc70_1440w.jpg" alt="" /></p><p><strong>① Rewind code to here</strong></p><p>代码回退，但还在当前对话里继续聊</p><p><img src="v2-bbc64bf77d050a7dd40c6196cb2282ed_1440w.jpg" alt="" /></p><p>单击 Rewind 来进行撤销退回即可</p><p><strong>② Fork conversation and rewind code</strong></p><p>代码回退，同时新开一个独立对话</p><h3 id="3让ai查看特定文件"><a class="markdownIt-Anchor" href="#3让ai查看特定文件"></a> （3）让ai查看特定文件</h3><p><img src="v2-cacc6f59ec7f9875191f225c77c67606_1440w.jpg" alt="" /></p><p>第一个是上传项目以外的文件</p><p>第二个是上传项目当中的文件</p><p>如果文件在当前项目里 ，直接空格一下，然后输入@ 符号即可快速调用。</p><p>通过以上四个部分的分享，相信你已经掌握了在VS Code中高效使用Claude Code的核心技巧。</p><h2 id="六-cc-switch-调用本地模型"><a class="markdownIt-Anchor" href="#六-cc-switch-调用本地模型"></a> 六、CC-Switch 调用本地模型</h2><p>在添加供应商时选择自定义配置，并编辑如下：</p><p><img src="20260629093418_416_53.png" alt="" /></p><p><strong>注意：</strong></p><p>1.API Key可以任意填写。</p><p>2.请求地址为本地搭建大模型的URL，图中为llama搭建为例。</p><p>3.还有本地模型需要开启路由。</p>]]></content>
+    
+    
+    <summary type="html">VS Code + CC-Switch + ClaudeCode 使用教程</summary>
+    
+    
+    
+    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="LLM" scheme="http://www.formeasy.cc/tags/LLM/"/>
+    
+  </entry>
   
   <entry>
     <title>TMS XYZ  WMTS的不同</title>
@@ -138,9 +159,9 @@
     <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
-    
     <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
+    
+    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
     
   </entry>
   
@@ -161,9 +182,9 @@
     <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
-    
     <category term="VS" scheme="http://www.formeasy.cc/tags/VS/"/>
+    
+    <category term="Qt" scheme="http://www.formeasy.cc/tags/Qt/"/>
     
   </entry>
   
@@ -407,27 +428,6 @@
     
     
     <summary type="html">UE5增强输入之RawInput插件</summary>
-    
-    
-    
-    <category term="技术" scheme="http://www.formeasy.cc/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="UE" scheme="http://www.formeasy.cc/tags/UE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE5增强输入</title>
-    <link href="http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5/"/>
-    <id>http://www.formeasy.cc/2026/01/31/UE/UE5%E5%A2%9E%E5%BC%BA%E8%BE%93%E5%85%A5/</id>
-    <published>2026-01-31T09:53:13.000Z</published>
-    <updated>2026-01-31T13:59:48.209Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1项目设置"><a class="markdownIt-Anchor" href="#1项目设置"></a> 1.项目设置</h2><p>UE5对于输入这块功能做出了更新。在项目设置-&gt;输入的面板可以看到这块已经提示弃用了。<br />图中的操作映射(Action Mappings)和轴映射(Axis Mappings) 会被增强输入操作(Enhanced Input)和 输入映射上下文(Input mapping Context）代替。</p><p><img src="5d948f36d9387dcdc89578f0e49dc50559509622.png" alt="" /></p><p>操作映射针对按下和松开键；轴映射针对拥有连续范围的输入。</p><p>切换到引擎-增强输入界面</p><p>可以看到增强输入的配置针对不同平台也可以调一些预设参数。</p><p>编辑器和触发器也有一些预设参数。</p><p><img src="2098abb3e3dca97d8f54d9d82aafdc372892c8e6.png" alt="" /></p><p><img src="ac7088cbfa1df36c2d4ee17e77887225717002df.png" alt="" /></p><h2 id="2创建文件"><a class="markdownIt-Anchor" href="#2创建文件"></a> 2.创建文件</h2><h3 id="1在内容目录下的合适的文件夹里创建一个input文件夹用来存放增强输入的相关文件"><a class="markdownIt-Anchor" href="#1在内容目录下的合适的文件夹里创建一个input文件夹用来存放增强输入的相关文件"></a> 1).在内容目录下的合适的文件夹里，创建一个Input文件夹，用来存放增强输入的相关文件</h3><h3 id="2右键弹出菜单创建输入操作文件"><a class="markdownIt-Anchor" href="#2右键弹出菜单创建输入操作文件"></a> 2).右键弹出菜单，创建输入操作文件</h3><p><img src="09e3815585723bb7c45a6e9e0de5add050bea42e.png" alt="" /></p><p>英文名是Input Action，所以可以给它起名“IA_”开头来方便分类和查找。</p><h3 id="3双击文件进入文件细节-设置它的参数"><a class="markdownIt-Anchor" href="#3双击文件进入文件细节-设置它的参数"></a> 3).双击文件进入文件细节 设置它的参数。</h3><p>默认勾选“消耗输入”。</p><p>其他参数根据自己需要来修改。</p><p>一般&quot;按下 松开&quot;的操作键使用数字(布尔类型)</p><p><img src="2e9f1db0ea4f1b94abc324a1df911fa1c42368ba.png" alt="" /></p><p>方向和移动相关的，使用Axis1D（浮点) 这个类型是范围-1到1的浮点数。</p><p>也可以根据自己的需要改成Axis2D或Axis3D。</p><p><img src="ad4013d8f43e1d2285b97eb60b29e2de4587db6b.png" alt="" /></p><p>触发器和修改器的内容，可以在这里预设，也可以在蓝图中自定义来代替。</p><h3 id="4在创建好需要的ia文件后继续在空白地方右键菜单创建-输入映射情境input-mapping-context也就是输入映射上下文"><a class="markdownIt-Anchor" href="#4在创建好需要的ia文件后继续在空白地方右键菜单创建-输入映射情境input-mapping-context也就是输入映射上下文"></a> 4).在创建好需要的IA文件后，继续在空白地方右键菜单，创建 输入映射情境(Input Mapping Context)，也就是输入映射上下文。</h3><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c087.png" alt="" /></p><p>可以给它起名为IMC_ 开头的文件。</p><p>打开它，像之前操作映射一样，设置好IA文件和输入按键的关联映射。</p><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c088.png" alt="" /></p><h2 id="3配置蓝图"><a class="markdownIt-Anchor" href="#3配置蓝图"></a> 3.配置蓝图</h2><h3 id="1添加增强输入"><a class="markdownIt-Anchor" href="#1添加增强输入"></a> 1).添加增强输入</h3><p>打开需要添加增强输入的蓝图，按照以下执行：获取玩家控制器，执行引脚和增强输入本地玩家子系统（Enhanced Input Local Player Subsystem），执行引脚并添加映射上下文（Add Mapping Context），在“添加映射上下文”节点，选择之前创建的上下文文件（IMC_ 开头的文件） ，具体如下：</p><p><img src="df49d7609ddff879c02bbd0c7380e69417f0c089.png" alt="" /></p><h3 id="2使用增强输入事件"><a class="markdownIt-Anchor" href="#2使用增强输入事件"></a> 2).使用增强输入事件</h3><p>右键菜单搜索之前创建的IA_文件，选中后自动创建该文件相关的增强输入事件。</p><p><img src="3896b1969a1177c83b69eecfaa351481e9a40e84.png" alt="" /></p><p>创建好以后可以根据每个操作事件进行相应的测试，之后可以来设定输入后执行的内容。</p><p><img src="2cff4ac2b65f477495ff26fb2a2fe1a15e277706.png" alt="" /></p><p>其中，Trigger代表按住 可以用来作方向转向和移动的持续操作；<br />Started代表按下按键 Completed 代表松开按键。</p><p>测试下操作的内容并添加自定义的互动输入内容即可。</p><h2 id="4增强输入如何获取key"><a class="markdownIt-Anchor" href="#4增强输入如何获取key"></a> 4.增强输入如何获取Key</h2><p>创建一个函数Get Action Pressed Keys,函数内创建一个局部变量 PressedKyes 的键数组</p><p><img src="c882cbe85b8449d5965051afe2516b2d63004295.png" alt="" /><br /><img src="4e8bc8f887988c29e23f2135e89b725b76f129ec.png" alt="" /></p><p>调用该函数：</p><p><img src="2fe55a74e759863e9b08bdf8a05e696dd193010c.png" alt="" /></p>]]></content>
-    
-    
-    <summary type="html">UE5增强输入</summary>
     
     
     

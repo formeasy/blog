@@ -1,5 +1,5 @@
-http://www.formeasy.cc/2026/09/08/UE/UE5%E5%8A%A0%E8%BD%BD%E5%AD%90%E5%85%B3%E5%8D%A1%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/
-http://www.formeasy.cc/2026/07/04/UE/FBX%E8%BD%AC3DTiles%EF%BC%9A%E9%AB%98%E6%95%88WebGIS%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%E6%8C%87%E5%8D%97/
-http://www.formeasy.cc/2026/06/29/LLM/VS%20Code%20+%20CC-Switch%20+%20ClaudeCode%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/
-http://www.formeasy.cc/2026/06/26/UE/TMS%20XYZ%20%20WMTS%E7%9A%84%E4%B8%8D%E5%90%8C/
-http://www.formeasy.cc/2026/06/18/LLM/llama-server%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/
+http://www.formeasy.cc/2026/09/27/kubernetes/K8S(kubernetes)%E5%AD%A6%E4%B9%A0%EF%BC%9AK8S%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B_kubernetes%20%E6%A1%88%E4%BE%8B/
+http://www.formeasy.cc/2026/09/27/kubernetes/K8s(Kubernetes)%E5%AD%A6%E4%B9%A0%EF%BC%9Apod%E6%A6%82%E5%BF%B5%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C_kubectl%20%E8%BF%9B%E5%85%A5pod/
+http://www.formeasy.cc/2026/09/27/kubernetes/k8s%E4%B8%ADPod%E3%80%81ReplicaSet%E3%80%81Deployment%E3%80%81Service%E7%9A%84%E5%8C%BA%E5%88%AB_pod%20deployment%20replicaset%E5%8C%BA%E5%88%AB/
+http://www.formeasy.cc/2026/09/27/Docker/%E7%90%86%E8%A7%A3Docker%20Swarm,%20Service%E5%92%8CTask/
+http://www.formeasy.cc/2026/09/27/kubernetes/Kubernetes%E4%B8%ADDeployment%E3%80%81ReplicaSet%E3%80%81Pod%E3%80%81Service%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B3%E7%B3%BB/

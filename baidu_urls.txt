@@ -1,5 +1,5 @@
+http://www.formeasy.cc/2026/10/18/UE/PicoOpenXR%E5%92%8CPicoXR%E6%8F%92%E4%BB%B6%E5%AF%B9%E4%BA%8EPDC%E4%B8%B2%E6%B5%81%E3%80%81SteamVR%E4%B8%B2%E6%B5%81%E3%80%81OpenXR%E4%B8%B2%E6%B5%81%E5%AF%B9%E6%AF%94%20%E5%92%8C%20%E6%89%8B%E5%8A%BF%E8%BF%BD%E8%B8%AA%E5%AF%B9%E6%AF%94_pico%E4%BC%81%E4%B8%9A%E4%B8%B2%E6%B5%81/
 http://www.formeasy.cc/2026/09/27/kubernetes/K8S(kubernetes)%E5%AD%A6%E4%B9%A0%EF%BC%9AK8S%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B_kubernetes%20%E6%A1%88%E4%BE%8B/
 http://www.formeasy.cc/2026/09/27/kubernetes/K8s(Kubernetes)%E5%AD%A6%E4%B9%A0%EF%BC%9Apod%E6%A6%82%E5%BF%B5%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C_kubectl%20%E8%BF%9B%E5%85%A5pod/
 http://www.formeasy.cc/2026/09/27/kubernetes/k8s%E4%B8%ADPod%E3%80%81ReplicaSet%E3%80%81Deployment%E3%80%81Service%E7%9A%84%E5%8C%BA%E5%88%AB_pod%20deployment%20replicaset%E5%8C%BA%E5%88%AB/
 http://www.formeasy.cc/2026/09/27/Docker/%E7%90%86%E8%A7%A3Docker%20Swarm,%20Service%E5%92%8CTask/
-http://www.formeasy.cc/2026/09/27/kubernetes/Kubernetes%E4%B8%ADDeployment%E3%80%81ReplicaSet%E3%80%81Pod%E3%80%81Service%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B3%E7%B3%BB/
